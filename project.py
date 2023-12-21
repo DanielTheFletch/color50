@@ -6,11 +6,20 @@
 # Contains main function for project
 
 
-ANSI = "\u001b"
+import color
 
 
 def main():
-    print(f"{ANSI}[38;2;40;47;249mThe quick brown fox jumped over the lazy dog.{ANSI}{"[0m"}\n")
+    my_color = color.rgb(255, 0, 0)
+    print(str(my_color) + "Red statement" + color.RESET, sep="")
+    my_color = color.rgb(0, 255, 0)
+    print(str(my_color) + "Green statement" + color.RESET, sep="")
+    my_color = color.rgb(0, 0, 255)
+    print(str(my_color) + "Blue statement" + color.RESET, sep="")
+    my_color = color.rgb(255, 0, 255)
+    print(str(my_color) + "Purple statement" + color.RESET, sep="")
+    my_color = color.rgb(127, 127, 64)
+    print(str(my_color) + "Blended statement" + color.RESET, sep="")
 
 
 if __name__ == "__main__":

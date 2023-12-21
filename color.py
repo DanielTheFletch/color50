@@ -5,6 +5,9 @@
 # color.py
 # Color class and related functionality
 
+ANSI_PREFIX = "\u001b"
+RESET = f"{ANSI_PREFIX}[0m"
+
 class Color:
     """Color class"""
 
@@ -12,6 +15,10 @@ class Color:
         self.red = 0
         self.green = 0
         self.blue = 0
+
+    def __str__(self):
+        rgb = f"{self.red};{self.green};{self.blue}"
+        return f"{ANSI_PREFIX}[38;2;{rgb}m"
 
     @property
     def red(self) -> int:
