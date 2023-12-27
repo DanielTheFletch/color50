@@ -53,11 +53,3 @@ class Color:
     def bg(self):
         rgb = f"{self.red};{self.green};{self.blue}"
         return f"{ANSI_PREFIX}[48;2;{rgb}m"
-
-
-def rgb(red: int, green: int, blue: int) -> Color:
-    color = Color()
-    color.red = red
-    color.green = green
-    color.blue = blue
-    return color
