@@ -6,6 +6,7 @@
 # Contains main function for project
 
 # Python library imports
+from json import load
 from re import fullmatch
 
 # color50 imports
@@ -13,8 +14,12 @@ from color import Color, RESET
 
 
 def main():
-    color1 = hexcode("#FF00FF")
-    print(color1 + "Testing hexcode function" + RESET)
+    css_colors = {}
+    with open("csscolors.json") as file:
+        css_colors = load(file)
+
+    for color_name in css_colors:
+        print(css(color_name) + f"Testing CSS function: {color_name}" + RESET)
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
@@ -37,7 +42,26 @@ def hexcode(code: str) -> Color:
         r, g, b = match.groups()
         return rgb(int(r, base=16), int(g, base=16), int(b, base=16))
     else:
-        raise ValueError("Expected six-digit hexadecimal string")
+        raise ValueError("Expected valid six-digit hexadecimal string")
+    
+
+def css(colorname: str) -> Color:
+
+    # Check that parameter is a string
+    if not isinstance(colorname, str):
+        raise TypeError(f"Expected CSS color name as string, got value of type {type(colorname)}")
+    
+    # Extract list of colors from JSON file
+    colornames = {}
+    with open("csscolors.json", "r") as file:
+        colornames = load(file)
+
+    # Validate color choice
+    if colorname in colornames:
+        hex_str = colornames[colorname]
+        return hexcode(hex_str)
+    else:
+        raise ValueError("Expected valid CSS color name")
 
 
 if __name__ == "__main__":
