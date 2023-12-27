@@ -18,6 +18,9 @@ class Color:
 
     def __str__(self):
         return self.fg()
+    
+    def __add__(self, string: str) -> str:
+        return f"{self.fg()}{string}"
 
     @property
     def red(self) -> int:

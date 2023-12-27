@@ -11,8 +11,7 @@ import color
 
 def main():
     color1 = color.rgb(255, 0, 0)
-    color2 = color.rgb(0, 0, 255)
-    print(color2.bg() + color1.fg() + "Red message with a blue background" + color.RESET)
+    print(color1 + "Testing addition operator overload" + color.RESET)
 
 if __name__ == "__main__":
     main()
