@@ -10,17 +10,9 @@ import color
 
 
 def main():
-    my_color = color.rgb(255, 0, 0)
-    print(str(my_color) + "Red statement" + color.RESET, sep="")
-    my_color = color.rgb(0, 255, 0)
-    print(str(my_color) + "Green statement" + color.RESET, sep="")
-    my_color = color.rgb(0, 0, 255)
-    print(str(my_color) + "Blue statement" + color.RESET, sep="")
-    my_color = color.rgb(255, 0, 255)
-    print(str(my_color) + "Purple statement" + color.RESET, sep="")
-    my_color = color.rgb(127, 127, 64)
-    print(str(my_color) + "Blended statement" + color.RESET, sep="")
-
+    color1 = color.rgb(255, 0, 0)
+    color2 = color.rgb(0, 0, 255)
+    print(color2.bg() + color1.fg() + "Red message with a blue background" + color.RESET)
 
 if __name__ == "__main__":
     main()

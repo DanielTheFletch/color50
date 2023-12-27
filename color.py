@@ -17,8 +17,7 @@ class Color:
         self.blue = 0
 
     def __str__(self):
-        rgb = f"{self.red};{self.green};{self.blue}"
-        return f"{ANSI_PREFIX}[38;2;{rgb}m"
+        return self.fg()
 
     @property
     def red(self) -> int:
@@ -43,6 +42,14 @@ class Color:
     @blue.setter
     def blue(self, blue: int):
         self._blue = blue
+
+    def fg(self):
+        rgb = f"{self.red};{self.green};{self.blue}"
+        return f"{ANSI_PREFIX}[38;2;{rgb}m"
+    
+    def bg(self):
+        rgb = f"{self.red};{self.green};{self.blue}"
+        return f"{ANSI_PREFIX}[48;2;{rgb}m"
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
