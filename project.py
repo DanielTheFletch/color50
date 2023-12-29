@@ -15,7 +15,10 @@ from colorstr import ColorStr
 
 
 def main():
-    print_warning("ERROR: Critical failure")
+    color1 = rgb(128, 0, 128)
+    color2 = css("cyan")
+    color3 = hexcode("#FFFF00")
+    print(f"{color1}Color 1\n{color2}Color 2\n{color3}Color 3{RESET}")
 
 
 def rgb(red: int, green: int, blue: int) -> Color:

@@ -37,7 +37,13 @@ class Color:
     
     @red.setter
     def red(self, red: int):
-        self._red = red
+        if isinstance(red, int):
+            if 0 <= red <= 255:
+                self._red = red
+            else:
+                raise ValueError("Invalid rgb value, must be in the range [0, 255]")
+        else:
+            raise TypeError(f"Expected rgb value as integer, got object of type {type(red)}")
 
     @property
     def green(self) -> int:
@@ -45,7 +51,13 @@ class Color:
     
     @green.setter
     def green(self, green: int):
-        self._green = green
+        if isinstance(green, int):
+            if 0 <= green <= 255:
+                self._green = green
+            else:
+                raise ValueError("Invalid rgb value, must be in the range [0, 255]")
+        else:
+            raise TypeError(f"Expected rgb value as integer, got object of type {type(green)}")
 
     @property
     def blue(self) -> int:
@@ -53,7 +65,13 @@ class Color:
     
     @blue.setter
     def blue(self, blue: int):
-        self._blue = blue
+        if isinstance(blue, int):
+            if 0 <= blue <= 255:
+                self._blue = blue
+            else:
+                raise ValueError("Invalid rgb value, must be in the range [0, 255]")
+        else:
+            raise TypeError(f"Expected rgb value as integer, got object of type {type(blue)}")
 
     def fg(self):
         rgb = f"{self.red};{self.green};{self.blue}"
