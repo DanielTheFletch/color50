@@ -1,3 +1,17 @@
+# Daniel Fletcher
+# Harvard CS50P 2023
+# Final Project
+
+# pyproject.toml
+# Package configuration file
+
+# Modeled after packaging tutorial found at:
+# https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "color50"
 version = "1.0.0"
@@ -8,9 +22,15 @@ description = "Placeholder description"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Console Fonts",
+    "Topic :: Education"
 ]
 
 [project.urls]
