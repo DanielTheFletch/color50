@@ -34,7 +34,7 @@ def hexcode(code: str) -> Color:
         raise TypeError(f"Expected hexadecimal value as string, got object of type {type(code)}")
     
     # Validate string
-    regex = r"#([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})"
+    regex = r"#?([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})"
     if match := fullmatch(regex, code):
         r, g, b = match.groups()
         return rgb(int(r, base=16), int(g, base=16), int(b, base=16))
