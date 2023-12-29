@@ -127,50 +127,50 @@ def test_css():
     # Manually initialize colors for testing
     colors = []
     for _ in range(10): colors.append(Color())
-    colors[1].red = 255
-    colors[2].red, colors[2].blue = 128, 128
-    colors[3].red, colors[3].green, colors[3].blue = 255, 255, 255
-    colors[4].red, colors[4].green = 128, 255
-    colors[5].green, colors[5].blue = 255, 128
-    colors[6].red, colors[6].green, colors[6].blue = 64, 32, 16
-    colors[7].red, colors[7].green, colors[7].blue = 16, 32, 64
-    colors[8].green = 16
-    colors[9].red, colors[9].green, colors[9].blue = 16, 16, 16
+    colors[1].red, colors[1].green, colors[1].blue = 138, 43, 226
+    colors[2].green, colors[2].blue = 206, 209
+    colors[3].red, colors[3].green, colors[3].blue = 178, 34, 34
+    colors[4].red, colors[4].green, colors[4].blue = 32, 178, 170
+    colors[5].red, colors[5].green = 255, 165
+    colors[6].red = 255
+    colors[7].red, colors[7].green, colors[7].blue = 135, 206, 235
+    colors[8].red, colors[8].green, colors[8].blue = 216, 191, 216
+    colors[9].red, colors[9].green, colors[9].blue = 255, 255, 255
 
-    # # Test valid colors
-    # assert css(0, 0, 0) == colors[0]
-    # assert css(255, 0, 0) == colors[1]
-    # assert css(128, 0, 128) == colors[2]
-    # assert css(255, 255, 255) == colors[3]
-    # assert css(128, 255, 0) == colors[4]
-    # assert css(0, 255, 128) == colors[5]
-    # assert css(64, 32, 16) == colors[6]
-    # assert css(16, 32, 64) == colors[7]
-    # assert css(0, 16, 0) == colors[8]
-    # assert css(16, 16, 16) == colors[9]
+    # Test valid colors
+    assert css("black") == colors[0]
+    assert css("blueviolet") == colors[1]
+    assert css("darkturquoise") == colors[2]
+    assert css("firebrick") == colors[3]
+    assert css("lightseagreen") == colors[4]
+    assert css("orange") == colors[5]
+    assert css("red") == colors[6]
+    assert css("skyblue") == colors[7]
+    assert css("thistle") == colors[8]
+    assert css("white") == colors[9]
 
-    # # Test invalid colors: Values out of range
-    # with pytest.raises(ValueError):
-    #     css(0, 0, -1)
-    #     css(100, 200, 300)
-    #     css(1000, 30, 50)
-    #     css(0, -1000, 1000)
-    #     css(256, 255, 254)
-    #     css(0, 200, 400)
-    #     css(-5, 0, 5)
-    #     css(-255, -255, -255)
-    #     css(0, 1000, 0)
-    #     css(-256, 0, 256)
+    # Test invalid colors: Invalid CSS color name
+    with pytest.raises(ValueError):
+        css("rubberducky")
+        css("malanshirtblack")
+        css("sharknadoblue")
+        css("Hello, World!")
+        css("When in the course of human events...")
+        css("#000000")
+        css("FFFFFF")
+        css("color: blue;")
+        css("background-color: red;")
+        css("LIME GREEN!!!!!!")
 
-    # # Test invalid colors: Invalid parameter type(s)
-    # with pytest.raises(TypeError):
-    #     css(0, 0.5, 0)
-    #     css("128", "0", "128")
-    #     css("red=255", 0, 0)
-    #     css(Color(), Color(), Color())
-    #     css([255, 0, 0], None, None)
-    #     css(32, 67.75, 128)
-    #     css({"red": 255, "green": 0, "blue": 0}, None, None)
-    #     css(sqrt(2), sqrt(2) / 2, sqrt(2))
-    #     css(pi, pi / 2, pi / 4)
-    #     css([], {}, ())
+    # Test invalid colors: Invalid parameter type (e.g., not str)
+    with pytest.raises(TypeError):
+        css(0)
+        css(sqrt(2) + sqrt(2) / 3)
+        css({"color": "cyan"})
+        css(Color())
+        css([128, 0, 128])
+        css(())
+        css(pi == pi)
+        css(pi == (pi / 64))
+        css(1.618)
+        css(0x808000)
