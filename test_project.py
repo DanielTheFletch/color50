@@ -15,6 +15,8 @@ from color import Color
 
 
 def test_rgb():
+    """test_rgb test suite"""
+    
     # Manually initialize colors for testing
     colors = []
     for _ in range(10): colors.append(Color())
@@ -68,6 +70,8 @@ def test_rgb():
 
 
 def test_hexcode():
+    """test_hexcode test suite"""
+    
     # Manually initialize colors for testing
     colors = []
     for _ in range(10): colors.append(Color())
@@ -121,6 +125,8 @@ def test_hexcode():
 
 
 def test_css():
+    """test_css test suite"""
+    
     # Manually initialize colors for testing
     colors = []
     for _ in range(10): colors.append(Color())

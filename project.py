@@ -16,16 +16,20 @@ from constants import *
 
 
 def main():
-    print_warning("This is a warning message.")
+    # Implement extensive demonstration of features
+    pass
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
+    """rgb function"""
+
     color = Color()
     color.red, color.green, color.blue = red, green, blue
     return color
 
 
 def hexcode(code: str) -> Color:
+    """hexcode function"""
 
     # Check that parameter is a string
     if not isinstance(code, str):
@@ -37,10 +41,11 @@ def hexcode(code: str) -> Color:
         r, g, b = match.groups()
         return rgb(int(r, base=16), int(g, base=16), int(b, base=16))
     else:
-        raise ValueError("Invalid six-digit hexadecimal string format")
+        raise ValueError(f"Invalid six-digit hexadecimal string \'{code}\'")
     
 
 def css(colorname: str) -> Color:
+    """css function"""
 
     # Check that parameter is a string
     if not isinstance(colorname, str):
@@ -59,6 +64,9 @@ def css(colorname: str) -> Color:
     
 
 def colorize(color: Color | str):
+    """colorize decorator function"""
+
+    # Validate color choice
     if isinstance(color, str):
         regex = r"\u001b\[(3|4|9|10)[0-7]m"
         if not fullmatch(regex, color):
@@ -67,20 +75,17 @@ def colorize(color: Color | str):
         raise TypeError(f"Expected Color or string, got object of type {type(color)}")
     
     def decorate(func):
+        # Validate that a callable object is passed
         if not callable(func):
             raise TypeError(f"Expected callable object, got object of type {type(func)}")
         
+        # Wrapper function
         def wrapper(*args, **kwargs):
-            if color: print(color, end="")
+            print(color, end="")
             func(*args, **kwargs)
             print(RESET, end="")
         return wrapper
     return decorate
-
-
-@colorize(5)
-def print_warning(message):
-    print(message)
 
 
 if __name__ == "__main__":
