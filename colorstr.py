@@ -5,7 +5,8 @@
 # color.py
 # Color class and related functionality
 
-from color import Color, RESET
+from color import Color
+from constants import *
 
 class ColorStr:
     """ColorStr class"""

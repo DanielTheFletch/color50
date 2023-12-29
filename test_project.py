@@ -5,16 +5,13 @@
 # test_project.py
 # Contains test cases for rgb, hexcode, and css functions
 
-# Python library imports
+# Library imports for testing
 from math import pi, sqrt
+import pytest
 
 # color50 imports
 from project import rgb, hexcode, css
 from color import Color
-from colorstr import ColorStr
-
-# pytest for more control over testing
-import pytest
 
 
 def test_rgb():

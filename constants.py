@@ -1,0 +1,50 @@
+# Daniel Fletcher
+# Harvard CS50P 2023
+# Final Project
+
+# constants.py
+# Constants for use across files
+
+# ANSI escape sequence manipulation
+ANSI_PREFIX = "\u001b"
+RESET = f"{ANSI_PREFIX}[0m"
+
+# Standard colors (foreground)
+BLACK = f"{ANSI_PREFIX}[30m"
+RED = f"{ANSI_PREFIX}[31m"
+GREEN = f"{ANSI_PREFIX}[32m"
+YELLOW = f"{ANSI_PREFIX}[33m"
+BLUE = f"{ANSI_PREFIX}[34m"
+MAGENTA = f"{ANSI_PREFIX}[35m"
+CYAN = f"{ANSI_PREFIX}[36m"
+WHITE = f"{ANSI_PREFIX}[37m"
+
+# Standard colors (background)
+BLACK_BG = f"{ANSI_PREFIX}[40m"
+RED_BG = f"{ANSI_PREFIX}[41m"
+GREEN_BG = f"{ANSI_PREFIX}[42m"
+YELLOW_BG = f"{ANSI_PREFIX}[43m"
+BLUE_BG = f"{ANSI_PREFIX}[44m"
+MAGENTA_BG = f"{ANSI_PREFIX}[45m"
+CYAN_BG = f"{ANSI_PREFIX}[46m"
+WHITE_BG = f"{ANSI_PREFIX}[47m"
+
+# Bright standard colors (foreground)
+BRIGHT_BLACK = GREY = GRAY = f"{ANSI_PREFIX}[90m"
+BRIGHT_RED = f"{ANSI_PREFIX}[91m"
+BRIGHT_GREEN = f"{ANSI_PREFIX}[92m"
+BRIGHT_YELLOW = f"{ANSI_PREFIX}[93m"
+BRIGHT_BLUE = f"{ANSI_PREFIX}[94m"
+BRIGHT_MAGENTA = f"{ANSI_PREFIX}[95m"
+BRIGHT_CYAN = f"{ANSI_PREFIX}[96m"
+BRIGHT_WHITE = f"{ANSI_PREFIX}[97m"
+
+# Bright standard colors (background)
+BRIGHT_BLACK_BG = f"{ANSI_PREFIX}[100m"
+BRIGHT_RED_BG = f"{ANSI_PREFIX}[101m"
+BRIGHT_GREEN_BG = f"{ANSI_PREFIX}[102m"
+BRIGHT_YELLOW_BG = f"{ANSI_PREFIX}[103m"
+BRIGHT_BLUE_BG = f"{ANSI_PREFIX}[104m"
+BRIGHT_MAGENTA_BG = f"{ANSI_PREFIX}[105m"
+BRIGHT_CYAN_BG = f"{ANSI_PREFIX}[106m"
+BRIGHT_WHITE_BG = f"{ANSI_PREFIX}[107m"

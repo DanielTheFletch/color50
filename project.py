@@ -10,15 +10,13 @@ from json import load
 from re import fullmatch
 
 # color50 imports
-from color import Color, RESET
+from color import Color
 from colorstr import ColorStr
+from constants import *
 
 
 def main():
-    color1 = rgb(128, 0, 128)
-    color2 = css("cyan")
-    color3 = hexcode("#FFFF00")
-    print(f"{color1}Color 1\n{color2}Color 2\n{color3}Color 3{RESET}")
+    print_warning("This is a warning message.")
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
@@ -60,21 +58,27 @@ def css(colorname: str) -> Color:
         raise ValueError(f"CSS color name \'{colorname}\' not recognized")
     
 
-def colorize(fg: Color, bg: Color = None):
+def colorize(color: Color | str):
+    if isinstance(color, str):
+        regex = r"\u001b\[(3|4|9|10)[0-7]m"
+        if not fullmatch(regex, color):
+            raise ValueError(f"ANSI character sequence \'{color}\' not recognized")
+    elif not isinstance(color, Color):
+        raise TypeError(f"Expected Color or string, got object of type {type(color)}")
+    
     def decorate(func):
         if not callable(func):
             raise TypeError(f"Expected callable object, got object of type {type(func)}")
         
         def wrapper(*args, **kwargs):
-            if fg: print(fg, end="")
-            if bg: print(bg, end="")
+            if color: print(color, end="")
             func(*args, **kwargs)
             print(RESET, end="")
         return wrapper
     return decorate
 
 
-@colorize(css("red"))
+@colorize(5)
 def print_warning(message):
     print(message)
 

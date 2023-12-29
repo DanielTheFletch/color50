@@ -5,8 +5,7 @@
 # color.py
 # Color class and related functionality
 
-ANSI_PREFIX = "\u001b"
-RESET = f"{ANSI_PREFIX}[0m"
+from constants import *
 
 class Color:
     """Color class"""
