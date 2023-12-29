@@ -15,12 +15,11 @@ from colorstr import ColorStr
 
 
 def main():
-    message = ColorStr("Testing ColorStr class", rgb(128, 0, 128))
-    print(message)
-    message.fg = css("goldenrod")
-    print(message)
-    message.fg = None
-    print(message)
+    message1 = ColorStr("This is a blue message, ", rgb(0, 0, 128))
+    message2 = ColorStr("this is a red message, ", rgb(128, 0, 0))
+    message3 = "and this is a plain message."
+
+    print(message1 + message2 + message3)
 
 
 def rgb(red: int, green: int, blue: int) -> Color:

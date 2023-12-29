@@ -20,8 +20,12 @@ class ColorStr:
         bg_code = "" if self.bg == None else str(self.bg)
         return f"{fg_code}{bg_code}{self.content}{RESET}"
 
-    def __add__(self, addend):
-        pass
+    def __add__(self, addend) -> str:
+        if type(addend) == ColorStr or type(addend) == str:
+            return str(self) + str(addend)
+        else:
+            return NotImplemented
+
 
     @property
     def content(self) -> str:
