@@ -21,7 +21,7 @@ class ColorStr:
         return f"{fg_code}{bg_code}{self.content}{RESET}"
 
     def __add__(self, addend) -> str:
-        if type(addend) == ColorStr or type(addend) == str:
+        if isinstance(addend, ColorStr) or isinstance(addend, str):
             return str(self) + str(addend)
         else:
             return NotImplemented
@@ -33,7 +33,7 @@ class ColorStr:
     
     @content.setter
     def content(self, content: str):
-        if type(content) == str:
+        if isinstance(content, str):
             self._content = content
         else:
             raise TypeError(f"Expected string for object content, got {type(content)}")
@@ -44,7 +44,7 @@ class ColorStr:
     
     @fg.setter
     def fg(self, fg: Color):
-        if type(fg) == Color or fg == None:
+        if isinstance(fg, Color) or fg == None:
             self._fg = fg
         else:
             raise TypeError(f"Expected valid Color for foreground, got {type(fg)}")
@@ -55,7 +55,7 @@ class ColorStr:
     
     @bg.setter
     def bg(self, bg: Color):
-        if type(bg) == Color or bg == None:
+        if isinstance(bg, Color) or bg == None:
             self._bg = bg
         else:
             raise TypeError(f"Expected valid Color for foreground, got {type(bg)}")
