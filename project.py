@@ -15,11 +15,7 @@ from colorstr import ColorStr
 
 
 def main():
-    message1 = ColorStr("This is a blue message, ", rgb(0, 0, 128))
-    message2 = ColorStr("this is a red message, ", rgb(128, 0, 0))
-    message3 = "and this is a plain message."
-
-    print(message1 + message2 + message3)
+    print_warning("ERROR: Critical failure")
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
@@ -62,6 +58,25 @@ def css(colorname: str) -> Color:
         return hexcode(hex_str)
     else:
         raise ValueError("Expected valid CSS color name")
+    
+
+def colorize(fg: Color = None, bg: Color = None):
+    def decorate(func):
+        if not callable(func):
+            raise TypeError("Expected callable object to colorize")
+        
+        def wrapper(*args, **kwargs):
+            if fg: print(fg, end="")
+            if bg: print(bg, end="")
+            func(*args, **kwargs)
+            print(RESET, end="")
+        return wrapper
+    return decorate
+
+
+@colorize(css("red"))
+def print_warning(message):
+    print(message)
 
 
 if __name__ == "__main__":
