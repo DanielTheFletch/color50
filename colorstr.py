@@ -5,7 +5,7 @@
 # color.py
 # Color class and related functionality
 
-from color import Color
+from color import Color, RESET
 
 class ColorStr:
     """ColorStr class"""
@@ -16,7 +16,9 @@ class ColorStr:
         self.bg = bg
 
     def __str__(self):
-        pass
+        fg_code = "" if self.fg == None else str(self.fg)
+        bg_code = "" if self.bg == None else str(self.bg)
+        return f"{fg_code}{bg_code}{self.content}{RESET}"
 
     def __add__(self, addend):
         pass
