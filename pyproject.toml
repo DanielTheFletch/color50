@@ -19,6 +19,16 @@ authors = [
     { name="Daniel Fletcher", email="dfletcher-mail@proton.me" }
 ]
 description = "Placeholder description"
+keywords = [
+    "color50",
+    "color",
+    "console",
+    "terminal",
+    "CS50",
+    "CS50P",
+    "Harvard",
+    "Harvard University"
+]
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -34,4 +44,6 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/danielthefletch/color50"
+GitHub = "https://github.com/danielthefletch/color50.git"
+Documentation = "https://readthedocs.org"
+"CS50P Class Website" = "https://cs50.harvard.edu/python/2022/"
