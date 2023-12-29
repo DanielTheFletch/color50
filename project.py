@@ -11,15 +11,12 @@ from re import fullmatch
 
 # color50 imports
 from color import Color, RESET
+from colorstr import ColorStr
 
 
 def main():
-    css_colors = {}
-    with open("csscolors.json") as file:
-        css_colors = load(file)
-
-    for color_name in css_colors:
-        print(css(color_name) + f"Testing CSS function: {color_name}" + RESET)
+    message = ColorStr("Testing ColorStr class", rgb(128, 0, 128))
+    print(message.fg + message.content + RESET)
 
 
 def rgb(red: int, green: int, blue: int) -> Color:

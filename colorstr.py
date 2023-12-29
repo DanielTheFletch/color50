@@ -10,8 +10,10 @@ from color import Color
 class ColorStr:
     """ColorStr class"""
 
-    def __init__(self):
-        pass
+    def __init__(self, content: str, fg: Color = None, bg: Color = None):
+        self.content = content
+        self.fg = fg
+        self.bg = bg
 
     def __str__(self):
         pass
@@ -25,7 +27,10 @@ class ColorStr:
     
     @content.setter
     def content(self, content: str):
-        self._content = content
+        if type(content) == str:
+            self._content = content
+        else:
+            raise TypeError(f"Expected string for object content, got {type(content)}")
 
     @property
     def fg(self) -> Color:
@@ -33,7 +38,10 @@ class ColorStr:
     
     @fg.setter
     def fg(self, fg: Color):
-        self._fg = fg
+        if type(fg) == Color or fg == None:
+            self._fg = fg
+        else:
+            raise TypeError(f"Expected valid Color for foreground, got {type(fg)}")
 
     @property
     def bg(self) -> Color:
@@ -41,4 +49,7 @@ class ColorStr:
     
     @bg.setter
     def bg(self, bg: Color):
-        self._bg = bg
+        if type(bg) == Color or bg == None:
+            self._bg = bg
+        else:
+            raise TypeError(f"Expected valid Color for foreground, got {type(bg)}")
