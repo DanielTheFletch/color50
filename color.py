@@ -21,6 +21,15 @@ class Color:
     
     def __add__(self, string: str) -> str:
         return f"{self.fg()}{string}"
+    
+    def __eq__(self, other) -> bool:
+        return (isinstance(other, Color) 
+                and self.red == other.red
+                and self.green == other.green
+                and self.blue == other.blue)
+    
+    def __ne__(self, other) -> bool:
+        return not (self == other)
 
     @property
     def red(self) -> int:

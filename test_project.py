@@ -12,7 +12,9 @@ from colorstr import ColorStr
 
 
 def test_rgb():
-    ...
+    color = Color()
+    color.red = 255
+    assert rgb(255, 0, 0) == color
 
 
 def test_hexcode():
