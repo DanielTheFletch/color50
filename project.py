@@ -20,9 +20,7 @@ def main():
 
 def rgb(red: int, green: int, blue: int) -> Color:
     color = Color()
-    color.red = red
-    color.green = green
-    color.blue = blue
+    color.red, color.green, color.blue = red, green, blue
     return color
 
 
@@ -30,7 +28,7 @@ def hexcode(code: str) -> Color:
 
     # Check that parameter is a string
     if not isinstance(code, str):
-        raise TypeError(f"Expected hexadecimal string, got value of type {type(code)}")
+        raise TypeError(f"Expected hexadecimal value as string, got object of type {type(code)}")
     
     # Validate string
     regex = r"#([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})([0-9,A-F,a-f]{2})"
@@ -38,14 +36,14 @@ def hexcode(code: str) -> Color:
         r, g, b = match.groups()
         return rgb(int(r, base=16), int(g, base=16), int(b, base=16))
     else:
-        raise ValueError("Expected valid six-digit hexadecimal string")
+        raise ValueError("Invalid six-digit hexadecimal string format")
     
 
 def css(colorname: str) -> Color:
 
     # Check that parameter is a string
     if not isinstance(colorname, str):
-        raise TypeError(f"Expected CSS color name as string, got value of type {type(colorname)}")
+        raise TypeError(f"Expected CSS color name as string, got object of type {type(colorname)}")
     
     # Extract list of colors from JSON file
     colornames = {}
@@ -54,16 +52,15 @@ def css(colorname: str) -> Color:
 
     # Validate color choice
     if colorname in colornames:
-        hex_str = colornames[colorname]
-        return hexcode(hex_str)
+        return hexcode(colornames[colorname])
     else:
-        raise ValueError("Expected valid CSS color name")
+        raise ValueError(f"CSS color name \'{colorname}\' not recognized")
     
 
-def colorize(fg: Color = None, bg: Color = None):
+def colorize(fg: Color, bg: Color = None):
     def decorate(func):
         if not callable(func):
-            raise TypeError("Expected callable object to colorize")
+            raise TypeError(f"Expected callable object, got object of type {type(func)}")
         
         def wrapper(*args, **kwargs):
             if fg: print(fg, end="")
