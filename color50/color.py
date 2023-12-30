@@ -11,13 +11,24 @@ class Color:
     """A class for representing colors in RGB format.
     
     Designed to be used in conjunction with strings at the terminal for
-    more colorful printing, as well as with other components of the
+    more colorful printing. Also used alongside other components of the
     :doc:`color50 package </color50>`.
+
+    In addition to the properties and methods outlined, the **Color**
+    class can be used in other contexts:
+    
+        - Supports string concatenation (in the form of ``Color + str``)
+        - Has a built-in string conversion implemented as ``__str__`` override
+        - Has built in == / != operator overloads for comparing two **Color** objects
+
+    Note:
+        Make sure to use the ``RESET`` constant when combining strings with **Color**
+        objects&mdash;the color settings will not revert unless explicitly specified!
 
     """
 
     def __init__(self):
-        """Initializes a default `Color` object with values R: 0, G: 0, B:0
+        """Initialize a default `Color` object with values R: ``0``, G: ``0``, B: ``0``.
         
         Note that there are no parameterized ``__init___`` functions for the
         ``Color`` class; instead, it is recommended to use one of the associated
@@ -30,25 +41,21 @@ class Color:
         self.blue = 0
 
     def __str__(self):
-        """__str__"""
         return self.fg()
     
     def __add__(self, string: str) -> str:
-        """__add__"""
         if isinstance(string, str):
             return str(self) + string
         else:
             return NotImplemented
     
     def __eq__(self, other) -> bool:
-        """__eq__"""
         return (isinstance(other, Color) 
                 and self.red == other.red
                 and self.green == other.green
                 and self.blue == other.blue)
     
     def __ne__(self, other) -> bool:
-        """__ne__"""
         return not (self == other)
 
     @property
@@ -96,12 +103,30 @@ class Color:
         else:
             raise TypeError(f"Expected rgb value as integer, got object of type {type(blue)}")
 
-    def fg(self):
-        """fg function"""
+    def fg(self) -> str:
+        """Return string representation of color for use in foreground.
+
+        The return value of this function is the default behavior of converting
+        a **Color** object to a string. The option to call ``fg`` explicitly
+        has been included for completeness, readability, and consistency.
+        
+        Returns:
+            The ANSI color code sequence representation of the object, specifically
+            to use as a foreground color.
+
+        """
+
         rgb = f"{self.red};{self.green};{self.blue}"
         return f"{ANSI_PREFIX}[38;2;{rgb}m"
     
-    def bg(self):
-        """bg function"""
+    def bg(self) -> str:
+        """Return string representation of color for use in background.
+        
+        Returns:
+            The ANSI color code sequence representation of the object, specifically
+            to use as a background color.
+            
+        """
+
         rgb = f"{self.red};{self.green};{self.blue}"
         return f"{ANSI_PREFIX}[48;2;{rgb}m"

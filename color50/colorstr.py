@@ -15,8 +15,8 @@ class ColorStr:
     
     Stores string content alongside a foreground color and background color.
     Otherwise treated like standard strings in multiple contexts:
-        - Supports string concatenation (both with strings and other **ColorStr**
-        objects)
+
+        - Supports string concatenation (both with strings and other **ColorStr** objects)
         - Has a built-in string conversion implemented as ``__str__`` override
         - Can be used in conjunction with ``print``, f-strings, and the like
 
