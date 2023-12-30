@@ -1,3 +1,101 @@
+"""A series of string literal constants for more granular color control.
+
+Use these constants as shorthand for multiple different situations:
+    - Passing named color constants to ``colorize``
+    - Using RESET when working with **Color** objects
+    - Interfacing with ANSI color codes more directly
+
+Note:
+    Because these constants are not encapsulated in any class or error-checking
+    logic, using them may result in unintended side effects if not familiar
+    with ANSI color code sequencing. Consult [INSERT] for more information.
+
+For ANSI escape sequence manipulation:
+    Use these constants to directly interface with the lower-level implementation
+    of ANSI color code sequencing. ``RESET`` will also be *very* useful when
+    working with **Color** objects and not **ColorStr** objects.
+
+    ====================  =====================
+    **Constant**          **String value**
+    --------------------  ---------------------
+    ANSI-PREFIX           ``\"\\u001b\"``
+    RESET                 ``\"\\u001b[0m\"``
+    ====================  =====================
+
+For standard colors (foreground):
+    Use these constants as shorthand for the eight standard ANSI color codes,
+    specifically those that alter the foreground color. Make sure to use ``RESET``
+    after using the desired color to avoid unexpected behavior.
+
+    ====================  =====================
+    **Constant**          **String value**
+    --------------------  ---------------------
+    BLACK                 ``\"\\u001b[30m\"``
+    RED                   ``\"\\u001b[31m\"``
+    GREEN                 ``\"\\u001b[32m\"``
+    YELLOW                ``\"\\u001b[33m\"``
+    BLUE                  ``\"\\u001b[34m\"``
+    MAGENTA               ``\"\\u001b[35m\"``
+    CYAN                  ``\"\\u001b[36m\"``
+    WHITE                 ``\"\\u001b[37m\"``
+    ====================  =====================
+
+For standard colors (background):
+    Use these constants as shorthand for the eight standard ANSI color codes,
+    specifically those that alter the background color. Make sure to use ``RESET``
+    after using the desired color to avoid unexpected behavior.
+
+    ====================  =====================
+    **Constant**          **String value**
+    --------------------  ---------------------
+    BLACK_BG              ``\"\\u001b[40m\"``
+    RED_BG                ``\"\\u001b[41m\"``
+    GREEN_BG              ``\"\\u001b[42m\"``
+    YELLOW_BG             ``\"\\u001b[43m\"``
+    BLUE_BG               ``\"\\u001b[44m\"``
+    MAGENTA_BG            ``\"\\u001b[45m\"``
+    CYAN_BG               ``\"\\u001b[46m\"``
+    WHITE_BG              ``\"\\u001b[47m\"``
+    ====================  =====================
+
+For bright standard colors (foreground):
+    Use these constants as shorthand for the eight standard ANSI *bright* color codes,
+    specifically those that alter the foreground color. Make sure to use ``RESET``
+    after using the desired color to avoid unexpected behavior.
+
+    ===============================  =====================
+    **Constant**                     **String value**
+    -------------------------------  ---------------------
+    BRIGHT_BLACK (or GRAY or GREY)   ``\"\\u001b[90m\"``
+    BRIGHT_RED                       ``\"\\u001b[91m\"``
+    BRIGHT_GREEN                     ``\"\\u001b[92m\"``
+    BRIGHT_YELLOW                    ``\"\\u001b[93m\"``
+    BRIGHT_BLUE                      ``\"\\u001b[94m\"``
+    BRIGHT_MAGENTA                   ``\"\\u001b[95m\"``
+    BRIGHT_CYAN                      ``\"\\u001b[96m\"``
+    BRIGHT_WHITE                     ``\"\\u001b[97m\"``
+    ===============================  =====================
+
+For bright standard colors (background):
+    Use these constants as shorthand for the eight standard ANSI *bright* color codes,
+    specifically those that alter the background color. Make sure to use ``RESET``
+    after using the desired color to avoid unexpected behavior.
+
+    ========================================  =====================
+    **Constant**                              **String value**
+    ----------------------------------------  ---------------------
+    BRIGHT_BLACK_BG (or GRAY_BG or GREY_BG)   ``\"\\u001b[100m\"``
+    BRIGHT_RED_BG                             ``\"\\u001b[101m\"``
+    BRIGHT_GREEN_BG                           ``\"\\u001b[102m\"``
+    BRIGHT_YELLOW_BG                          ``\"\\u001b[103m\"``
+    BRIGHT_BLUE_BG                            ``\"\\u001b[104m\"``
+    BRIGHT_MAGENTA_BG                         ``\"\\u001b[105m\"``
+    BRIGHT_CYAN_BG                            ``\"\\u001b[106m\"``
+    BRIGHT_WHITE_BG                           ``\"\\u001b[107m\"``
+    ========================================  =====================
+
+"""
+
 # Daniel Fletcher
 # Harvard CS50P 2023
 # Final Project
@@ -40,7 +138,7 @@ BRIGHT_CYAN = f"{ANSI_PREFIX}[96m"
 BRIGHT_WHITE = f"{ANSI_PREFIX}[97m"
 
 # Bright standard colors (background)
-BRIGHT_BLACK_BG = f"{ANSI_PREFIX}[100m"
+BRIGHT_BLACK_BG = GREY_BG = GRAY_BG = f"{ANSI_PREFIX}[100m"
 BRIGHT_RED_BG = f"{ANSI_PREFIX}[101m"
 BRIGHT_GREEN_BG = f"{ANSI_PREFIX}[102m"
 BRIGHT_YELLOW_BG = f"{ANSI_PREFIX}[103m"
