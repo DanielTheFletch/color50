@@ -8,10 +8,23 @@
 from constants import *
 
 class Color:
-    """Color class"""
+    """A class for representing colors in RGB format.
+    
+    Designed to be used in conjunction with strings at the terminal for
+    more colorful printing, as well as with other components of the
+    :doc:`color50 package </color50>`.
+
+    """
 
     def __init__(self):
-        """__init__"""
+        """Initializes a default `Color` object with values R: 0, G: 0, B:0
+        
+        Note that there are no parameterized ``__init___`` functions for the
+        ``Color`` class; instead, it is recommended to use one of the associated
+        :ref:`core functions <core-functions-label>` that come with the package.
+
+        """
+
         self.red = 0
         self.green = 0
         self.blue = 0
@@ -39,7 +52,8 @@ class Color:
         return not (self == other)
 
     @property
-    def red(self) -> int:
+    def red(self):
+        """int: Numeric value for amount of red in `Color`, ranging from 0-255."""
         return self._red
     
     @red.setter
@@ -53,7 +67,8 @@ class Color:
             raise TypeError(f"Expected rgb value as integer, got object of type {type(red)}")
 
     @property
-    def green(self) -> int:
+    def green(self):
+        """int: Numeric value for amount of green in `Color`, ranging from 0-255."""
         return self._green
     
     @green.setter
@@ -67,7 +82,8 @@ class Color:
             raise TypeError(f"Expected rgb value as integer, got object of type {type(green)}")
 
     @property
-    def blue(self) -> int:
+    def blue(self):
+        """int: Numeric value for amount of red in `Color`, ranging from 0-255."""
         return self._blue
     
     @blue.setter
