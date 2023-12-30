@@ -10,9 +10,8 @@ from json import load
 from re import fullmatch
 
 # color50 imports
-from color import Color
-from colorstr import ColorStr
-from constants import *
+from color50 import Color, ColorStr
+from color50.constants import *
 
 
 def main():
