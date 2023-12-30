@@ -19,10 +19,9 @@ python:
       path: .
       extra_requirements:
         - docs
+    - requirements: ./requirements.txt
     - method: pip
-      path: ./color50
-      extra_requirements:
-        - requirements.txt
+      path: .
 
 sphinx:
   configuration: docs/source/conf.py
