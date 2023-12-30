@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core_functions &mdash; color50  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            color50
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../color50.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Package API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">color50</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">core_functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for core_functions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Standalone functions designed to streamline color selection and usage.</span>
+
+<span class="sd">Although the Color class exists as part of the greater ``color50`` package,</span>
+<span class="sd">3 of the 4 functions in this module are recommended to generate Color objects</span>
+<span class="sd">themselves as opposed to explicitly calling the class initializer.</span>
+
+<span class="sd">The fourth and final function in the module is a decorator function designed</span>
+<span class="sd">to change the color of one function&#39;s standard output.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Daniel Fletcher</span>
+<span class="c1"># Harvard CS50P 2023</span>
+<span class="c1"># Final Project</span>
+
+<span class="c1"># core_functions.py</span>
+<span class="c1"># Four main project functions (rgb, hexcode, css, colorize)</span>
+<span class="c1"># Same as four functions in required project.py file</span>
+
+<span class="c1"># Python library imports</span>
+<span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">load</span>
+<span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">fullmatch</span>
+
+<span class="c1"># Associated color50 imports</span>
+<span class="kn">from</span> <span class="nn">color</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">RESET</span>
+
+
+<div class="viewcode-block" id="rgb">
+<a class="viewcode-back" href="../color50.html#core_functions.rgb">[docs]</a>
+<span class="k">def</span> <span class="nf">rgb</span><span class="p">(</span><span class="n">red</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">green</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">blue</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on specified RGB values.</span>
+<span class="sd">    </span>
+<span class="sd">    One of three recommended methods for creating Color objects. Because the</span>
+<span class="sd">    Color class stores RGB values internally, this function essentially mirrors</span>
+<span class="sd">    the behavior of a would-be parameterized ``__init__`` function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        red:</span>
+<span class="sd">            A numeric value (0-255) representing the color&#39;s red levels.</span>
+<span class="sd">        green:</span>
+<span class="sd">            A numeric value (0-255) representing the color&#39;s green levels.</span>
+<span class="sd">        blue:</span>
+<span class="sd">            A numeric value (0-255) representing the color&#39;s blue levels.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A valid Color object.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Because this function sets the Color class properties to the values of</span>
+<span class="sd">        the specified parameters, it will raise the same exceptions as the</span>
+<span class="sd">        corresponding property setters.</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        color1 = rgb(0, 0, 0)       # black</span>
+<span class="sd">        color2 = rgb(255, 255, 255) # white</span>
+<span class="sd">        color3 = rgb(128, 0, 128)   # purple</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
+    <span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">blue</span> <span class="o">=</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span>
+    <span class="k">return</span> <span class="n">color</span></div>
+
+
+
+<div class="viewcode-block" id="hexcode">
+<a class="viewcode-back" href="../color50.html#core_functions.hexcode">[docs]</a>
+<span class="k">def</span> <span class="nf">hexcode</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on a specified HEX color code.</span>
+<span class="sd">    </span>
+<span class="sd">    One of three recommended methods for creating Color objects. Designed to</span>
+<span class="sd">    enable compatibility with colors used in other projects defined with</span>
+<span class="sd">    six-digit hexadecimal codes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        code:</span>
+<span class="sd">            A string representation of a HEX color code. Can contain optional</span>
+<span class="sd">            leading hash sign (``\&#39;#\&#39;``) and can make use of uppercase or</span>
+<span class="sd">            lowercase letters.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A valid Color object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError:</span>
+<span class="sd">            If ``code`` is not a string.</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If ``code`` is not a valid HEX color code or is formatted incorrectly.</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        color1 = hexcode(\&quot;#000000\&quot;)   # black</span>
+<span class="sd">        color2 = hexcode(\&quot;FFFFFF\&quot;)    # white</span>
+<span class="sd">        color3 = hexcode(\&quot;#00ffff\&quot;)   # cyan</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check that parameter is a string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected hexadecimal value as string, got object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Validate string</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;#?([0-9,A-F,a-f]</span><span class="si">{2}</span><span class="s2">)([0-9,A-F,a-f]</span><span class="si">{2}</span><span class="s2">)([0-9,A-F,a-f]</span><span class="si">{2}</span><span class="s2">)&quot;</span>
+    <span class="k">if</span> <span class="n">match</span> <span class="o">:=</span> <span class="n">fullmatch</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rgb</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid six-digit hexadecimal string </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="css">
+<a class="viewcode-back" href="../color50.html#core_functions.css">[docs]</a>
+<span class="k">def</span> <span class="nf">css</span><span class="p">(</span><span class="n">colorname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on a specified CSS color name.</span>
+<span class="sd">    </span>
+<span class="sd">    One of three recommended methods for creating Color objects. Designed to</span>
+<span class="sd">    enable compatibility with colors specified by name in CSS stylesheets.</span>
+
+<span class="sd">    For a full list of named CSS colors, visit </span>
+<span class="sd">    https://developer.mozilla.org/en-US/docs/Web/CSS/named-color.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        colorname:</span>
+<span class="sd">            A string literal of a valid CSS color name.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A valid Color object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError:</span>
+<span class="sd">            If ``colorname`` is not a string.</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If ``colorname`` is not among the list of recognized CSS color names.</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        color1 = css(\&quot;black\&quot;)     # black</span>
+<span class="sd">        color2 = css(\&quot;white\&quot;)     # white</span>
+<span class="sd">        color3 = css(\&quot;seagreen\&quot;)  # seagreen</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check that parameter is a string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colorname</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected CSS color name as string, got object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">colorname</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Extract list of colors from JSON file</span>
+    <span class="n">colornames</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;csscolors.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">colornames</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+    <span class="c1"># Validate color choice</span>
+    <span class="k">if</span> <span class="n">colorname</span> <span class="ow">in</span> <span class="n">colornames</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">hexcode</span><span class="p">(</span><span class="n">colornames</span><span class="p">[</span><span class="n">colorname</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSS color name </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">colorname</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"> not recognized&quot;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="colorize">
+<a class="viewcode-back" href="../color50.html#core_functions.colorize">[docs]</a>
+<span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Alter the color of a given function&#39;s standard output.</span>
+<span class="sd">    </span>
+<span class="sd">    This function is designed to be used as a decorator as a quick way of</span>
+<span class="sd">    altering the output of any one function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        color:</span>
+<span class="sd">            A valid Color object or a constant string literal representing a color.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError:</span>
+<span class="sd">            If ``color`` is not a Color or string, or if the decorated object is not callable.</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If ``color`` is a string representing an invalid ANSI color code character sequence</span>
+
+<span class="sd">    Consider this example::</span>
+
+<span class="sd">        @colorize(css(\&quot;red\&quot;))</span>
+<span class="sd">        def print_warning(msg):</span>
+<span class="sd">            print(msg)</span>
+
+<span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
+<span class="sd">    with a red coloring, and also that the color of standard output resets to</span>
+<span class="sd">    default after the function terminates.</span>
+
+<span class="sd">    Note that this works with both foreground and background colors, or even both</span>
+<span class="sd">    at the same time by stacking two decorators on top of one another.</span>
+
+<span class="sd">    Consider this example::</span>
+
+<span class="sd">        @colorize(constants.RED)</span>
+<span class="sd">        @colorize(constants.GREEN_BG)</span>
+<span class="sd">        def holiday_message(msg):</span>
+<span class="sd">            print(msg)</span>
+
+<span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
+<span class="sd">    with a red foreground coloring and a green background coloring, and also</span>
+<span class="sd">    resetting both colors to defaults after termination.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Validate color choice</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\u001b\[(3|4|9|10)[0-7]m&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fullmatch</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ANSI character sequence </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"> not recognized&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected Color or string, got object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">decorate</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="c1"># Validate that a callable object is passed</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected callable object, got object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Wrapper function</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">RESET</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorate</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

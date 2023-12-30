@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference &mdash; color50  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package API" href="api.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            color50
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core-functions">Core functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core_functions.rgb"><code class="docutils literal notranslate"><span class="pre">rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core_functions.hexcode"><code class="docutils literal notranslate"><span class="pre">hexcode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core_functions.css"><code class="docutils literal notranslate"><span class="pre">css()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core_functions.colorize"><code class="docutils literal notranslate"><span class="pre">colorize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#color-class"><strong>Color</strong> class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#color.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.__init__"><code class="docutils literal notranslate"><span class="pre">Color.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.bg"><code class="docutils literal notranslate"><span class="pre">Color.bg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.blue"><code class="docutils literal notranslate"><span class="pre">Color.blue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.fg"><code class="docutils literal notranslate"><span class="pre">Color.fg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.green"><code class="docutils literal notranslate"><span class="pre">Color.green</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color.Color.red"><code class="docutils literal notranslate"><span class="pre">Color.red</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#colorstr-class"><strong>ColorStr</strong> class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#colorstr.ColorStr"><code class="docutils literal notranslate"><span class="pre">ColorStr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.__init__"><code class="docutils literal notranslate"><span class="pre">ColorStr.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.bg"><code class="docutils literal notranslate"><span class="pre">ColorStr.bg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.content"><code class="docutils literal notranslate"><span class="pre">ColorStr.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.fg"><code class="docutils literal notranslate"><span class="pre">ColorStr.fg</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-constants">Useful constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Package API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">color50</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/color50.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
+<p>A Python package for more colorful printing at the terminal.</p>
+<p>Created as a final project submission for Harvard University’s CS50P course,
+<code class="docutils literal notranslate"><span class="pre">color50</span></code> is a package designed to add a little extra flavor to standard
+output print statements. Who knows, maybe future CS50 students may find this
+package useful (or fun)!</p>
+<section id="core-functions">
+<h2>Core functions<a class="headerlink" href="#core-functions" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="core_functions.rgb">
+<span class="sig-prename descclassname"><span class="pre">core_functions.</span></span><span class="sig-name descname"><span class="pre">rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/core_functions.html#rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core_functions.rgb" title="Link to this definition"></a></dt>
+<dd><p>Return a Color object based on specified RGB values.</p>
+<p>One of three recommended methods for creating Color objects. Because the
+Color class stores RGB values internally, this function essentially mirrors
+the behavior of a would-be parameterized <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>red</strong> – A numeric value (0-255) representing the color’s red levels.</p></li>
+<li><p><strong>green</strong> – A numeric value (0-255) representing the color’s green levels.</p></li>
+<li><p><strong>blue</strong> – A numeric value (0-255) representing the color’s blue levels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A valid Color object.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because this function sets the Color class properties to the values of
+the specified parameters, it will raise the same exceptions as the
+corresponding property setters.</p>
+</div>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color1</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>       <span class="c1"># black</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> <span class="c1"># white</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>   <span class="c1"># purple</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core_functions.hexcode">
+<span class="sig-prename descclassname"><span class="pre">core_functions.</span></span><span class="sig-name descname"><span class="pre">hexcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/core_functions.html#hexcode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core_functions.hexcode" title="Link to this definition"></a></dt>
+<dd><p>Return a Color object based on a specified HEX color code.</p>
+<p>One of three recommended methods for creating Color objects. Designed to
+enable compatibility with colors used in other projects defined with
+six-digit hexadecimal codes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>code</strong> – A string representation of a HEX color code. Can contain optional
+leading hash sign (<code class="docutils literal notranslate"><span class="pre">'#'</span></code>) and can make use of uppercase or
+lowercase letters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A valid Color object.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a string.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a valid HEX color code or is formatted incorrectly.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color1</span> <span class="o">=</span> <span class="n">hexcode</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>   <span class="c1"># black</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="n">hexcode</span><span class="p">(</span><span class="s2">&quot;FFFFFF&quot;</span><span class="p">)</span>    <span class="c1"># white</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="n">hexcode</span><span class="p">(</span><span class="s2">&quot;#00ffff&quot;</span><span class="p">)</span>   <span class="c1"># cyan</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core_functions.css">
+<span class="sig-prename descclassname"><span class="pre">core_functions.</span></span><span class="sig-name descname"><span class="pre">css</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colorname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/core_functions.html#css"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core_functions.css" title="Link to this definition"></a></dt>
+<dd><p>Return a Color object based on a specified CSS color name.</p>
+<p>One of three recommended methods for creating Color objects. Designed to
+enable compatibility with colors specified by name in CSS stylesheets.</p>
+<p>For a full list of named CSS colors, visit
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/named-color">https://developer.mozilla.org/en-US/docs/Web/CSS/named-color</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>colorname</strong> – A string literal of a valid CSS color name.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A valid Color object.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not a string.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not among the list of recognized CSS color names.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color1</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>     <span class="c1"># black</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>     <span class="c1"># white</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;seagreen&quot;</span><span class="p">)</span>  <span class="c1"># seagreen</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core_functions.colorize">
+<span class="sig-prename descclassname"><span class="pre">&#64;</span></span><span class="sig-prename descclassname"><span class="pre">core_functions.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><a class="reference internal" href="_modules/core_functions.html#colorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core_functions.colorize" title="Link to this definition"></a></dt>
+<dd><p>Alter the color of a given function’s standard output.</p>
+<p>This function is designed to be used as a decorator as a quick way of
+altering the output of any one function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> – A valid Color object or a constant string literal representing a color.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is not a Color or string, or if the decorated object is not callable.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is a string representing an invalid ANSI color code character sequence</p></li>
+</ul>
+</dd>
+</dl>
+<p>Consider this example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@colorize</span><span class="p">(</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">print_warning</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This would ensure that all contents of <code class="docutils literal notranslate"><span class="pre">msg</span></code> are printed to standard output
+with a red coloring, and also that the color of standard output resets to
+default after the function terminates.</p>
+<p>Note that this works with both foreground and background colors, or even both
+at the same time by stacking two decorators on top of one another.</p>
+<p>Consider this example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@colorize</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+<span class="nd">@colorize</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">GREEN_BG</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">holiday_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This would ensure that all contents of <code class="docutils literal notranslate"><span class="pre">msg</span></code> are printed to standard output
+with a red foreground coloring and a green background coloring, and also
+resetting both colors to defaults after termination.</p>
+</dd></dl>
+
+</section>
+<section id="color-class">
+<h2><strong>Color</strong> class<a class="headerlink" href="#color-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="color.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">color.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><a class="reference internal" href="_modules/color.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color.Color" title="Link to this definition"></a></dt>
+<dd><p>A class for representing colors in RGB format.</p>
+<p>Designed to be used in conjunction with strings at the terminal for
+more colorful printing. Also used alongside other components of the
+<a class="reference internal" href="#"><span class="doc">color50 package</span></a>.</p>
+<p>In addition to the properties and methods outlined, the <strong>Color</strong>
+class can be used in other contexts:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Supports string concatenation (in the form of <code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">+</span> <span class="pre">str</span></code>)</p></li>
+<li><p>Has a built-in string conversion implemented as <code class="docutils literal notranslate"><span class="pre">__str__</span></code> override</p></li>
+<li><p>Has built in == / != operator overloads for comparing two <strong>Color</strong> objects</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to use the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant when combining strings with <strong>Color</strong>
+objects&amp;mdash;the color settings will not revert unless explicitly specified!</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="color.Color.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/color.html#Color.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color.Color.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a default <cite>Color</cite> object with values R: <code class="docutils literal notranslate"><span class="pre">0</span></code>, G: <code class="docutils literal notranslate"><span class="pre">0</span></code>, B: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Note that there are no parameterized <code class="docutils literal notranslate"><span class="pre">__init___</span></code> functions for the
+<code class="docutils literal notranslate"><span class="pre">Color</span></code> class; instead, it is recommended to use one of the associated
+<a class="reference internal" href="#core-functions-label"><span class="std std-ref">core functions</span></a> that come with the package.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="color.Color.bg">
+<span class="sig-name descname"><span class="pre">bg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color.html#Color.bg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color.Color.bg" title="Link to this definition"></a></dt>
+<dd><p>Return string representation of color for use in background.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ANSI color code sequence representation of the object, specifically
+to use as a background color.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="color.Color.blue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">blue</span></span><a class="headerlink" href="#color.Color.blue" title="Link to this definition"></a></dt>
+<dd><p>Numeric value for amount of red in <cite>Color</cite>, ranging from 0-255.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="color.Color.fg">
+<span class="sig-name descname"><span class="pre">fg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color.html#Color.fg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color.Color.fg" title="Link to this definition"></a></dt>
+<dd><p>Return string representation of color for use in foreground.</p>
+<p>The return value of this function is the default behavior of converting
+a <strong>Color</strong> object to a string. The option to call <code class="docutils literal notranslate"><span class="pre">fg</span></code> explicitly
+has been included for completeness, readability, and consistency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ANSI color code sequence representation of the object, specifically
+to use as a foreground color.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="color.Color.green">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">green</span></span><a class="headerlink" href="#color.Color.green" title="Link to this definition"></a></dt>
+<dd><p>Numeric value for amount of green in <cite>Color</cite>, ranging from 0-255.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="color.Color.red">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">red</span></span><a class="headerlink" href="#color.Color.red" title="Link to this definition"></a></dt>
+<dd><p>Numeric value for amount of red in <cite>Color</cite>, ranging from 0-255.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="colorstr-class">
+<h2><strong>ColorStr</strong> class<a class="headerlink" href="#colorstr-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="colorstr.ColorStr">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colorstr.</span></span><span class="sig-name descname"><span class="pre">ColorStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colorstr.html#ColorStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colorstr.ColorStr" title="Link to this definition"></a></dt>
+<dd><p>A class for storing and using colorful strings.</p>
+<p>Stores string content alongside a foreground color and background color.
+Otherwise treated like standard strings in multiple contexts:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Supports string concatenation (both with strings and other <strong>ColorStr</strong> objects)</p></li>
+<li><p>Has a built-in string conversion implemented as <code class="docutils literal notranslate"><span class="pre">__str__</span></code> override</p></li>
+<li><p>Can be used in conjunction with <code class="docutils literal notranslate"><span class="pre">print</span></code>, f-strings, and the like</p></li>
+</ul>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="colorstr.ColorStr.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colorstr.html#ColorStr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colorstr.ColorStr.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes a <strong>ColorStr</strong> object with content and optional fg/bg colors</p>
+<p>Placeholder text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> – A standard string that will display in the specified color.</p></li>
+<li><p><strong>fg</strong> – (optional) A Color object denoting the desired foreground color.</p></li>
+<li><p><strong>bg</strong> – (optional) A Color object denoting the desired background color.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
+<span class="n">message_colorful</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>          <span class="c1"># Prints message like normal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message_colorful</span><span class="p">)</span> <span class="c1"># Prints same message, but in blue</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="colorstr.ColorStr.bg">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bg</span></span><a class="headerlink" href="#colorstr.ColorStr.bg" title="Link to this definition"></a></dt>
+<dd><p>A Color object denoting the desired background color. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, uses
+default display color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#color.Color" title="color.Color">Color</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="colorstr.ColorStr.content">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">content</span></span><a class="headerlink" href="#colorstr.ColorStr.content" title="Link to this definition"></a></dt>
+<dd><p>The text to be displayed in color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="colorstr.ColorStr.fg">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fg</span></span><a class="headerlink" href="#colorstr.ColorStr.fg" title="Link to this definition"></a></dt>
+<dd><p>A Color object denoting the desired foreground color. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, uses
+default display color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#color.Color" title="color.Color">Color</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="useful-constants">
+<span id="core-functions-label"></span><h2>Useful constants<a class="headerlink" href="#useful-constants" title="Link to this heading"></a></h2>
+<p>A series of string literal constants for more granular color control.</p>
+<dl class="simple">
+<dt>Use these constants as shorthand for multiple different situations:</dt><dd><ul class="simple">
+<li><p>Passing named color constants to <code class="docutils literal notranslate"><span class="pre">colorize</span></code></p></li>
+<li><p>Using RESET when working with <strong>Color</strong> objects</p></li>
+<li><p>Interfacing with ANSI color codes more directly</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because these constants are not encapsulated in any class or error-checking
+logic, using them may result in unintended side effects if not familiar
+with ANSI color code sequencing. Consult [INSERT] for more information.</p>
+</div>
+<dl>
+<dt>For ANSI escape sequence manipulation:</dt><dd><p>Use these constants to directly interface with the lower-level implementation
+of ANSI color code sequencing. <code class="docutils literal notranslate"><span class="pre">RESET</span></code> will also be <em>very</em> useful when
+working with <strong>Color</strong> objects and not <strong>ColorStr</strong> objects.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Constant</strong></p></td>
+<td><p><strong>String value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>ANSI-PREFIX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>RESET</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[0m&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>For standard colors (foreground):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI color codes,
+specifically those that alter the foreground color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
+after using the desired color to avoid unexpected behavior.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Constant</strong></p></td>
+<td><p><strong>String value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>BLACK</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[30m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>RED</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[31m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>GREEN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[32m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>YELLOW</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[33m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BLUE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[34m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>MAGENTA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[35m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>CYAN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[36m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>WHITE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[37m&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>For standard colors (background):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI color codes,
+specifically those that alter the background color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
+after using the desired color to avoid unexpected behavior.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Constant</strong></p></td>
+<td><p><strong>String value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>BLACK_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[40m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>RED_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[41m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>GREEN_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[42m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>YELLOW_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[43m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BLUE_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[44m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>MAGENTA_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[45m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>CYAN_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[46m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>WHITE_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[47m&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>For bright standard colors (foreground):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI <em>bright</em> color codes,
+specifically those that alter the foreground color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
+after using the desired color to avoid unexpected behavior.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Constant</strong></p></td>
+<td><p><strong>String value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_BLACK (or GRAY or GREY)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[90m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_RED</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[91m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_GREEN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[92m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_YELLOW</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[93m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_BLUE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[94m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_MAGENTA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[95m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_CYAN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[96m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_WHITE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[97m&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>For bright standard colors (background):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI <em>bright</em> color codes,
+specifically those that alter the background color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
+after using the desired color to avoid unexpected behavior.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Constant</strong></p></td>
+<td><p><strong>String value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_BLACK_BG (or GRAY_BG or GREY_BG)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[100m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_RED_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[101m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_GREEN_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[102m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_YELLOW_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[103m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_BLUE_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[104m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_MAGENTA_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[105m&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>BRIGHT_CYAN_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[106m&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>BRIGHT_WHITE_BG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b[107m&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="Package API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
