@@ -1,40 +1,40 @@
-color50 package
-===============
+Reference
+=========
 
-Submodules
-----------
+A Python package for more colorful printing at the terminal.
 
-color50.color module
---------------------
+Created as a final project submission for Harvard University's CS50P course,
+``color50`` is a package designed to add a little extra flavor to standard
+output print statements. Who knows, maybe future CS50 students may find this
+package useful (or fun)!
 
-.. automodule:: color
+Core functions
+--------------
+
+.. autofunction:: core_functions.rgb
+.. autofunction:: core_functions.hexcode
+.. autofunction:: core_functions.css
+.. autodecorator:: core_functions.colorize
+   
+**Color** class
+---------------
+
+.. autoclass:: color.Color
    :members:
-   :special-members: __init__, __str__, __add__, __eq__, __ne__
-   :undoc-members:
-   :show-inheritance:
+   :special-members: __init__
 
-color50.colorstr module
------------------------
+**ColorStr** class
+------------------
 
-.. automodule:: colorstr
+.. autoclass:: colorstr.ColorStr
    :members:
-   :undoc-members:
-   :show-inheritance:
-
-color50.constants module
-------------------------
-
-.. automodule:: constants
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   :special-members: __init__
 
 .. _core-functions-label:
 
-color50.core\_functions module
-------------------------------
+Useful constants
+----------------
 
-.. automodule:: core_functions
+.. automodule:: constants
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :noindex:

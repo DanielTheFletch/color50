@@ -1,3 +1,5 @@
+"""Contains the **Color** class and its implementation."""
+
 # Daniel Fletcher
 # Harvard CS50P 2023
 # Final Project

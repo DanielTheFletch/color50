@@ -1,19 +1,15 @@
-.. color50 documentation master file, created by
-   sphinx-quickstart on Fri Dec 29 23:41:05 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+This is color50.
+================
 
-Welcome to color50's documentation!
-===================================
-
-Some text.
-
-
-Contents
---------
+Welcome to the home page of the documentation for ``color50``, a Python package
+for more colorful printing at the terminal.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Documentation Contents:
 
    Home <self>
+   intro
+   usage
+   color50
+   api
