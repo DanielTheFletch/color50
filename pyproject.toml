@@ -47,3 +47,6 @@ classifiers = [
 GitHub = "https://github.com/danielthefletch/color50.git"
 Documentation = "https://readthedocs.org"
 "CS50P Class Website" = "https://cs50.harvard.edu/python/2022/"
+
+[tool.setuptools]
+packages = [ "color50" ]
