@@ -110,8 +110,7 @@ class ColorStr:
         Two objects of type **ColoStrr** are defined to be equal if
         and only if:
 
-            - ``str1.content == str2.content`` is **True** (e.g., string content
-            is identical),
+            - ``str1.content == str2.content`` is **True** (e.g., string content is identical),
             - ``str1.fg == str2.fg`` is **True**,
             - and ``str1.bg == str2.bg`` is **True**.
 

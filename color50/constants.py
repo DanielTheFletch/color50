@@ -1,14 +1,16 @@
 """A series of string literal constants for more granular color control.
 
-Use these constants as shorthand for multiple different situations:
+Use these constants as shorthand for a variety of situations:
+
     - Passing named color constants to ``colorize``
-    - Using RESET when working with **Color** objects
-    - Interfacing with ANSI color codes more directly
+    - Using ``RESET`` when working with **Color** objects
+    - Interfacing directly with ANSI color codes
 
 Note:
     Because these constants are not encapsulated in any class or error-checking
     logic, using them may result in unintended side effects if not familiar
-    with ANSI color code sequencing. Consult [INSERT] for more information.
+    with ANSI color code sequencing. Consult `this Wikipedia article 
+    <https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_ for more information.
 
 For ANSI escape sequence manipulation:
     Use these constants to directly interface with the lower-level implementation
@@ -18,9 +20,15 @@ For ANSI escape sequence manipulation:
     ====================  =====================
     **Constant**          **String value**
     --------------------  ---------------------
-    ANSI-PREFIX           ``\"\\u001b\"``
+    ANSI_PREFIX           ``\"\\u001b\"``
     RESET                 ``\"\\u001b[0m\"``
     ====================  =====================
+
+    Example::
+
+        # Print a message with magenta-colored text
+        print(f\"{constants.ANSI_PREFIX}[35mHello, World!{constants.RESET}\")
+    
 
 For standard colors (foreground):
     Use these constants as shorthand for the eight standard ANSI color codes,
@@ -40,6 +48,11 @@ For standard colors (foreground):
     WHITE                 ``\"\\u001b[37m\"``
     ====================  =====================
 
+    Example::
+
+        # Print a message with magenta-colored text
+        print(f\"{constants.MAGENTA}Hello, World!{constants.RESET}\")
+
 For standard colors (background):
     Use these constants as shorthand for the eight standard ANSI color codes,
     specifically those that alter the background color. Make sure to use ``RESET``
@@ -57,6 +70,11 @@ For standard colors (background):
     CYAN_BG               ``\"\\u001b[46m\"``
     WHITE_BG              ``\"\\u001b[47m\"``
     ====================  =====================
+
+    Example::
+
+        # Print a message with a magenta-colored background
+        print(constants.MAGENTA_BG} + \"Hello, World!\" + constants.RESET)
 
 For bright standard colors (foreground):
     Use these constants as shorthand for the eight standard ANSI *bright* color codes,
@@ -76,6 +94,11 @@ For bright standard colors (foreground):
     BRIGHT_WHITE                     ``\"\\u001b[97m\"``
     ===============================  =====================
 
+    Example::
+
+        # Print a message with bright, magenta-colored text
+        print(constants.BRIGHT_MAGENTA + \"Hello, World!\" + constants.RESET)
+
 For bright standard colors (background):
     Use these constants as shorthand for the eight standard ANSI *bright* color codes,
     specifically those that alter the background color. Make sure to use ``RESET``
@@ -93,6 +116,11 @@ For bright standard colors (background):
     BRIGHT_CYAN_BG                            ``\"\\u001b[106m\"``
     BRIGHT_WHITE_BG                           ``\"\\u001b[107m\"``
     ========================================  =====================
+
+    Example::
+
+        # Print a message with a bright, magenta-colored background
+        print(f\"{constants.BRIGHT_MAGENTA_BG}Hello, World!{constants.RESET}\")
 
 """
 

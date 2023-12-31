@@ -505,7 +505,7 @@ and of <strong>ColorStr</strong> objects with other <strong>ColorStr</strong> ob
 and only if:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">str1.content</span> <span class="pre">==</span> <span class="pre">str2.content</span></code> is <strong>True</strong> (e.g., same string content),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str1.content</span> <span class="pre">==</span> <span class="pre">str2.content</span></code> is <strong>True</strong> (e.g., string content is identical),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">str1.fg</span> <span class="pre">==</span> <span class="pre">str2.fg</span></code> is <strong>True</strong>,</p></li>
 <li><p>and <code class="docutils literal notranslate"><span class="pre">str1.bg</span> <span class="pre">==</span> <span class="pre">str2.bg</span></code> is <strong>True</strong>.</p></li>
 </ul>
@@ -626,19 +626,19 @@ disregarded when the object is displayed.</p>
 <section id="useful-constants">
 <span id="core-functions-label"></span><h2>Useful constants<a class="headerlink" href="#useful-constants" title="Link to this heading"></a></h2>
 <p>A series of string literal constants for more granular color control.</p>
-<dl class="simple">
-<dt>Use these constants as shorthand for multiple different situations:</dt><dd><ul class="simple">
+<p>Use these constants as shorthand for a variety of situations:</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Passing named color constants to <code class="docutils literal notranslate"><span class="pre">colorize</span></code></p></li>
-<li><p>Using RESET when working with <strong>Color</strong> objects</p></li>
-<li><p>Interfacing with ANSI color codes more directly</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">RESET</span></code> when working with <strong>Color</strong> objects</p></li>
+<li><p>Interfacing directly with ANSI color codes</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Because these constants are not encapsulated in any class or error-checking
 logic, using them may result in unintended side effects if not familiar
-with ANSI color code sequencing. Consult [INSERT] for more information.</p>
+with ANSI color code sequencing. Consult <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#Colors">this Wikipedia article</a> for more information.</p>
 </div>
 <dl>
 <dt>For ANSI escape sequence manipulation:</dt><dd><p>Use these constants to directly interface with the lower-level implementation
@@ -649,7 +649,7 @@ working with <strong>Color</strong> objects and not <strong>ColorStr</strong> ob
 <tr class="row-odd"><td><p><strong>Constant</strong></p></td>
 <td><p><strong>String value</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>ANSI-PREFIX</p></td>
+<tr class="row-even"><td><p>ANSI_PREFIX</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;\u001b&quot;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>RESET</p></td>
@@ -657,6 +657,11 @@ working with <strong>Color</strong> objects and not <strong>ColorStr</strong> ob
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with magenta-colored text</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[35mHello, World!</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 <dt>For standard colors (foreground):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI color codes,
 specifically those that alter the foreground color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
@@ -692,6 +697,11 @@ after using the desired color to avoid unexpected behavior.</p>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with magenta-colored text</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">MAGENTA</span><span class="si">}</span><span class="s2">Hello, World!</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 <dt>For standard colors (background):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI color codes,
 specifically those that alter the background color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
@@ -727,6 +737,11 @@ after using the desired color to avoid unexpected behavior.</p>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with a magenta-colored background</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">MAGENTA_BG</span><span class="p">}</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 <dt>For bright standard colors (foreground):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI <em>bright</em> color codes,
 specifically those that alter the foreground color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
@@ -762,6 +777,11 @@ after using the desired color to avoid unexpected behavior.</p>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with bright, magenta-colored text</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">BRIGHT_MAGENTA</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 <dt>For bright standard colors (background):</dt><dd><p>Use these constants as shorthand for the eight standard ANSI <em>bright</em> color codes,
 specifically those that alter the background color. Make sure to use <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
@@ -797,6 +817,11 @@ after using the desired color to avoid unexpected behavior.</p>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with a bright, magenta-colored background</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">BRIGHT_MAGENTA_BG</span><span class="si">}</span><span class="s2">Hello, World!</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </section>
