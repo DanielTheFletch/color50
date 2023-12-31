@@ -55,3 +55,11 @@ with key features highlighted accordingly:
         - **ColorStr** class
 
     - :ref:`constants module<constants-module-label>`: Contains a series of string literal constants for use with ANSI color code semantics.
+
+----------
+
+Installation
+------------
+
+To install the **color50** package, use the following ``pip`` command:
+``pip install color50``

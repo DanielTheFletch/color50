@@ -101,7 +101,7 @@
 <span class="c1"># for the package to function properly.</span>
 
 <span class="c1"># Python library imports</span>
-<span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">open_text</span>
+<span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">files</span>
 <span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">load</span>
 <span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">fullmatch</span>
 
@@ -233,7 +233,7 @@
     
     <span class="c1"># Extract list of colors from JSON file</span>
     <span class="n">colornames</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">with</span> <span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;color50&quot;</span><span class="p">,</span> <span class="s2">&quot;csscolors.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">files</span><span class="p">(</span><span class="s2">&quot;color50&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;csscolors.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">colornames</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
     <span class="c1"># Validate color choice</span>
