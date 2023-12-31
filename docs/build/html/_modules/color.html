@@ -156,7 +156,8 @@
 <div class="viewcode-block" id="Color.__str__">
 <a class="viewcode-back" href="../color50.html#color.Color.__str__">[docs]</a>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns string representation of color; same as calling ``fg()`` method.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the color; same as calling</span>
+<span class="sd">        the ``fg()`` method.</span>
 <span class="sd">        </span>
 <span class="sd">        Example::</span>
 
@@ -164,13 +165,14 @@
 <span class="sd">            print(f\&quot;{my_color}f-strings make me feel blue.{constants.RESET}\&quot;)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="p">()</span></div>
 
     
 <div class="viewcode-block" id="Color.__add__">
 <a class="viewcode-back" href="../color50.html#color.Color.__add__">[docs]</a>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Supports concatenation of **Color** and **str** objects.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Support concatenation of **Color** and **str** objects.</span>
 <span class="sd">        </span>
 <span class="sd">        Example::</span>
 
@@ -179,6 +181,7 @@
 <span class="sd">            print(my_color + my_message + constants.RESET)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">string</span>
         <span class="k">else</span><span class="p">:</span>
@@ -188,7 +191,7 @@
 <div class="viewcode-block" id="Color.__eq__">
 <a class="viewcode-back" href="../color50.html#color.Color.__eq__">[docs]</a>
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Supports equality comparison of two **Color** objects.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Support equality comparisons of two **Color** objects.</span>
 <span class="sd">        </span>
 <span class="sd">        Two objects of type **Color** are defined to be equal if</span>
 <span class="sd">        and only if:</span>
@@ -210,6 +213,7 @@
 <span class="sd">            print(color1 == color3)     # False</span>
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> 
                 <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">red</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">red</span>
                 <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">green</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">green</span>
@@ -229,6 +233,7 @@
 <span class="sd">                If the property is set to a non-integer value.</span>
 <span class="sd">            ValueError:</span>
 <span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_red</span>
     
@@ -252,6 +257,7 @@
 <span class="sd">                If the property is set to a non-integer value.</span>
 <span class="sd">            ValueError:</span>
 <span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_green</span>
     
@@ -275,6 +281,7 @@
 <span class="sd">                If the property is set to a non-integer value.</span>
 <span class="sd">            ValueError:</span>
 <span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blue</span>
     

@@ -69,7 +69,8 @@ class Color:
         self.blue = 0
 
     def __str__(self):
-        """Returns string representation of color; same as calling ``fg()`` method.
+        """Return a string representation of the color; same as calling
+        the ``fg()`` method.
         
         Example::
 
@@ -77,10 +78,11 @@ class Color:
             print(f\"{my_color}f-strings make me feel blue.{constants.RESET}\")
 
         """
+
         return self.fg()
     
     def __add__(self, string: str) -> str:
-        """Supports concatenation of **Color** and **str** objects.
+        """Support concatenation of **Color** and **str** objects.
         
         Example::
 
@@ -89,13 +91,14 @@ class Color:
             print(my_color + my_message + constants.RESET)
 
         """
+
         if isinstance(string, str):
             return str(self) + string
         else:
             return NotImplemented
     
     def __eq__(self, other) -> bool:
-        """Supports equality comparison of two **Color** objects.
+        """Support equality comparisons of two **Color** objects.
         
         Two objects of type **Color** are defined to be equal if
         and only if:
@@ -117,6 +120,7 @@ class Color:
             print(color1 == color3)     # False
         
         """
+
         return (isinstance(other, Color) 
                 and self.red == other.red
                 and self.green == other.green
@@ -135,6 +139,7 @@ class Color:
                 If the property is set to a non-integer value.
             ValueError:
                 If the property is set to an out-of-range integer (e.g., not in range 0-255).
+
         """
         return self._red
     
@@ -158,6 +163,7 @@ class Color:
                 If the property is set to a non-integer value.
             ValueError:
                 If the property is set to an out-of-range integer (e.g., not in range 0-255).
+
         """
         return self._green
     
@@ -181,6 +187,7 @@ class Color:
                 If the property is set to a non-integer value.
             ValueError:
                 If the property is set to an out-of-range integer (e.g., not in range 0-255).
+
         """
         return self._blue
     

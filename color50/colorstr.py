@@ -1,4 +1,4 @@
-"""Contains the **ColorStr** class and its implementation."""
+"""The **ColorStr** class and its implementation."""
 
 # Daniel Fletcher
 # Harvard CS50P 2023
@@ -11,21 +11,30 @@ from color import Color
 from constants import *
 
 class ColorStr:
-    """A class for storing and using colorful strings.
+    """A class for representing specialized strings with custom color properties.
     
     Stores string content alongside a foreground color and background color.
-    Otherwise treated like standard strings in multiple contexts:
+    Note that the use of the ``RESET`` constant is not required when working
+    with **ColorStr** objects.
 
-        - Supports string concatenation (both with strings and other **ColorStr** objects)
-        - Has a built-in string conversion implemented as ``__str__`` override
-        - Can be used in conjunction with ``print``, f-strings, and the like
+    Example::
 
+        msg = \"Warning: An error has occurred.\"
+        fg = css(\"red\")
+        bg = css(\"darkgray\")
+
+        my_color_str = ColorStr(msg, fg, bg)
+        print(my_color_str)     # Prints red text on dark gray background
+        
     """
 
-    def __init__(self, content: str, fg: Color = None, bg: Color = None):
-        """Initializes a **ColorStr** object with content and optional fg/bg colors
+    def __init__(self, content: str, fg: Color | None = None, bg: Color | None = None):
+        """Initialize a **ColorStr** object with content and optional fg/bg colors.
         
-        Placeholder text.
+        Note that **None** is an accepted value for both the ``fg`` and ``bg``
+        parameters. When either is set to **None**, any future usage of the
+        object for printing will disregard the property and use the default
+        configuration. 
 
         Args:
             content:
@@ -38,7 +47,7 @@ class ColorStr:
         Example::
 
             message = "Hello, World!"
-            message_colorful = ColorStr(message, rgb(0, 0, 255))
+            message_colorful = ColorStr(message, hexcode(\"0000FF\"))
 
             print(message)          # Prints message like normal
             print(message_colorful) # Prints same message, but in blue
@@ -50,11 +59,46 @@ class ColorStr:
         self.bg = bg
 
     def __str__(self):
+        """Return a string representation of the **ColorStr** object.
+
+        Converting a **ColorStr** to a pure **str** will retain the
+        associated color properties, but such properties will no
+        longer be directly editable.
+        
+        Example 1::
+
+            my_color_str = ColorStr(\"Hello, World!\", None, css(\"crimson\"))
+            print(str(my_color_str) + \" ...and goodbye, color.\")
+
+        Example 2::
+
+            my_color_str = str(ColorStr(\"Hello, World!\", None, css(\"crimson\")))
+            print(my_color_str)
+
+        """
+
         fg_code = "" if self.fg == None else str(self.fg)
         bg_code = "" if self.bg == None else str(self.bg)
         return f"{fg_code}{bg_code}{self.content}{RESET}"
 
     def __add__(self, addend) -> str:
+        """Support concatenation of **ColorStr** objects with **str** objects
+        and of **ColorStr** objects with other **ColorStr** objects.
+        
+        Example 1::
+
+            str1 = ColorStr(\"This text is colorful, and... \", rgb(100, 120, 140))
+            str2 = \"this text is plain.\"
+            print(str1 + str2)
+
+        Example 2::
+
+            str1 = ColorStr(\"This text is colorful, and... \", rgb(100, 120, 140))
+            str2 = ColorStr(\"this text is also colorful!\", rgb(140, 120, 100))
+            print(str1 + str2)
+
+        """
+
         if isinstance(addend, ColorStr) or isinstance(addend, str):
             return str(self) + str(addend)
         else:
@@ -63,7 +107,15 @@ class ColorStr:
 
     @property
     def content(self):
-        """str: The text to be displayed in color."""
+        """str: The string to be displayed in color. Supports both get and set
+        operations.
+
+        Raises:
+            TypeError:
+                If the property is not set to a **str** value.
+
+        """
+
         return self._content
     
     @content.setter
@@ -75,8 +127,16 @@ class ColorStr:
 
     @property
     def fg(self):
-        """Color: A Color object denoting the desired foreground color. If ``None``, uses
-        default display color."""
+        """Color: A **Color** object denoting the desired foreground color. Supports
+        both get and set operations. If set to ``None``, the property will be
+        disregarded when the object is displayed.
+
+        Raises:
+            TypeError:
+                If the property is not set to a valid **Color** object.
+
+        """
+
         return self._fg
     
     @fg.setter
@@ -88,8 +148,16 @@ class ColorStr:
 
     @property
     def bg(self):
-        """Color: A Color object denoting the desired background color. If ``None``, uses
-        default display color."""
+        """Color: A **Color** object denoting the desired background color. Supports
+        both get and set operations. If set to ``None``, the property will be
+        disregarded when the object is displayed.
+
+        Raises:
+            TypeError:
+                If the property is not set to a valid **Color** object.
+
+        """
+
         return self._bg
     
     @bg.setter

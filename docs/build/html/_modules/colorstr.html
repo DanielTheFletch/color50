@@ -78,7 +78,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for colorstr</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Contains the **ColorStr** class and its implementation.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;The **ColorStr** class and its implementation.&quot;&quot;&quot;</span>
 
 <span class="c1"># Daniel Fletcher</span>
 <span class="c1"># Harvard CS50P 2023</span>
@@ -93,23 +93,32 @@
 <div class="viewcode-block" id="ColorStr">
 <a class="viewcode-back" href="../color50.html#colorstr.ColorStr">[docs]</a>
 <span class="k">class</span> <span class="nc">ColorStr</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for storing and using colorful strings.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing specialized strings with custom color properties.</span>
 <span class="sd">    </span>
 <span class="sd">    Stores string content alongside a foreground color and background color.</span>
-<span class="sd">    Otherwise treated like standard strings in multiple contexts:</span>
+<span class="sd">    Note that the use of the ``RESET`` constant is not required when working</span>
+<span class="sd">    with **ColorStr** objects.</span>
 
-<span class="sd">        - Supports string concatenation (both with strings and other **ColorStr** objects)</span>
-<span class="sd">        - Has a built-in string conversion implemented as ``__str__`` override</span>
-<span class="sd">        - Can be used in conjunction with ``print``, f-strings, and the like</span>
+<span class="sd">    Example::</span>
 
+<span class="sd">        msg = \&quot;Warning: An error has occurred.\&quot;</span>
+<span class="sd">        fg = css(\&quot;red\&quot;)</span>
+<span class="sd">        bg = css(\&quot;darkgray\&quot;)</span>
+
+<span class="sd">        my_color_str = ColorStr(msg, fg, bg)</span>
+<span class="sd">        print(my_color_str)     # Prints red text on dark gray background</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ColorStr.__init__">
 <a class="viewcode-back" href="../color50.html#colorstr.ColorStr.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes a **ColorStr** object with content and optional fg/bg colors</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a **ColorStr** object with content and optional fg/bg colors.</span>
 <span class="sd">        </span>
-<span class="sd">        Placeholder text.</span>
+<span class="sd">        Note that **None** is an accepted value for both the ``fg`` and ``bg``</span>
+<span class="sd">        parameters. When either is set to **None**, any future usage of the</span>
+<span class="sd">        object for printing will disregard the property and use the default</span>
+<span class="sd">        configuration. </span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            content:</span>
@@ -122,7 +131,7 @@
 <span class="sd">        Example::</span>
 
 <span class="sd">            message = &quot;Hello, World!&quot;</span>
-<span class="sd">            message_colorful = ColorStr(message, rgb(0, 0, 255))</span>
+<span class="sd">            message_colorful = ColorStr(message, hexcode(\&quot;0000FF\&quot;))</span>
 
 <span class="sd">            print(message)          # Prints message like normal</span>
 <span class="sd">            print(message_colorful) # Prints same message, but in blue</span>
@@ -137,21 +146,67 @@
 <div class="viewcode-block" id="ColorStr.__str__">
 <a class="viewcode-back" href="../color50.html#colorstr.ColorStr.__str__">[docs]</a>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the **ColorStr** object.</span>
+
+<span class="sd">        Converting a **ColorStr** to a pure **str** will retain the</span>
+<span class="sd">        associated color properties, but such properties will no</span>
+<span class="sd">        longer be directly editable.</span>
+<span class="sd">        </span>
+<span class="sd">        Example 1::</span>
+
+<span class="sd">            my_color_str = ColorStr(\&quot;Hello, World!\&quot;, None, css(\&quot;crimson\&quot;))</span>
+<span class="sd">            print(str(my_color_str) + \&quot; ...and goodbye, color.\&quot;)</span>
+
+<span class="sd">        Example 2::</span>
+
+<span class="sd">            my_color_str = str(ColorStr(\&quot;Hello, World!\&quot;, None, css(\&quot;crimson\&quot;)))</span>
+<span class="sd">            print(my_color_str)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">fg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="p">)</span>
         <span class="n">bg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bg</span><span class="p">)</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fg_code</span><span class="si">}{</span><span class="n">bg_code</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
 
+<div class="viewcode-block" id="ColorStr.__add__">
+<a class="viewcode-back" href="../color50.html#colorstr.ColorStr.__add__">[docs]</a>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addend</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Support concatenation of **ColorStr** objects with **str** objects</span>
+<span class="sd">        and of **ColorStr** objects with other **ColorStr** objects.</span>
+<span class="sd">        </span>
+<span class="sd">        Example 1::</span>
+
+<span class="sd">            str1 = ColorStr(\&quot;This text is colorful, and... \&quot;, rgb(100, 120, 140))</span>
+<span class="sd">            str2 = \&quot;this text is plain.\&quot;</span>
+<span class="sd">            print(str1 + str2)</span>
+
+<span class="sd">        Example 2::</span>
+
+<span class="sd">            str1 = ColorStr(\&quot;This text is colorful, and... \&quot;, rgb(100, 120, 140))</span>
+<span class="sd">            str2 = ColorStr(\&quot;this text is also colorful!\&quot;, rgb(140, 120, 100))</span>
+<span class="sd">            print(str1 + str2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="n">ColorStr</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">addend</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
 
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;str: The text to be displayed in color.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;str: The string to be displayed in color. Supports both get and set</span>
+<span class="sd">        operations.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is not set to a **str** value.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content</span>
     
     <span class="nd">@content</span><span class="o">.</span><span class="n">setter</span>
@@ -163,8 +218,16 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A Color object denoting the desired foreground color. If ``None``, uses</span>
-<span class="sd">        default display color.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired foreground color. Supports</span>
+<span class="sd">        both get and set operations. If set to ``None``, the property will be</span>
+<span class="sd">        disregarded when the object is displayed.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is not set to a valid **Color** object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fg</span>
     
     <span class="nd">@fg</span><span class="o">.</span><span class="n">setter</span>
@@ -176,8 +239,16 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A Color object denoting the desired background color. If ``None``, uses</span>
-<span class="sd">        default display color.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired background color. Supports</span>
+<span class="sd">        both get and set operations. If set to ``None``, the property will be</span>
+<span class="sd">        disregarded when the object is displayed.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is not set to a valid **Color** object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg</span>
     
     <span class="nd">@bg</span><span class="o">.</span><span class="n">setter</span>
