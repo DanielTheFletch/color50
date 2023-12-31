@@ -1,11 +1,9 @@
 """Standalone functions designed to streamline color selection and usage.
 
-Although the Color class exists as part of the greater ``color50`` package,
-3 of the 4 functions in this module are recommended to generate Color objects
-themselves as opposed to explicitly calling the class initializer.
-
-The fourth and final function in the module is a decorator function designed
-to change the color of one function's standard output.
+Use the ``rgb``, ``hexcode``, and ``css`` functions to initialize **Color**
+objects with whichever format is most familiar to you. You can also use
+the ``colorize`` decorator for changing the color of a whole function's
+output.
 
 """
 
@@ -15,7 +13,11 @@ to change the color of one function's standard output.
 
 # core_functions.py
 # Four main project functions (rgb, hexcode, css, colorize)
-# Same as four functions in required project.py file
+
+# Note that these four functions are the same four functions utilized
+# in the required project.py file. Because project.py is required to
+# exist in the root directory, this duplication of code is necessary
+# for the package to function properly.
 
 # Python library imports
 from json import load
@@ -27,10 +29,10 @@ from constants import RESET
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
-    """Return a Color object based on specified RGB values.
+    """Return a **Color** object based on specified RGB values.
     
-    One of three recommended methods for creating Color objects. Because the
-    Color class stores RGB values internally, this function essentially mirrors
+    One of three recommended methods for creating **Color** objects. Because the
+    **Color** class stores RGB values internally, this function essentially mirrors
     the behavior of a would-be parameterized ``__init__`` function.
 
     Args:
@@ -42,18 +44,19 @@ def rgb(red: int, green: int, blue: int) -> Color:
             A numeric value (0-255) representing the color's blue levels.
 
     Returns:
-        A valid Color object.
+        A valid **Color** object.
 
     Note:
-        Because this function sets the Color class properties to the values of
-        the specified parameters, it will raise the same exceptions as the
-        corresponding property setters.
+        Because this function sets the **Color** class properties to the values of
+        the specified parameters, it has potential to raise exceptions in the same
+        fashion as the property setters. Ensure that each parameter value is of
+        type ``int`` such that 0 <= value <= 255.
 
     Examples::
 
-        color1 = rgb(0, 0, 0)       # black
-        color2 = rgb(255, 255, 255) # white
-        color3 = rgb(128, 0, 128)   # purple
+        color1 = rgb(0, 0, 0)        # black
+        color2 = rgb(255, 255, 255)  # white
+        color3 = rgb(128, 0, 128)    # purple
 
     """
 
@@ -63,11 +66,10 @@ def rgb(red: int, green: int, blue: int) -> Color:
 
 
 def hexcode(code: str) -> Color:
-    """Return a Color object based on a specified HEX color code.
+    """Return a **Color** object based on a specified HEX color code.
     
-    One of three recommended methods for creating Color objects. Designed to
-    enable compatibility with colors used in other projects defined with
-    six-digit hexadecimal codes.
+    One of three recommended methods for creating **Color** objects. Designed to
+    enable flexibility for those more familiar with this color format.
 
     Args:
         code:
@@ -76,7 +78,7 @@ def hexcode(code: str) -> Color:
             lowercase letters.
 
     Returns:
-        A valid Color object.
+        A valid **Color** object.
 
     Raises:
         TypeError:
@@ -106,20 +108,17 @@ def hexcode(code: str) -> Color:
     
 
 def css(colorname: str) -> Color:
-    """Return a Color object based on a specified CSS color name.
+    """Return a **Color** object based on a specified CSS color name.
     
-    One of three recommended methods for creating Color objects. Designed to
+    One of three recommended methods for creating **Color** objects. Designed to
     enable compatibility with colors specified by name in CSS stylesheets.
-
-    For a full list of named CSS colors, visit 
-    https://developer.mozilla.org/en-US/docs/Web/CSS/named-color.
 
     Args:
         colorname:
             A string literal of a valid CSS color name.
 
     Returns:
-        A valid Color object.
+        A valid **Color** object.
 
     Raises:
         TypeError:
@@ -132,6 +131,9 @@ def css(colorname: str) -> Color:
         color1 = css(\"black\")     # black
         color2 = css(\"white\")     # white
         color3 = css(\"seagreen\")  # seagreen
+
+    For a comprehensive list of possible color names, visit `the official listing
+    from the MDN Web Docs <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`_.
 
     """
 
@@ -154,16 +156,16 @@ def css(colorname: str) -> Color:
 def colorize(color: Color | str):
     """Alter the color of a given function's standard output.
     
-    This function is designed to be used as a decorator as a quick way of
-    altering the output of any one function.
+    This function is designed to be used as a decorator as a short and readable
+    means of altering the color of an entire function's output.
 
     Args:
         color:
-            A valid Color object or a constant string literal representing a color.
+            A valid **Color** object or a constant string literal representing a color.
 
     Raises:
         TypeError:
-            If ``color`` is not a Color or string, or if the decorated object is not callable.
+            If ``color`` is not a **Color** or string, or if the decorated object is not callable.
         ValueError:
             If ``color`` is a string representing an invalid ANSI color code character sequence
 
@@ -174,16 +176,28 @@ def colorize(color: Color | str):
             print(msg)
 
     This would ensure that all contents of ``msg`` are printed to standard output
-    with a red coloring, and also that the color of standard output resets to
-    default after the function terminates.
+    as red-colored text. ``colorize`` behaves such that the color of standard output
+    resets to default after the function terminates, so the ``RESET`` constant is not
+    necessary in this context.
 
-    Note that this works with both foreground and background colors, or even both
-    at the same time by stacking two decorators on top of one another.
+    Another example using a background color:: 
+
+        @colorize(constants.GREEN_BG)
+        def print_success(msg):
+            print(msg)
+
+    This would ensure that all contents of ``msg`` are printed to standard output
+    as plain text with a green-colored background. As with before, ``colorize``
+    appropriately resets the terminal output color upon function termination.
+
+    Note that it is also possible to use ``colorize`` with a foreground color *and*
+    a background color simultaneously. This simply requires calling the decorator
+    function twice.
 
     Consider this example::
 
         @colorize(constants.RED)
-        @colorize(constants.GREEN_BG)
+        @colorize(css(\"green\"))
         def holiday_message(msg):
             print(msg)
 

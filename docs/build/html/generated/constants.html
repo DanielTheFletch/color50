@@ -291,6 +291,61 @@ after using the desired color to avoid unexpected behavior.</p>
 </div>
 </dd>
 </dl>
+<hr class="docutils" />
+<p>The source code for the <strong>constants</strong> module is included below for completeness.
+Reference it as you wish:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daniel Fletcher</span>
+<span class="c1"># Harvard CS50P 2023</span>
+<span class="c1"># Final Project</span>
+
+<span class="c1"># constants.py</span>
+<span class="c1"># Constants for use across files</span>
+
+<span class="c1"># ANSI escape sequence manipulation</span>
+<span class="n">ANSI_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">&quot;</span>
+<span class="n">RESET</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[0m&quot;</span>
+
+<span class="c1"># Standard colors (foreground)</span>
+<span class="n">BLACK</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[30m&quot;</span>
+<span class="n">RED</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[31m&quot;</span>
+<span class="n">GREEN</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[32m&quot;</span>
+<span class="n">YELLOW</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[33m&quot;</span>
+<span class="n">BLUE</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[34m&quot;</span>
+<span class="n">MAGENTA</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[35m&quot;</span>
+<span class="n">CYAN</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[36m&quot;</span>
+<span class="n">WHITE</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[37m&quot;</span>
+
+<span class="c1"># Standard colors (background)</span>
+<span class="n">BLACK_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[40m&quot;</span>
+<span class="n">RED_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[41m&quot;</span>
+<span class="n">GREEN_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[42m&quot;</span>
+<span class="n">YELLOW_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[43m&quot;</span>
+<span class="n">BLUE_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[44m&quot;</span>
+<span class="n">MAGENTA_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[45m&quot;</span>
+<span class="n">CYAN_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[46m&quot;</span>
+<span class="n">WHITE_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[47m&quot;</span>
+
+<span class="c1"># Bright standard colors (foreground)</span>
+<span class="n">BRIGHT_BLACK</span> <span class="o">=</span> <span class="n">GREY</span> <span class="o">=</span> <span class="n">GRAY</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[90m&quot;</span>
+<span class="n">BRIGHT_RED</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[91m&quot;</span>
+<span class="n">BRIGHT_GREEN</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[92m&quot;</span>
+<span class="n">BRIGHT_YELLOW</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[93m&quot;</span>
+<span class="n">BRIGHT_BLUE</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[94m&quot;</span>
+<span class="n">BRIGHT_MAGENTA</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[95m&quot;</span>
+<span class="n">BRIGHT_CYAN</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[96m&quot;</span>
+<span class="n">BRIGHT_WHITE</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[97m&quot;</span>
+
+<span class="c1"># Bright standard colors (background)</span>
+<span class="n">BRIGHT_BLACK_BG</span> <span class="o">=</span> <span class="n">GREY_BG</span> <span class="o">=</span> <span class="n">GRAY_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[100m&quot;</span>
+<span class="n">BRIGHT_RED_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[101m&quot;</span>
+<span class="n">BRIGHT_GREEN_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[102m&quot;</span>
+<span class="n">BRIGHT_YELLOW_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[103m&quot;</span>
+<span class="n">BRIGHT_BLUE_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[104m&quot;</span>
+<span class="n">BRIGHT_MAGENTA_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[105m&quot;</span>
+<span class="n">BRIGHT_CYAN_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[106m&quot;</span>
+<span class="n">BRIGHT_WHITE_BG</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ANSI_PREFIX</span><span class="si">}</span><span class="s2">[107m&quot;</span>
+</pre></div>
+</div>
 </section>
 
 

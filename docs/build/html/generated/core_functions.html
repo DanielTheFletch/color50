@@ -92,11 +92,10 @@
   <section id="module-core_functions">
 <span id="core-functions"></span><h1>core_functions<a class="headerlink" href="#module-core_functions" title="Link to this heading"></a></h1>
 <p>Standalone functions designed to streamline color selection and usage.</p>
-<p>Although the Color class exists as part of the greater <code class="docutils literal notranslate"><span class="pre">color50</span></code> package,
-3 of the 4 functions in this module are recommended to generate Color objects
-themselves as opposed to explicitly calling the class initializer.</p>
-<p>The fourth and final function in the module is a decorator function designed
-to change the color of one function’s standard output.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">rgb</span></code>, <code class="docutils literal notranslate"><span class="pre">hexcode</span></code>, and <code class="docutils literal notranslate"><span class="pre">css</span></code> functions to initialize <strong>Color</strong>
+objects with whichever format is most familiar to you. You can also use
+the <code class="docutils literal notranslate"><span class="pre">colorize</span></code> decorator for changing the color of a whole function’s
+output.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -104,13 +103,13 @@ to change the color of one function’s standard output.</p>
 <td><p>Alter the color of a given function's standard output.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../color50.html#core_functions.css" title="core_functions.css"><code class="xref py py-obj docutils literal notranslate"><span class="pre">css</span></code></a>(colorname)</p></td>
-<td><p>Return a Color object based on a specified CSS color name.</p></td>
+<td><p>Return a <strong>Color</strong> object based on a specified CSS color name.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../color50.html#core_functions.hexcode" title="core_functions.hexcode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hexcode</span></code></a>(code)</p></td>
-<td><p>Return a Color object based on a specified HEX color code.</p></td>
+<td><p>Return a <strong>Color</strong> object based on a specified HEX color code.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../color50.html#core_functions.rgb" title="core_functions.rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb</span></code></a>(red, green, blue)</p></td>
-<td><p>Return a Color object based on specified RGB values.</p></td>
+<td><p>Return a <strong>Color</strong> object based on specified RGB values.</p></td>
 </tr>
 </tbody>
 </table>

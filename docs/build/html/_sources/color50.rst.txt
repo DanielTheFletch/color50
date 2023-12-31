@@ -1,12 +1,14 @@
 Reference
 =========
 
-A Python package for more colorful printing at the terminal.
+Official documentation reference for the **color50** package.
 
-Created as a final project submission for Harvard University's CS50P course,
-``color50`` is a package designed to add a little extra flavor to standard
-output print statements. Who knows, maybe future CS50 students may find this
-package useful (or fun)!
+**Color** class
+---------------
+
+.. autoclass:: color.Color
+   :members:
+   :special-members: __init__, __str__, __add__, __eq__
 
 Core functions
 --------------
@@ -14,14 +16,7 @@ Core functions
 .. autofunction:: core_functions.rgb
 .. autofunction:: core_functions.hexcode
 .. autofunction:: core_functions.css
-.. autodecorator:: core_functions.colorize
-   
-**Color** class
----------------
-
-.. autoclass:: color.Color
-   :members:
-   :special-members: __init__, __str__, __add__, __eq__
+.. autofunction:: core_functions.colorize
 
 **ColorStr** class
 ------------------

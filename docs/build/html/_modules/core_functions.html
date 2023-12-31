@@ -80,12 +80,10 @@
   <h1>Source code for core_functions</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Standalone functions designed to streamline color selection and usage.</span>
 
-<span class="sd">Although the Color class exists as part of the greater ``color50`` package,</span>
-<span class="sd">3 of the 4 functions in this module are recommended to generate Color objects</span>
-<span class="sd">themselves as opposed to explicitly calling the class initializer.</span>
-
-<span class="sd">The fourth and final function in the module is a decorator function designed</span>
-<span class="sd">to change the color of one function&#39;s standard output.</span>
+<span class="sd">Use the ``rgb``, ``hexcode``, and ``css`` functions to initialize **Color**</span>
+<span class="sd">objects with whichever format is most familiar to you. You can also use</span>
+<span class="sd">the ``colorize`` decorator for changing the color of a whole function&#39;s</span>
+<span class="sd">output.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -95,7 +93,11 @@
 
 <span class="c1"># core_functions.py</span>
 <span class="c1"># Four main project functions (rgb, hexcode, css, colorize)</span>
-<span class="c1"># Same as four functions in required project.py file</span>
+
+<span class="c1"># Note that these four functions are the same four functions utilized</span>
+<span class="c1"># in the required project.py file. Because project.py is required to</span>
+<span class="c1"># exist in the root directory, this duplication of code is necessary</span>
+<span class="c1"># for the package to function properly.</span>
 
 <span class="c1"># Python library imports</span>
 <span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">load</span>
@@ -109,10 +111,10 @@
 <div class="viewcode-block" id="rgb">
 <a class="viewcode-back" href="../color50.html#core_functions.rgb">[docs]</a>
 <span class="k">def</span> <span class="nf">rgb</span><span class="p">(</span><span class="n">red</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">green</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">blue</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on specified RGB values.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a **Color** object based on specified RGB values.</span>
 <span class="sd">    </span>
-<span class="sd">    One of three recommended methods for creating Color objects. Because the</span>
-<span class="sd">    Color class stores RGB values internally, this function essentially mirrors</span>
+<span class="sd">    One of three recommended methods for creating **Color** objects. Because the</span>
+<span class="sd">    **Color** class stores RGB values internally, this function essentially mirrors</span>
 <span class="sd">    the behavior of a would-be parameterized ``__init__`` function.</span>
 
 <span class="sd">    Args:</span>
@@ -124,18 +126,19 @@
 <span class="sd">            A numeric value (0-255) representing the color&#39;s blue levels.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A valid Color object.</span>
+<span class="sd">        A valid **Color** object.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        Because this function sets the Color class properties to the values of</span>
-<span class="sd">        the specified parameters, it will raise the same exceptions as the</span>
-<span class="sd">        corresponding property setters.</span>
+<span class="sd">        Because this function sets the **Color** class properties to the values of</span>
+<span class="sd">        the specified parameters, it has potential to raise exceptions in the same</span>
+<span class="sd">        fashion as the property setters. Ensure that each parameter value is of</span>
+<span class="sd">        type ``int`` such that 0 &lt;= value &lt;= 255.</span>
 
 <span class="sd">    Examples::</span>
 
-<span class="sd">        color1 = rgb(0, 0, 0)       # black</span>
-<span class="sd">        color2 = rgb(255, 255, 255) # white</span>
-<span class="sd">        color3 = rgb(128, 0, 128)   # purple</span>
+<span class="sd">        color1 = rgb(0, 0, 0)        # black</span>
+<span class="sd">        color2 = rgb(255, 255, 255)  # white</span>
+<span class="sd">        color3 = rgb(128, 0, 128)    # purple</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -148,11 +151,10 @@
 <div class="viewcode-block" id="hexcode">
 <a class="viewcode-back" href="../color50.html#core_functions.hexcode">[docs]</a>
 <span class="k">def</span> <span class="nf">hexcode</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on a specified HEX color code.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a **Color** object based on a specified HEX color code.</span>
 <span class="sd">    </span>
-<span class="sd">    One of three recommended methods for creating Color objects. Designed to</span>
-<span class="sd">    enable compatibility with colors used in other projects defined with</span>
-<span class="sd">    six-digit hexadecimal codes.</span>
+<span class="sd">    One of three recommended methods for creating **Color** objects. Designed to</span>
+<span class="sd">    enable flexibility for those more familiar with this color format.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        code:</span>
@@ -161,7 +163,7 @@
 <span class="sd">            lowercase letters.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A valid Color object.</span>
+<span class="sd">        A valid **Color** object.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        TypeError:</span>
@@ -194,20 +196,17 @@
 <div class="viewcode-block" id="css">
 <a class="viewcode-back" href="../color50.html#core_functions.css">[docs]</a>
 <span class="k">def</span> <span class="nf">css</span><span class="p">(</span><span class="n">colorname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Color object based on a specified CSS color name.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a **Color** object based on a specified CSS color name.</span>
 <span class="sd">    </span>
-<span class="sd">    One of three recommended methods for creating Color objects. Designed to</span>
+<span class="sd">    One of three recommended methods for creating **Color** objects. Designed to</span>
 <span class="sd">    enable compatibility with colors specified by name in CSS stylesheets.</span>
-
-<span class="sd">    For a full list of named CSS colors, visit </span>
-<span class="sd">    https://developer.mozilla.org/en-US/docs/Web/CSS/named-color.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        colorname:</span>
 <span class="sd">            A string literal of a valid CSS color name.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A valid Color object.</span>
+<span class="sd">        A valid **Color** object.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        TypeError:</span>
@@ -220,6 +219,9 @@
 <span class="sd">        color1 = css(\&quot;black\&quot;)     # black</span>
 <span class="sd">        color2 = css(\&quot;white\&quot;)     # white</span>
 <span class="sd">        color3 = css(\&quot;seagreen\&quot;)  # seagreen</span>
+
+<span class="sd">    For a comprehensive list of possible color names, visit `the official listing</span>
+<span class="sd">    from the MDN Web Docs &lt;https://developer.mozilla.org/en-US/docs/Web/CSS/named-color&gt;`_.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -245,16 +247,16 @@
 <span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Alter the color of a given function&#39;s standard output.</span>
 <span class="sd">    </span>
-<span class="sd">    This function is designed to be used as a decorator as a quick way of</span>
-<span class="sd">    altering the output of any one function.</span>
+<span class="sd">    This function is designed to be used as a decorator as a short and readable</span>
+<span class="sd">    means of altering the color of an entire function&#39;s output.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        color:</span>
-<span class="sd">            A valid Color object or a constant string literal representing a color.</span>
+<span class="sd">            A valid **Color** object or a constant string literal representing a color.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        TypeError:</span>
-<span class="sd">            If ``color`` is not a Color or string, or if the decorated object is not callable.</span>
+<span class="sd">            If ``color`` is not a **Color** or string, or if the decorated object is not callable.</span>
 <span class="sd">        ValueError:</span>
 <span class="sd">            If ``color`` is a string representing an invalid ANSI color code character sequence</span>
 
@@ -265,16 +267,28 @@
 <span class="sd">            print(msg)</span>
 
 <span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
-<span class="sd">    with a red coloring, and also that the color of standard output resets to</span>
-<span class="sd">    default after the function terminates.</span>
+<span class="sd">    as red-colored text. ``colorize`` behaves such that the color of standard output</span>
+<span class="sd">    resets to default after the function terminates, so the ``RESET`` constant is not</span>
+<span class="sd">    necessary in this context.</span>
 
-<span class="sd">    Note that this works with both foreground and background colors, or even both</span>
-<span class="sd">    at the same time by stacking two decorators on top of one another.</span>
+<span class="sd">    Another example using a background color:: </span>
+
+<span class="sd">        @colorize(constants.GREEN_BG)</span>
+<span class="sd">        def print_success(msg):</span>
+<span class="sd">            print(msg)</span>
+
+<span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
+<span class="sd">    as plain text with a green-colored background. As with before, ``colorize``</span>
+<span class="sd">    appropriately resets the terminal output color upon function termination.</span>
+
+<span class="sd">    Note that it is also possible to use ``colorize`` with a foreground color *and*</span>
+<span class="sd">    a background color simultaneously. This simply requires calling the decorator</span>
+<span class="sd">    function twice.</span>
 
 <span class="sd">    Consider this example::</span>
 
 <span class="sd">        @colorize(constants.RED)</span>
-<span class="sd">        @colorize(constants.GREEN_BG)</span>
+<span class="sd">        @colorize(css(\&quot;green\&quot;))</span>
 <span class="sd">        def holiday_message(msg):</span>
 <span class="sd">            print(msg)</span>
 
