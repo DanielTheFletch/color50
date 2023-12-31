@@ -83,7 +83,169 @@
              
   <section id="demo-files">
 <h1>Demo Files<a class="headerlink" href="#demo-files" title="Link to this heading"></a></h1>
-<p>Placeholder text.</p>
+<p><code class="docutils literal notranslate"><span class="pre">demo1.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Prompt for user input</span>
+<span class="n">input_red</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an integer (0-255) for the color&#39;s RED value: &quot;</span><span class="p">)</span>
+<span class="n">input_green</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an integer (0-255) for the color&#39;s GREEN value: &quot;</span><span class="p">)</span>
+<span class="n">input_blue</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an integer (0-255) for the color&#39;s BLUE value: &quot;</span><span class="p">)</span>
+
+<span class="c1"># Validate input type</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">input_red</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_red</span><span class="p">)</span>
+    <span class="n">input_green</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_green</span><span class="p">)</span>
+    <span class="n">input_blue</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_blue</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Error: Invalid color selection&quot;</span><span class="p">)</span>
+
+<span class="c1"># Validate input value</span>
+<span class="n">my_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">my_color</span><span class="o">.</span><span class="n">red</span> <span class="o">=</span> <span class="n">input_red</span>
+    <span class="n">my_color</span><span class="o">.</span><span class="n">green</span> <span class="o">=</span> <span class="n">input_green</span>
+    <span class="n">my_color</span><span class="o">.</span><span class="n">blue</span> <span class="o">=</span> <span class="n">input_blue</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Error: Invalid color selection&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print message in user-specified color</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_color</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">demo2.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">css</span><span class="p">,</span> <span class="n">hexcode</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Prompt and validate hex code input</span>
+<span class="n">input_hex</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;HEX color code: &quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">color1</span> <span class="o">=</span> <span class="n">hexcode</span><span class="p">(</span><span class="n">input_hex</span><span class="p">)</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Error: Invalid HEX color code&quot;</span><span class="p">)</span>
+
+<span class="c1"># Prompt and validate CSS color input</span>
+<span class="n">input_css</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;CSS color name: &quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">color2</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="n">input_css</span><span class="p">)</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Error: CSS color name not recognized&quot;</span><span class="p">)</span>
+
+<span class="c1"># Echo inputs back to user, except in color</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HEX color code: </span><span class="si">{</span><span class="n">color1</span><span class="si">}{</span><span class="n">input_hex</span><span class="si">}{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSS color name: </span><span class="si">{</span><span class="n">color2</span><span class="si">}{</span><span class="n">input_css</span><span class="si">}{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">demo3.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">ColorStr</span><span class="p">,</span> <span class="n">rgb</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Randomly select foreground color</span>
+<span class="n">rand_red</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">rand_green</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">rand_blue</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">fg_color</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="n">rand_red</span><span class="p">,</span> <span class="n">rand_green</span><span class="p">,</span> <span class="n">rand_blue</span><span class="p">)</span>
+
+<span class="c1"># Randomly select background color</span>
+<span class="n">rand_red</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">rand_green</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">rand_blue</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">bg_color</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="n">rand_red</span><span class="p">,</span> <span class="n">rand_green</span><span class="p">,</span> <span class="n">rand_blue</span><span class="p">)</span>
+
+<span class="c1"># Create and print ColorStr object between other strings</span>
+<span class="n">my_color_str</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;What a randomly colorful string!&quot;</span><span class="p">,</span> <span class="n">fg_color</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===&gt;&quot;</span><span class="p">,</span> <span class="n">my_color_str</span><span class="p">,</span> <span class="s2">&quot;&lt;===&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">demo4.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">css</span><span class="p">,</span> <span class="n">colorize</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Greet user</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Welcome to </span><span class="si">{</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;crimson&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">DICE ROLLER!</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You will roll 2 six-sided dice.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your opponents, Beep and Boop, will each roll 3 four-sided dice.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Whoever has the highest sum at the end wins.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Try to get first place for the </span><span class="si">{</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;gold&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">gold medal!</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Track random die rolls</span>
+    <span class="n">die_rolls_user</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">die_rolls_beep</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">die_rolls_boop</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Prompt user to enter name</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First, please enter your name: &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nice to meet you, </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">! Best of luck.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Simulate first die roll</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press [ENTER] to roll your first die. &quot;</span><span class="p">)</span>
+    <span class="n">die_rolls_user</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;First dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_user</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Simulate second die roll</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press [ENTER] to roll your second die. &quot;</span><span class="p">)</span>
+    <span class="n">die_rolls_user</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Second dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_user</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Simulate Beep&#39;s rolls</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press [ENTER] to see Beep&#39;s rolls. &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">die_rolls_beep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Beep&#39;s first dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_beep</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Beep&#39;s second dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_beep</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Beep&#39;s third dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_beep</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># Simulate Boop&#39;s rolls</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press [ENTER] to see Boop&#39;s rolls. &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">die_rolls_boop</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Boop&#39;s first dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_boop</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Boop&#39;s second dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_boop</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">print_dice_roll</span><span class="p">(</span><span class="s2">&quot;Boop&#39;s third dice roll&quot;</span><span class="p">,</span> <span class="n">die_rolls_boop</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># Calculate final results</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press [ENTER] to see the final results! &quot;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="n">username</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">die_rolls_user</span><span class="p">)</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;Beep&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">die_rolls_beep</span><span class="p">)</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;Boop&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">die_rolls_boop</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">index</span> <span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Print messages for end-of-game rankings</span>
+    <span class="n">third_place_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;In third, it&#39;s </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> points.&quot;</span><span class="p">)</span>
+    <span class="n">second_place_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;In second, it&#39;s </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> points.&quot;</span><span class="p">)</span>
+    <span class="n">first_place_message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;In first, it&#39;s </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> points.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Congratulations to </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> for winning the game!&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_dice_roll</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2"> ==&gt; </span><span class="si">{</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;slateblue&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span><span class="si">}</span><span class="s2">[ </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> ]</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@colorize</span><span class="p">(</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;gold&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">first_place_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="nd">@colorize</span><span class="p">(</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;silver&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">second_place_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="nd">@colorize</span><span class="p">(</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;brown&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">third_place_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 
 

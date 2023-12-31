@@ -3,7 +3,7 @@
 # Final Project
 
 # demo2.py
-# Demonstration of package functionality (2 of 8)
+# Demonstration of package functionality (2 of 4)
 
 from color50 import constants, css, hexcode
 import sys

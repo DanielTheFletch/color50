@@ -3,7 +3,7 @@
 # Final Project
 
 # demo1.py
-# Demonstration of package functionality (1 of 8)
+# Demonstration of package functionality (1 of 4)
 
 from color50 import Color, constants
 import sys
