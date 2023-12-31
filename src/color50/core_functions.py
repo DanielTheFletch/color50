@@ -20,7 +20,7 @@ output.
 # for the package to function properly.
 
 # Python library imports
-from importlib.resources import open_text
+from importlib.resources import files
 from json import load
 from re import fullmatch
 
@@ -144,7 +144,7 @@ def css(colorname: str) -> Color:
     
     # Extract list of colors from JSON file
     colornames = {}
-    with open_text("color50", "csscolors.json") as file:
+    with files("color50").joinpath("csscolors.json").open('r') as file:
         colornames = load(file)
 
     # Validate color choice
