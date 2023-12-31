@@ -70,7 +70,7 @@ class Color:
 
     def __str__(self):
         """Return a string representation of the color; same as calling
-        the ``fg()`` method.
+        the ``fg`` method.
         
         Example::
 

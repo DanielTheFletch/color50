@@ -17,8 +17,8 @@ Motivation
 Many programming courses focus on building fundamentals by creating projects at
 the command line. As such, I have spent a lot of time working in terminal
 environments, engaging in all sorts of academic projects and learning pursuits.
-Every time I use a new language at the terminal, though, I always wonder why
-printing text in color is almost never covered.
+Every time I used a new language at the terminal, though, I always wondered why
+printing text in color is almost never covered in the learning process.
 
 It seems simple in theory, right? Many modern shells display all sorts of key
 features *with colorful text already*, so I knew it was possible---I just didn't
@@ -29,7 +29,7 @@ colorful terminal output more approachable.
 Ultimately, **color50** is a package designed to address the confusion and cryptic
 syntax that occurs when working with ANSI escape sequences and color codes. The main
 motivation was to make printing in color more readable, more intuitive to a broader
-range of developers, and generally more convenient to use colorful output.
+range of developers, and generally more convenient to use.
 
 ----------
 
@@ -45,10 +45,10 @@ with key features highlighted accordingly:
 
     - :ref:`core_functions module<core-functions-module-label>`: Contains four standalone functions designed to streamline color selection and usage.
 
-        - ``rgb()`` function
-        - ``hexcode()`` function
-        - ``css()`` function
-        - ``colorize()`` function (decorator)
+        - ``rgb`` function
+        - ``hexcode`` function
+        - ``css`` function
+        - ``colorize`` function (decorator)
 
     - :ref:`colorstr module<colorstr-module-label>`: Contains the **ColorStr** class and associated logic.
 

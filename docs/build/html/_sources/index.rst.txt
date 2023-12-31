@@ -13,6 +13,7 @@ Python package for more colorful printing at the command line.
    Home <self>
    intro
    usage
+   demo
    color50
    api
 

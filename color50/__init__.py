@@ -9,9 +9,9 @@ Modules included:
     - color
         - **Color** class
     - core_functions
-        - ``rgb()`` function
-        - ``hexcode()`` function
-        - ``css()`` function
+        - ``rgb`` function
+        - ``hexcode`` function
+        - ``css`` function
     - colorstr
         - **ColorStr** class
     - constants
