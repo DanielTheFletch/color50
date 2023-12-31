@@ -47,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
@@ -88,7 +88,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#useful-constants">Useful constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Package API</a></li>
@@ -122,7 +122,7 @@
 <h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
 <p>Official documentation reference for the <strong>color50</strong> package.</p>
 <section id="color-class">
-<h2><strong>Color</strong> class<a class="headerlink" href="#color-class" title="Link to this heading"></a></h2>
+<span id="color-module-label"></span><h2><strong>Color</strong> class<a class="headerlink" href="#color-class" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="color.Color">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">color.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><a class="reference internal" href="_modules/color.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color.Color" title="Link to this definition"></a></dt>
@@ -193,7 +193,7 @@ and only if:</p>
 <dd><p>Initialize a <strong>Color</strong> object with red, green, and blue values all set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>Note that there are no parameterized <code class="docutils literal notranslate"><span class="pre">__init___</span></code> functions for the
 <code class="docutils literal notranslate"><span class="pre">Color</span></code> class; instead, it is recommended to use one of the associated
-<a class="reference internal" href="#core-functions-label"><span class="std std-ref">core functions</span></a> that come with the package
+<a class="reference internal" href="#core-functions-module-label"><span class="std std-ref">core functions</span></a> that come with the package
 instead of using the class initializer explicitly.</p>
 <p>That said, the default initializer can still be called, and each of the
 object properties (red, green, blue) can be tweaked individually from their
@@ -320,7 +320,7 @@ Supports both get and set operations.</p>
 
 </section>
 <section id="core-functions">
-<h2>Core functions<a class="headerlink" href="#core-functions" title="Link to this heading"></a></h2>
+<span id="core-functions-module-label"></span><h2>Core functions<a class="headerlink" href="#core-functions" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="core_functions.rgb">
 <span class="sig-prename descclassname"><span class="pre">core_functions.</span></span><span class="sig-name descname"><span class="pre">rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/core_functions.html#rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core_functions.rgb" title="Link to this definition"></a></dt>
@@ -468,7 +468,7 @@ resetting both colors to defaults after termination.</p>
 
 </section>
 <section id="colorstr-class">
-<h2><strong>ColorStr</strong> class<a class="headerlink" href="#colorstr-class" title="Link to this heading"></a></h2>
+<span id="colorstr-module-label"></span><h2><strong>ColorStr</strong> class<a class="headerlink" href="#colorstr-class" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="colorstr.ColorStr">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">colorstr.</span></span><span class="sig-name descname"><span class="pre">ColorStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color.Color" title="color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colorstr.html#ColorStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colorstr.ColorStr" title="Link to this definition"></a></dt>
@@ -630,8 +630,8 @@ disregarded when the object is displayed.</p>
 </dd></dl>
 
 </section>
-<section id="useful-constants">
-<span id="core-functions-label"></span><h2>Useful constants<a class="headerlink" href="#useful-constants" title="Link to this heading"></a></h2>
+<section id="constants">
+<span id="constants-module-label"></span><h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
 <p>A series of string literal constants for more granular color control.</p>
 <p>Use these constants as shorthand for a variety of situations:</p>
 <blockquote>

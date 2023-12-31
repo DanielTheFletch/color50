@@ -47,10 +47,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brief-summary">Brief Summary</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="color50.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Package API</a></li>
@@ -82,14 +86,65 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
-<p>Hello, World!</p>
-<p>My name is Daniel Fletcher, and thank you for checking out my project!</p>
+<p><strong>This is color50!</strong></p>
 <p>Created as a final project submission for Harvard University’s CS50P course,
-<code class="docutils literal notranslate"><span class="pre">color50</span></code> is a package designed to add a little extra flavor to standard
-output print statements. Who knows, maybe future CS50 students may find this
-package useful (or fun)!</p>
-<p>This is my first ever attempt at making a Python package, and I’m excited to
-finally have it out for others to use.</p>
+<strong>color50</strong> is a package I designed to add a little extra flavor to standard
+output print statements. This is my first ever attempt at making a Python
+package from scratch, and I’m excited to share it with fellow Python developers
+and CS50 students.</p>
+<hr class="docutils" />
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>Many programming courses focus on building fundamentals by creating projects at
+the command line. As such, I have spent a lot of time working in terminal
+environments, engaging in all sorts of academic projects and learning pursuits.
+Every time I use a new language at the terminal, though, I always wonder why
+printing text in color is almost never covered.</p>
+<p>It seems simple in theory, right? Many modern shells display all sorts of key
+features <em>with colorful text already</em>, so I knew it was possible—I just didn’t
+quite know how to do it in an approachable fashion. This train of thought sparked
+the idea of what eventually became <strong>color50</strong>: a Python library designed to make
+colorful terminal output more approachable.</p>
+<p>Ultimately, <strong>color50</strong> is a package designed to address the confusion and cryptic
+syntax that occurs when working with ANSI escape sequences and color codes. The main
+motivation was to make printing in color more readable, more intuitive to a broader
+range of developers, and generally more convenient to use colorful output.</p>
+</section>
+<hr class="docutils" />
+<section id="brief-summary">
+<h2>Brief Summary<a class="headerlink" href="#brief-summary" title="Link to this heading"></a></h2>
+<p>Below is a brief summary of the four modules contained in the <strong>color50</strong> package,
+with key features highlighted accordingly:</p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference internal" href="color50.html#color-module-label"><span class="std std-ref">color module</span></a>: Contains the <strong>Color</strong> class and associated logic.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Color</strong> class</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">core_functions module</span></a>: Contains four standalone functions designed to streamline color selection and usage.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rgb()</span></code> function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hexcode()</span></code> function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">css()</span></code> function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colorize()</span></code> function (decorator)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="color50.html#colorstr-module-label"><span class="std std-ref">colorstr module</span></a>: Contains the <strong>ColorStr</strong> class and associated logic.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>ColorStr</strong> class</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="color50.html#constants-module-label"><span class="std std-ref">constants module</span></a>: Contains a series of string literal constants for use with ANSI color code semantics.</p></li>
+</ul>
+</div></blockquote>
+</section>
 </section>
 
 

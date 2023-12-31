@@ -3,12 +3,16 @@ Reference
 
 Official documentation reference for the **color50** package.
 
+.. _color-module-label:
+
 **Color** class
 ---------------
 
 .. autoclass:: color.Color
    :members:
    :special-members: __init__, __str__, __add__, __eq__
+
+.. _core-functions-module-label:
 
 Core functions
 --------------
@@ -18,6 +22,8 @@ Core functions
 .. autofunction:: core_functions.css
 .. autofunction:: core_functions.colorize
 
+.. _colorstr-module-label:
+
 **ColorStr** class
 ------------------
 
@@ -25,10 +31,10 @@ Core functions
    :members:
    :special-members: __init__, __str__, __add__, __eq__
 
-.. _core-functions-label:
+.. _constants-module-label:
 
-Useful constants
-----------------
+Constants
+---------
 
 .. automodule:: constants
    :members:

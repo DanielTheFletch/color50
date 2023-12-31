@@ -42,7 +42,7 @@ class Color:
         
         Note that there are no parameterized ``__init___`` functions for the
         ``Color`` class; instead, it is recommended to use one of the associated
-        :ref:`core functions <core-functions-label>` that come with the package
+        :ref:`core functions <core-functions-module-label>` that come with the package
         instead of using the class initializer explicitly.
 
         That said, the default initializer can still be called, and each of the
