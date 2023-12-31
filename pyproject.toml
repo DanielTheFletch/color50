@@ -32,20 +32,18 @@ keywords = [
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
-    "Environment :: Console",
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: System :: Console Fonts",
-    "Topic :: Education"
+    "Topic :: System :: Console Fonts"
 ]
 
 [project.urls]
 GitHub = "https://github.com/danielthefletch/color50.git"
-Documentation = "https://readthedocs.org"
+Documentation = "https://color50.readthedocs.io/en/latest/"
 "CS50P Class Website" = "https://cs50.harvard.edu/python/2022/"
 
 [tool.setuptools]
