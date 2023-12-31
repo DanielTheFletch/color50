@@ -1,5 +1,5 @@
-Package API
-===========
+API
+===
 
 Submodules
 ----------
@@ -12,14 +12,14 @@ Submodules
 .. autosummary::
    :toctree: generated
 
+   core_functions
+
+.. autosummary::
+   :toctree: generated
+
    colorstr
 
 .. autosummary::
    :toctree: generated
 
    constants
-
-.. autosummary::
-   :toctree: generated
-
-   core_functions

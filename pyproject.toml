@@ -24,10 +24,9 @@ keywords = [
     "color",
     "console",
     "terminal",
+    "command line",
     "CS50",
-    "CS50P",
-    "Harvard",
-    "Harvard University"
+    "CS50P"
 ]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -44,7 +43,7 @@ classifiers = [
 [project.urls]
 GitHub = "https://github.com/danielthefletch/color50.git"
 Documentation = "https://color50.readthedocs.io/en/latest/"
-"CS50P Class Website" = "https://cs50.harvard.edu/python/2022/"
+"CS50P Course Website" = "https://cs50.harvard.edu/python/2022/"
 
 [tool.setuptools]
 packages = [ "color50" ]

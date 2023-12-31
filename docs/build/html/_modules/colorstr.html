@@ -51,7 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../demo.html">Demo Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../color50.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -160,13 +160,13 @@
 
 <span class="sd">        Example 2::</span>
 
-<span class="sd">            my_color_str = str(ColorStr(\&quot;Hello, World!\&quot;, None, css(\&quot;crimson\&quot;)))</span>
-<span class="sd">            print(my_color_str)</span>
+<span class="sd">            my_color_str = str(ColorStr(\&quot;Hello, World!\&quot;, None, css(&quot;crimson&quot;)))</span>
+<span class="sd">            print(my_color_str + \&quot; ...and goodbye, color.\&quot;)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">fg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="p">)</span>
-        <span class="n">bg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bg</span><span class="p">)</span>
+        <span class="n">fg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="o">.</span><span class="n">fg</span><span class="p">()</span>
+        <span class="n">bg_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fg_code</span><span class="si">}{</span><span class="n">bg_code</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
 
@@ -184,6 +184,12 @@
 
 <span class="sd">        Example 2::</span>
 
+<span class="sd">            str1 = \&quot;This text is plain, and... \&quot;</span>
+<span class="sd">            str2 = ColorStr(\&quot;this text is colorful!\&quot;, rgb(140, 120, 100))</span>
+<span class="sd">            print(str1 + str2)</span>
+
+<span class="sd">        Example 3::</span>
+
 <span class="sd">            str1 = ColorStr(\&quot;This text is colorful, and... \&quot;, rgb(100, 120, 140))</span>
 <span class="sd">            str2 = ColorStr(\&quot;this text is also colorful!\&quot;, rgb(140, 120, 100))</span>
 <span class="sd">            print(str1 + str2)</span>
@@ -193,8 +199,14 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="n">ColorStr</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">addend</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span> </div>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
 
+        
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addend</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="n">ColorStr</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">addend</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span> 
 
 <div class="viewcode-block" id="ColorStr.__eq__">
 <a class="viewcode-back" href="../color50.html#colorstr.ColorStr.__eq__">[docs]</a>
@@ -226,10 +238,10 @@
 <span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> 
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">red</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">red</span>
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">green</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">green</span>
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">blue</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ColorStr</span><span class="p">)</span> 
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">content</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">fg</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">bg</span><span class="p">)</span></div>
 
     
     <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

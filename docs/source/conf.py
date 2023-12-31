@@ -5,9 +5,10 @@
 # conf.py
 # Configuration file for Sphinx documentation builder
 
+# Configure path
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../color50/'))
+sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'color50')))
 
 # General configuration
 project = 'color50'

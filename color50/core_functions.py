@@ -25,8 +25,8 @@ from json import load
 from re import fullmatch
 
 # Associated color50 imports
-from .color import Color
-from .constants import RESET
+from color import Color
+from constants import RESET
 
 
 def rgb(red: int, green: int, blue: int) -> Color:

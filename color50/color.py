@@ -7,7 +7,7 @@
 # color.py
 # Color class and related functionality
 
-from .constants import ANSI_PREFIX
+from constants import ANSI_PREFIX
 
 class Color:
     """A class for representing color in RGB format.

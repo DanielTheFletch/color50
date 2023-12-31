@@ -7,8 +7,8 @@
 # color.py
 # Color class and related functionality
 
-from .color import Color
-from .constants import RESET
+from color import Color
+from constants import RESET
 
 class ColorStr:
     """A class for representing specialized strings with custom color properties.

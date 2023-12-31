@@ -51,7 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../demo.html">Demo Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../color50.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -101,6 +101,7 @@
 <span class="c1"># for the package to function properly.</span>
 
 <span class="c1"># Python library imports</span>
+<span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">open_text</span>
 <span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">load</span>
 <span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">fullmatch</span>
 
@@ -232,7 +233,7 @@
     
     <span class="c1"># Extract list of colors from JSON file</span>
     <span class="n">colornames</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;csscolors.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;color50&quot;</span><span class="p">,</span> <span class="s2">&quot;csscolors.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">colornames</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
     <span class="c1"># Validate color choice</span>
@@ -253,7 +254,7 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        color:</span>
-<span class="sd">            A valid **Color** object or a constant string literal representing a color.</span>
+<span class="sd">            A valid **Color** object or its equivalent string representation.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        TypeError:</span>
@@ -281,29 +282,15 @@
 <span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
 <span class="sd">    as plain text with a green-colored background. As with before, ``colorize``</span>
 <span class="sd">    appropriately resets the terminal output color upon function termination.</span>
-
-<span class="sd">    Note that it is also possible to use ``colorize`` with a foreground color *and*</span>
-<span class="sd">    a background color simultaneously. This simply requires calling the decorator</span>
-<span class="sd">    function twice.</span>
-
-<span class="sd">    Consider this example::</span>
-
-<span class="sd">        @colorize(constants.RED)</span>
-<span class="sd">        @colorize(css(\&quot;green\&quot;))</span>
-<span class="sd">        def holiday_message(msg):</span>
-<span class="sd">            print(msg)</span>
-
-<span class="sd">    This would ensure that all contents of ``msg`` are printed to standard output</span>
-<span class="sd">    with a red foreground coloring and a green background coloring, and also</span>
-<span class="sd">    resetting both colors to defaults after termination.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Validate color choice</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\u001b\[(3|4|9|10)[0-7]m&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">fullmatch</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ANSI character sequence </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"> not recognized&quot;</span><span class="p">)</span>
+        <span class="n">regex1</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\u001b\[(3|4|9|10)[0-7]m&quot;</span>        <span class="c1"># Recognizes string constants</span>
+        <span class="n">regex2</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\u001b\[(3|4)8;2;\d+;\d+;\d+m&quot;</span>   <span class="c1"># Enables compatibility with fg() / bg()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fullmatch</span><span class="p">(</span><span class="n">regex1</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fullmatch</span><span class="p">(</span><span class="n">regex2</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ANSI character sequence not recognized&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected Color or string, got object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     

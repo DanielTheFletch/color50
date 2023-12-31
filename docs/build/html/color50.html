@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Package API" href="api.html" />
+    <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="Demo Files" href="demo.html" /> 
 </head>
 
@@ -92,7 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
         </div>
@@ -424,7 +424,7 @@ from the MDN Web Docs</a>.</p>
 means of altering the color of an entire function’s output.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>color</strong> – A valid <strong>Color</strong> object or a constant string literal representing a color.</p>
+<dd class="field-odd"><p><strong>color</strong> – A valid <strong>Color</strong> object or its equivalent string representation.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -452,19 +452,6 @@ necessary in this context.</p>
 <p>This would ensure that all contents of <code class="docutils literal notranslate"><span class="pre">msg</span></code> are printed to standard output
 as plain text with a green-colored background. As with before, <code class="docutils literal notranslate"><span class="pre">colorize</span></code>
 appropriately resets the terminal output color upon function termination.</p>
-<p>Note that it is also possible to use <code class="docutils literal notranslate"><span class="pre">colorize</span></code> with a foreground color <em>and</em>
-a background color simultaneously. This simply requires calling the decorator
-function twice.</p>
-<p>Consider this example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@colorize</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
-<span class="nd">@colorize</span><span class="p">(</span><span class="n">css</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">holiday_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This would ensure that all contents of <code class="docutils literal notranslate"><span class="pre">msg</span></code> are printed to standard output
-with a red foreground coloring and a green background coloring, and also
-resetting both colors to defaults after termination.</p>
 </dd></dl>
 
 </section>
@@ -498,6 +485,12 @@ and of <strong>ColorStr</strong> objects with other <strong>ColorStr</strong> ob
 </pre></div>
 </div>
 <p>Example 2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;This text is plain, and... &quot;</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;this text is colorful!&quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example 3:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;This text is colorful, and... &quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">))</span>
 <span class="n">str2</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;this text is also colorful!&quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span><span class="p">)</span>
@@ -576,7 +569,7 @@ longer be directly editable.</p>
 </div>
 <p>Example 2:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_color_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;crimson&quot;</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_color_str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_color_str</span> <span class="o">+</span> <span class="s2">&quot; ...and goodbye, color.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -747,7 +740,7 @@ after using the desired color to avoid unexpected behavior.</p>
 </table>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a message with a magenta-colored background</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">MAGENTA_BG</span><span class="p">}</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">MAGENTA_BG</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -895,7 +888,7 @@ Reference it as you wish:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="demo.html" class="btn btn-neutral float-left" title="Demo Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api.html" class="btn btn-neutral float-right" title="Package API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

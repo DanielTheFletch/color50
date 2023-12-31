@@ -71,7 +71,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="color50.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
         </div>
@@ -133,7 +133,7 @@ Consider this example program:</p>
 initializes to a value of <code class="docutils literal notranslate"><span class="pre">0</span></code>. In other words, the default color created by calling
 <code class="docutils literal notranslate"><span class="pre">Color()</span></code> is black (e.g., <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">=</span> <span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p>
 <p>Consider another example program:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">color</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span>
 
 <span class="c1"># First color: black</span>
 <span class="n">color1</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
@@ -159,7 +159,8 @@ to be changed manually.</p>
 to practical use.</p>
 <p>As described in the <a class="reference internal" href="color50.html#color-module-label"><span class="std std-ref">Color class documentation</span></a>, <strong>Color</strong> objects
 support concatenation with strings to effectively add color to them. This can be done with string
-literals or strings stored as variables.</p>
+literals or strings stored as variables. Note that the <strong>Color</strong> object must always come first in
+the operation, meaning <code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">+</span> <span class="pre">str</span></code> is valid but <code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">+</span> <span class="pre">Color</span></code> is not.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -193,7 +194,7 @@ is never used.</p>
 
 <span class="c1"># Three identical print statements</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color</span> <span class="o">+</span> <span class="s2">&quot;I&#39;ve got the blues.&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">my_color</span><span class="si">}</span><span class="s2">I&#39;ve got the blues.&quot;</span><span class="p">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">my_color</span><span class="si">}</span><span class="s2">I&#39;ve got the blues.</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color</span><span class="p">,</span> <span class="s2">&quot;I&#39;ve got the blues.&quot;</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -236,14 +237,14 @@ standard string concatenation. Effectively, this means that <code class="docutil
 
 <span class="c1"># Print green text on blue background</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="n">earth_blue</span> <span class="o">+</span>
-    <span class="n">earth_green</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">earth_green</span> <span class="o">+</span>
+    <span class="n">earth_blue</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span> <span class="o">+</span>
     <span class="s2">&quot;Hello! It&#39;s me, World!&quot;</span> <span class="o">+</span>
     <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice that the <code class="docutils literal notranslate"><span class="pre">earth_blue</span></code> foreground color did not need to explicitly call
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">earth_green</span></code> foreground color did not need to explicitly call
 the <code class="docutils literal notranslate"><span class="pre">fg</span></code> method to produce the intended results. (The <code class="docutils literal notranslate"><span class="pre">fg</span></code> method is mostly
 included for those who want explicit clarity when also working with the <code class="docutils literal notranslate"><span class="pre">bg</span></code>
 method.)</p>
