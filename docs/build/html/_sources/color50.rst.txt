@@ -21,14 +21,14 @@ Core functions
 
 .. autoclass:: color.Color
    :members:
-   :special-members: __init__
+   :special-members: __init__, __str__, __add__, __eq__
 
 **ColorStr** class
 ------------------
 
 .. autoclass:: colorstr.ColorStr
    :members:
-   :special-members: __init__
+   :special-members: __init__, __str__, __add__, __eq__
 
 .. _core-functions-label:
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>color &mdash; color50  documentation</title>
+  <title>color &mdash; color50 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -33,6 +33,9 @@
           <a href="../index.html" class="icon icon-home">
             color50
           </a>
+              <div class="version">
+                1.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -75,7 +78,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for color</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Contains the **Color** class and its implementation.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;The **Color** class and its implementation.&quot;&quot;&quot;</span>
 
 <span class="c1"># Daniel Fletcher</span>
 <span class="c1"># Harvard CS50P 2023</span>
@@ -89,33 +92,59 @@
 <div class="viewcode-block" id="Color">
 <a class="viewcode-back" href="../color50.html#color.Color">[docs]</a>
 <span class="k">class</span> <span class="nc">Color</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing colors in RGB format.</span>
-<span class="sd">    </span>
-<span class="sd">    Designed to be used in conjunction with strings at the terminal for</span>
-<span class="sd">    more colorful printing. Also used alongside other components of the</span>
-<span class="sd">    :doc:`color50 package &lt;/color50&gt;`.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing color in RGB format.</span>
 
-<span class="sd">    In addition to the properties and methods outlined, the **Color**</span>
-<span class="sd">    class can be used in other contexts:</span>
+<span class="sd">    Represents any given color by storing its RGB values---that is, its</span>
+<span class="sd">    red level (0-255), green level (0-255), and blue level (0-255). Once</span>
+<span class="sd">    a **Color** object has its RGB values set, it can be used to add color</span>
+<span class="sd">    to strings via concatenation.</span>
 <span class="sd">    </span>
-<span class="sd">        - Supports string concatenation (in the form of ``Color + str``)</span>
-<span class="sd">        - Has a built-in string conversion implemented as ``__str__`` override</span>
-<span class="sd">        - Has built in == / != operator overloads for comparing two **Color** objects</span>
+<span class="sd">    Also designed to be used in conjunction with other key components of the</span>
+<span class="sd">    package, like the **ColorStr** class or the ``colorize`` decorator function.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        # Normal print statement (behaves as expected)</span>
+<span class="sd">        print(\&quot;Not in Color.\&quot;)</span>
+
+<span class="sd">        my_color = rgb(128, 0, 128)</span>
+
+<span class="sd">        # Colorized print statement (prints string contents in purple)</span>
+<span class="sd">        print(my_color + \&quot;Now in Color!\&quot; + constants.RESET)</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        Make sure to use the ``RESET`` constant when combining strings with **Color**</span>
-<span class="sd">        objects&amp;mdash;the color settings will not revert unless explicitly specified!</span>
+<span class="sd">        objects; the color settings of your terminal environment will not revert to </span>
+<span class="sd">        defaults unless explicitly specified!</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Color.__init__">
 <a class="viewcode-back" href="../color50.html#color.Color.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a default `Color` object with values R: ``0``, G: ``0``, B: ``0``.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a **Color** object with red, green, and blue values all set to ``0``.</span>
 <span class="sd">        </span>
 <span class="sd">        Note that there are no parameterized ``__init___`` functions for the</span>
 <span class="sd">        ``Color`` class; instead, it is recommended to use one of the associated</span>
-<span class="sd">        :ref:`core functions &lt;core-functions-label&gt;` that come with the package.</span>
+<span class="sd">        :ref:`core functions &lt;core-functions-label&gt;` that come with the package</span>
+<span class="sd">        instead of using the class initializer explicitly.</span>
+
+<span class="sd">        That said, the default initializer can still be called, and each of the</span>
+<span class="sd">        object properties (red, green, blue) can be tweaked individually from their</span>
+<span class="sd">        default ``0`` values.</span>
+
+<span class="sd">        Example::</span>
+<span class="sd">        </span>
+<span class="sd">            # Normal print statement (behaves as expected)</span>
+<span class="sd">            print(\&quot;Not in Color.\&quot;)</span>
+
+<span class="sd">            my_color = Color()</span>
+<span class="sd">            my_color.red = 128</span>
+<span class="sd">            my_color.green = 0</span>
+<span class="sd">            my_color.blue = 128</span>
+
+<span class="sd">            # Colorized print statement (prints string contents in purple)</span>
+<span class="sd">            print(my_color + \&quot;Now in Color!\&quot; + constants.RESET)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -124,27 +153,83 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">blue</span> <span class="o">=</span> <span class="mi">0</span></div>
 
 
+<div class="viewcode-block" id="Color.__str__">
+<a class="viewcode-back" href="../color50.html#color.Color.__str__">[docs]</a>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns string representation of color; same as calling ``fg()`` method.</span>
+<span class="sd">        </span>
+<span class="sd">        Example::</span>
+
+<span class="sd">            my_color = rgb(0, 0, 255)</span>
+<span class="sd">            print(f\&quot;{my_color}f-strings make me feel blue.{constants.RESET}\&quot;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg</span><span class="p">()</span></div>
+
     
+<div class="viewcode-block" id="Color.__add__">
+<a class="viewcode-back" href="../color50.html#color.Color.__add__">[docs]</a>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Supports concatenation of **Color** and **str** objects.</span>
+<span class="sd">        </span>
+<span class="sd">        Example::</span>
+
+<span class="sd">            my_color = rgb(0, 255, 0)</span>
+<span class="sd">            my_message = \&quot;Hello, Green World!\&quot;</span>
+<span class="sd">            print(my_color + my_message + constants.RESET)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">string</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">NotImplemented</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
     
+<div class="viewcode-block" id="Color.__eq__">
+<a class="viewcode-back" href="../color50.html#color.Color.__eq__">[docs]</a>
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Supports equality comparison of two **Color** objects.</span>
+<span class="sd">        </span>
+<span class="sd">        Two objects of type **Color** are defined to be equal if</span>
+<span class="sd">        and only if:</span>
+
+<span class="sd">            - ``color1.red == color2.red`` is **True**,</span>
+<span class="sd">            - ``color1.green == color2.green`` is **True**,</span>
+<span class="sd">            - and ``color1.blue == color2.blue`` is **True**.</span>
+
+<span class="sd">        Both equality operators (``==`` and ``!=``) are supported.</span>
+
+<span class="sd">        Example::</span>
+
+<span class="sd">            color1 = rgb(255, 255, 0)</span>
+<span class="sd">            color2 = hexcode(\&quot;#ffff00\&quot;)</span>
+<span class="sd">            color3 = css(\&quot;blue\&quot;)</span>
+
+<span class="sd">            print(color1 == color2)     # True</span>
+<span class="sd">            print(color2 == color3)     # False</span>
+<span class="sd">            print(color1 == color3)     # False</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> 
                 <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">red</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">red</span>
                 <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">green</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">green</span>
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">blue</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">blue</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span></div>
+
     
     <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of red in `Color`, ranging from 0-255.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *red* in the color, ranging from 0-255.</span>
+<span class="sd">        Supports both get and set operations.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is set to a non-integer value.</span>
+<span class="sd">            ValueError:</span>
+<span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_red</span>
     
     <span class="nd">@red</span><span class="o">.</span><span class="n">setter</span>
@@ -159,7 +244,15 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">green</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of green in `Color`, ranging from 0-255.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *green* in the color, ranging from 0-255.</span>
+<span class="sd">        Supports both get and set operations.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is set to a non-integer value.</span>
+<span class="sd">            ValueError:</span>
+<span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_green</span>
     
     <span class="nd">@green</span><span class="o">.</span><span class="n">setter</span>
@@ -174,7 +267,15 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">blue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of red in `Color`, ranging from 0-255.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *blue* in the color, ranging from 0-255.</span>
+<span class="sd">        Supports both get and set operations.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TypeError:</span>
+<span class="sd">                If the property is set to a non-integer value.</span>
+<span class="sd">            ValueError:</span>
+<span class="sd">                If the property is set to an out-of-range integer (e.g., not in range 0-255).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blue</span>
     
     <span class="nd">@blue</span><span class="o">.</span><span class="n">setter</span>
@@ -190,7 +291,7 @@
 <div class="viewcode-block" id="Color.fg">
 <a class="viewcode-back" href="../color50.html#color.Color.fg">[docs]</a>
     <span class="k">def</span> <span class="nf">fg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of color for use in foreground.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the stored color for foreground use.</span>
 
 <span class="sd">        The return value of this function is the default behavior of converting</span>
 <span class="sd">        a **Color** object to a string. The option to call ``fg`` explicitly</span>
@@ -199,6 +300,11 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The ANSI color code sequence representation of the object, specifically</span>
 <span class="sd">            to use as a foreground color.</span>
+
+<span class="sd">        Example::</span>
+
+<span class="sd">            my_color = rgb(0, 128, 64)</span>
+<span class="sd">            print(my_color.fg() + &quot;This text is so colorful!&quot; + constants.RESET)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -209,11 +315,16 @@
 <div class="viewcode-block" id="Color.bg">
 <a class="viewcode-back" href="../color50.html#color.Color.bg">[docs]</a>
     <span class="k">def</span> <span class="nf">bg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of color for use in background.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the stored color for background use.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">            The ANSI color code sequence representation of the object, specifically</span>
 <span class="sd">            to use as a background color.</span>
+
+<span class="sd">        Example::</span>
+
+<span class="sd">            my_color = rgb(30, 120, 15)</span>
+<span class="sd">            print(my_color.bg() + &quot;What a gorgeous background!&quot; + constants.RESET)</span>
 <span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
