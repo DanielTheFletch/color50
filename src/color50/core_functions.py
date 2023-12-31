@@ -144,7 +144,7 @@ def css(colorname: str) -> Color:
     
     # Extract list of colors from JSON file
     colornames = {}
-    with files("color50").joinpath("csscolors.json").open('r') as file:
+    with files("color50").joinpath("csscolors.json").open("r") as file:
         colornames = load(file)
 
     # Validate color choice
