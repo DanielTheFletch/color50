@@ -1,4 +1,4 @@
-"""Contains the **Color** class and its implementation."""
+"""The **Color** class and its implementation."""
 
 # Daniel Fletcher
 # Harvard CS50P 2023
@@ -10,31 +10,57 @@
 from constants import *
 
 class Color:
-    """A class for representing colors in RGB format.
-    
-    Designed to be used in conjunction with strings at the terminal for
-    more colorful printing. Also used alongside other components of the
-    :doc:`color50 package </color50>`.
+    """A class for representing color in RGB format.
 
-    In addition to the properties and methods outlined, the **Color**
-    class can be used in other contexts:
+    Represents any given color by storing its RGB values---that is, its
+    red level (0-255), green level (0-255), and blue level (0-255). Once
+    a **Color** object has its RGB values set, it can be used to add color
+    to strings via concatenation.
     
-        - Supports string concatenation (in the form of ``Color + str``)
-        - Has a built-in string conversion implemented as ``__str__`` override
-        - Has built in == / != operator overloads for comparing two **Color** objects
+    Also designed to be used in conjunction with other key components of the
+    package, like the **ColorStr** class or the ``colorize`` decorator function.
+
+    Example::
+
+        # Normal print statement (behaves as expected)
+        print(\"Not in Color.\")
+
+        my_color = rgb(128, 0, 128)
+
+        # Colorized print statement (prints string contents in purple)
+        print(my_color + \"Now in Color!\" + constants.RESET)
 
     Note:
         Make sure to use the ``RESET`` constant when combining strings with **Color**
-        objects&mdash;the color settings will not revert unless explicitly specified!
+        objects; the color settings of your terminal environment will not revert to 
+        defaults unless explicitly specified!
 
     """
 
     def __init__(self):
-        """Initialize a default `Color` object with values R: ``0``, G: ``0``, B: ``0``.
+        """Initialize a **Color** object with red, green, and blue values all set to ``0``.
         
         Note that there are no parameterized ``__init___`` functions for the
         ``Color`` class; instead, it is recommended to use one of the associated
-        :ref:`core functions <core-functions-label>` that come with the package.
+        :ref:`core functions <core-functions-label>` that come with the package
+        instead of using the class initializer explicitly.
+
+        That said, the default initializer can still be called, and each of the
+        object properties (red, green, blue) can be tweaked individually from their
+        default ``0`` values.
+
+        Example::
+        
+            # Normal print statement (behaves as expected)
+            print(\"Not in Color.\")
+
+            my_color = Color()
+            my_color.red = 128
+            my_color.green = 0
+            my_color.blue = 128
+
+            # Colorized print statement (prints string contents in purple)
+            print(my_color + \"Now in Color!\" + constants.RESET)
 
         """
 
@@ -43,15 +69,54 @@ class Color:
         self.blue = 0
 
     def __str__(self):
+        """Returns string representation of color; same as calling ``fg()`` method.
+        
+        Example::
+
+            my_color = rgb(0, 0, 255)
+            print(f\"{my_color}f-strings make me feel blue.{constants.RESET}\")
+
+        """
         return self.fg()
     
     def __add__(self, string: str) -> str:
+        """Supports concatenation of **Color** and **str** objects.
+        
+        Example::
+
+            my_color = rgb(0, 255, 0)
+            my_message = \"Hello, Green World!\"
+            print(my_color + my_message + constants.RESET)
+
+        """
         if isinstance(string, str):
             return str(self) + string
         else:
             return NotImplemented
     
     def __eq__(self, other) -> bool:
+        """Supports equality comparison of two **Color** objects.
+        
+        Two objects of type **Color** are defined to be equal if
+        and only if:
+
+            - ``color1.red == color2.red`` is **True**,
+            - ``color1.green == color2.green`` is **True**,
+            - and ``color1.blue == color2.blue`` is **True**.
+
+        Both equality operators (``==`` and ``!=``) are supported.
+
+        Example::
+
+            color1 = rgb(255, 255, 0)
+            color2 = hexcode(\"#ffff00\")
+            color3 = css(\"blue\")
+
+            print(color1 == color2)     # True
+            print(color2 == color3)     # False
+            print(color1 == color3)     # False
+        
+        """
         return (isinstance(other, Color) 
                 and self.red == other.red
                 and self.green == other.green
@@ -62,7 +127,15 @@ class Color:
 
     @property
     def red(self):
-        """int: Numeric value for amount of red in `Color`, ranging from 0-255."""
+        """int: Numeric value for amount of *red* in the color, ranging from 0-255.
+        Supports both get and set operations.
+
+        Raises:
+            TypeError:
+                If the property is set to a non-integer value.
+            ValueError:
+                If the property is set to an out-of-range integer (e.g., not in range 0-255).
+        """
         return self._red
     
     @red.setter
@@ -77,7 +150,15 @@ class Color:
 
     @property
     def green(self):
-        """int: Numeric value for amount of green in `Color`, ranging from 0-255."""
+        """int: Numeric value for amount of *green* in the color, ranging from 0-255.
+        Supports both get and set operations.
+
+        Raises:
+            TypeError:
+                If the property is set to a non-integer value.
+            ValueError:
+                If the property is set to an out-of-range integer (e.g., not in range 0-255).
+        """
         return self._green
     
     @green.setter
@@ -92,7 +173,15 @@ class Color:
 
     @property
     def blue(self):
-        """int: Numeric value for amount of red in `Color`, ranging from 0-255."""
+        """int: Numeric value for amount of *blue* in the color, ranging from 0-255.
+        Supports both get and set operations.
+
+        Raises:
+            TypeError:
+                If the property is set to a non-integer value.
+            ValueError:
+                If the property is set to an out-of-range integer (e.g., not in range 0-255).
+        """
         return self._blue
     
     @blue.setter
@@ -106,7 +195,7 @@ class Color:
             raise TypeError(f"Expected rgb value as integer, got object of type {type(blue)}")
 
     def fg(self) -> str:
-        """Return string representation of color for use in foreground.
+        """Return a string representation of the stored color for foreground use.
 
         The return value of this function is the default behavior of converting
         a **Color** object to a string. The option to call ``fg`` explicitly
@@ -116,17 +205,27 @@ class Color:
             The ANSI color code sequence representation of the object, specifically
             to use as a foreground color.
 
+        Example::
+
+            my_color = rgb(0, 128, 64)
+            print(my_color.fg() + "This text is so colorful!" + constants.RESET)
+
         """
 
         rgb = f"{self.red};{self.green};{self.blue}"
         return f"{ANSI_PREFIX}[38;2;{rgb}m"
     
     def bg(self) -> str:
-        """Return string representation of color for use in background.
+        """Return a string representation of the stored color for background use.
         
         Returns:
             The ANSI color code sequence representation of the object, specifically
             to use as a background color.
+
+        Example::
+
+            my_color = rgb(30, 120, 15)
+            print(my_color.bg() + "What a gorgeous background!" + constants.RESET)
             
         """
 
