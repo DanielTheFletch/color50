@@ -7,8 +7,8 @@
 # color.py
 # Color class and related functionality
 
-from color import Color
-from constants import RESET
+from .color import Color
+from .constants import RESET
 
 class ColorStr:
     """A class for representing specialized strings with custom color properties.
@@ -77,8 +77,8 @@ class ColorStr:
 
         """
 
-        fg_code = "" if self.fg == None else str(self.fg)
-        bg_code = "" if self.bg == None else str(self.bg)
+        fg_code = "" if self.fg == None else self.fg.fg()
+        bg_code = "" if self.bg == None else self.bg.bg()
         return f"{fg_code}{bg_code}{self.content}{RESET}"
 
     def __add__(self, addend) -> str:

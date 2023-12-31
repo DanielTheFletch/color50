@@ -20,12 +20,13 @@ output.
 # for the package to function properly.
 
 # Python library imports
+from importlib.resources import open_text
 from json import load
 from re import fullmatch
 
 # Associated color50 imports
-from color import Color
-from constants import RESET
+from .color import Color
+from .constants import RESET
 
 
 def rgb(red: int, green: int, blue: int) -> Color:
@@ -143,7 +144,7 @@ def css(colorname: str) -> Color:
     
     # Extract list of colors from JSON file
     colornames = {}
-    with open("csscolors.json", "r") as file:
+    with open_text("color50", "csscolors.json") as file:
         colornames = load(file)
 
     # Validate color choice

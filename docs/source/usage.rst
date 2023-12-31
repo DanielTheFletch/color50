@@ -45,7 +45,7 @@ initializes to a value of ``0``. In other words, the default color created by ca
 
 Consider another example program::
 
-    from color50 import color
+    from color50 import Color
 
     # First color: black
     color1 = Color()
@@ -109,7 +109,7 @@ Here's another example using some different formats::
 
     # Three identical print statements
     print(my_color + "I've got the blues." + constants.RESET)
-    print(f"{my_color}I've got the blues."{constants.RESET})
+    print(f"{my_color}I've got the blues.{constants.RESET}")
     print(my_color, "I've got the blues.", constants.RESET, sep="")
 
 The last three print statements each produce the exact same output. This allows for greater
@@ -156,13 +156,13 @@ Another example using foreground/background colors simultaneously::
 
     # Print green text on blue background
     print(
-        earth_blue + 
-        earth_green.bg() +
+        earth_green + 
+        earth_blue.bg() +
         "Hello! It's me, World!" +
         constants.RESET
     )
 
-Notice that the ``earth_blue`` foreground color did not need to explicitly call
+Notice that the ``earth_green`` foreground color did not need to explicitly call
 the ``fg`` method to produce the intended results. (The ``fg`` method is mostly
 included for those who want explicit clarity when also working with the ``bg``
 method.)
