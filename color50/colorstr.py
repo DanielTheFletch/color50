@@ -102,8 +102,44 @@ class ColorStr:
         if isinstance(addend, ColorStr) or isinstance(addend, str):
             return str(self) + str(addend)
         else:
-            return NotImplemented
+            return NotImplemented 
 
+    def __eq__(self, other) -> bool:
+        """Support equality comparisons of two **ColorStr** objects.
+        
+        Two objects of type **ColoStrr** are defined to be equal if
+        and only if:
+
+            - ``str1.content == str2.content`` is **True** (e.g., string content
+            is identical),
+            - ``str1.fg == str2.fg`` is **True**,
+            - and ``str1.bg == str2.bg`` is **True**.
+
+        Both equality operators (``==`` and ``!=``) are supported.
+
+        Example::
+
+            str1 = ColorStr(\"Hello, World!\", css(\"red\"), css(\"beige\"))
+            str2 = ColorStr(\"Hello, World\", css(\"red\"), css(\"beige\"))
+            str3 = ColorStr(\"Hello, World!\", css(\"red\"), css(\"blanchedalmond\"))
+
+            print(str1 == str2)     # False
+            print(str2 == str3)     # False
+            print(str1 == str3)     # False
+
+            str4 = ColorStr(\"Hello, World!\", css(\"red\"), css(\"beige\"))
+
+            print(str1 == str4)     # True
+        
+        """
+
+        return (isinstance(other, Color) 
+                and self.red == other.red
+                and self.green == other.green
+                and self.blue == other.blue)
+    
+    def __ne__(self, other) -> bool:
+        return not (self == other)
 
     @property
     def content(self):

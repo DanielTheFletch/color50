@@ -78,6 +78,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#colorstr-class"><strong>ColorStr</strong> class</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#colorstr.ColorStr"><code class="docutils literal notranslate"><span class="pre">ColorStr</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.__add__"><code class="docutils literal notranslate"><span class="pre">ColorStr.__add__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.__eq__"><code class="docutils literal notranslate"><span class="pre">ColorStr.__eq__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.__init__"><code class="docutils literal notranslate"><span class="pre">ColorStr.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.__str__"><code class="docutils literal notranslate"><span class="pre">ColorStr.__str__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#colorstr.ColorStr.bg"><code class="docutils literal notranslate"><span class="pre">ColorStr.bg</span></code></a></li>
@@ -492,6 +493,36 @@ and of <strong>ColorStr</strong> objects with other <strong>ColorStr</strong> ob
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;This text is colorful, and... &quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">))</span>
 <span class="n">str2</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;this text is also colorful!&quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colorstr.ColorStr.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="_modules/colorstr.html#ColorStr.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#colorstr.ColorStr.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Support equality comparisons of two <strong>ColorStr</strong> objects.</p>
+<p>Two objects of type <strong>ColoStrr</strong> are defined to be equal if
+and only if:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str1.content</span> <span class="pre">==</span> <span class="pre">str2.content</span></code> is <strong>True</strong> (e.g., same string content),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str1.fg</span> <span class="pre">==</span> <span class="pre">str2.fg</span></code> is <strong>True</strong>,</p></li>
+<li><p>and <code class="docutils literal notranslate"><span class="pre">str1.bg</span> <span class="pre">==</span> <span class="pre">str2.bg</span></code> is <strong>True</strong>.</p></li>
+</ul>
+</div></blockquote>
+<p>Both equality operators (<code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code>) are supported.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;beige&quot;</span><span class="p">))</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World&quot;</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;beige&quot;</span><span class="p">))</span>
+<span class="n">str3</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;blanchedalmond&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str2</span><span class="p">)</span>     <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">str2</span> <span class="o">==</span> <span class="n">str3</span><span class="p">)</span>     <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str3</span><span class="p">)</span>     <span class="c1"># False</span>
+
+<span class="n">str4</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;beige&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str4</span><span class="p">)</span>     <span class="c1"># True</span>
 </pre></div>
 </div>
 </dd></dl>
