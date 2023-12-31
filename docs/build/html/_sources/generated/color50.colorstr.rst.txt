@@ -1,7 +1,7 @@
-﻿colorstr
-========
+﻿color50.colorstr
+================
 
-.. automodule:: colorstr
+.. automodule:: color50.colorstr
 
    
    

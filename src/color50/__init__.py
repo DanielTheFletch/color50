@@ -25,7 +25,7 @@ Modules included:
 # __init__.py
 # Initialization file for color50 package
 
-# Import class modules
+# Import classes
 from .color import Color
 from .colorstr import ColorStr
 

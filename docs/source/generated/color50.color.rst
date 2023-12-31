@@ -1,7 +1,7 @@
-﻿color
-=====
+﻿color50.color
+=============
 
-.. automodule:: color
+.. automodule:: color50.color
 
    
    

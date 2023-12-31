@@ -14,7 +14,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "color50"
-version = "1.0.9"
+version = "1.0.15"
 authors = [
     { name="Daniel Fletcher", email="dfletcher-mail@proton.me" }
 ]
@@ -47,6 +47,9 @@ Documentation = "https://color50.readthedocs.io/en/latest/"
 
 [tool.setuptools]
 packages = [ "color50" ]
+
+[tool.setuptools.package-dir]
+color50 = "src/color50"
 
 [tool.setuptools.package-data]
 color50 = [ "*.json" ]

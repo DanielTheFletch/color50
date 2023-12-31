@@ -8,7 +8,7 @@
 # Configure path
 import os
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'color50')))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # General configuration
 project = 'color50'
@@ -36,4 +36,5 @@ templates_path = ['_templates']
 
 # Output settings
 html_theme = 'sphinx_rtd_theme'
+html_title = 'color50 docs'
 epub_show_urls = 'footnote'

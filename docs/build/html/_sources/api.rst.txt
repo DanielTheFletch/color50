@@ -7,19 +7,19 @@ Submodules
 .. autosummary::
    :toctree: generated
 
-   color
+   color50.color
 
 .. autosummary::
    :toctree: generated
 
-   core_functions
+   color50.core_functions
 
 .. autosummary::
    :toctree: generated
 
-   colorstr
+   color50.colorstr
 
 .. autosummary::
    :toctree: generated
 
-   constants
+   color50.constants

@@ -8,7 +8,7 @@ Official documentation reference for the **color50** package.
 **Color** class
 ---------------
 
-.. autoclass:: color.Color
+.. autoclass:: color50.color.Color
    :members:
    :special-members: __init__, __str__, __add__, __eq__
 
@@ -17,17 +17,17 @@ Official documentation reference for the **color50** package.
 Core functions
 --------------
 
-.. autofunction:: core_functions.rgb
-.. autofunction:: core_functions.hexcode
-.. autofunction:: core_functions.css
-.. autofunction:: core_functions.colorize
+.. autofunction:: color50.core_functions.rgb
+.. autofunction:: color50.core_functions.hexcode
+.. autofunction:: color50.core_functions.css
+.. autofunction:: color50.core_functions.colorize
 
 .. _colorstr-module-label:
 
 **ColorStr** class
 ------------------
 
-.. autoclass:: colorstr.ColorStr
+.. autoclass:: color50.colorstr.ColorStr
    :members:
    :special-members: __init__, __str__, __add__, __eq__
 
@@ -36,7 +36,7 @@ Core functions
 Constants
 ---------
 
-.. automodule:: constants
+.. automodule:: color50.constants
    :members:
    :noindex:
    

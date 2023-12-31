@@ -1,7 +1,7 @@
-﻿core\_functions
-===============
+﻿color50.core\_functions
+=======================
 
-.. automodule:: core_functions
+.. automodule:: color50.core_functions
 
    
    
