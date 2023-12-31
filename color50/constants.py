@@ -74,7 +74,7 @@ For standard colors (background):
     Example::
 
         # Print a message with a magenta-colored background
-        print(constants.MAGENTA_BG} + \"Hello, World!\" + constants.RESET)
+        print(constants.MAGENTA_BG + \"Hello, World!\" + constants.RESET)
 
 For bright standard colors (foreground):
     Use these constants as shorthand for the eight standard ANSI *bright* color codes,

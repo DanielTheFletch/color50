@@ -72,8 +72,8 @@ class ColorStr:
 
         Example 2::
 
-            my_color_str = str(ColorStr(\"Hello, World!\", None, css(\"crimson\")))
-            print(my_color_str)
+            my_color_str = str(ColorStr(\"Hello, World!\", None, css("crimson")))
+            print(my_color_str + \" ...and goodbye, color.\")
 
         """
 
@@ -93,6 +93,12 @@ class ColorStr:
 
         Example 2::
 
+            str1 = \"This text is plain, and... \"
+            str2 = ColorStr(\"this text is colorful!\", rgb(140, 120, 100))
+            print(str1 + str2)
+
+        Example 3::
+
             str1 = ColorStr(\"This text is colorful, and... \", rgb(100, 120, 140))
             str2 = ColorStr(\"this text is also colorful!\", rgb(140, 120, 100))
             print(str1 + str2)
@@ -101,6 +107,12 @@ class ColorStr:
 
         if isinstance(addend, ColorStr) or isinstance(addend, str):
             return str(self) + str(addend)
+        else:
+            return NotImplemented
+        
+    def __radd__(self, addend) -> str:
+        if isinstance(addend, ColorStr) or isinstance(addend, str):
+            return str(addend) + str(self)
         else:
             return NotImplemented 
 
@@ -132,10 +144,10 @@ class ColorStr:
         
         """
 
-        return (isinstance(other, Color) 
-                and self.red == other.red
-                and self.green == other.green
-                and self.blue == other.blue)
+        return (isinstance(other, ColorStr) 
+                and self.content == other.content
+                and self.fg == other.fg
+                and self.bg == other.bg)
     
     def __ne__(self, other) -> bool:
         return not (self == other)

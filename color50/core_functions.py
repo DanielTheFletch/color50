@@ -162,7 +162,7 @@ def colorize(color: Color | str):
 
     Args:
         color:
-            A valid **Color** object or a constant string literal representing a color.
+            A valid **Color** object or its equivalent string representation.
 
     Raises:
         TypeError:
@@ -190,29 +190,15 @@ def colorize(color: Color | str):
     This would ensure that all contents of ``msg`` are printed to standard output
     as plain text with a green-colored background. As with before, ``colorize``
     appropriately resets the terminal output color upon function termination.
-
-    Note that it is also possible to use ``colorize`` with a foreground color *and*
-    a background color simultaneously. This simply requires calling the decorator
-    function twice.
-
-    Consider this example::
-
-        @colorize(constants.RED)
-        @colorize(css(\"green\"))
-        def holiday_message(msg):
-            print(msg)
-
-    This would ensure that all contents of ``msg`` are printed to standard output
-    with a red foreground coloring and a green background coloring, and also
-    resetting both colors to defaults after termination.
     
     """
 
     # Validate color choice
     if isinstance(color, str):
-        regex = r"\u001b\[(3|4|9|10)[0-7]m"
-        if not fullmatch(regex, color):
-            raise ValueError(f"ANSI character sequence \'{color}\' not recognized")
+        regex1 = r"\u001b\[(3|4|9|10)[0-7]m"        # Recognizes string constants
+        regex2 = r"\u001b\[(3|4)8;2;\d+;\d+;\d+m"   # Enables compatibility with fg() / bg()
+        if not fullmatch(regex1, color) and not fullmatch(regex2, color):
+            raise ValueError(f"ANSI character sequence not recognized")
     elif not isinstance(color, Color):
         raise TypeError(f"Expected Color or string, got object of type {type(color)}")
     

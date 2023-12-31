@@ -72,7 +72,8 @@ to practical use.
 
 As described in the :ref:`Color class documentation<color-module-label>`, **Color** objects
 support concatenation with strings to effectively add color to them. This can be done with string
-literals or strings stored as variables.
+literals or strings stored as variables. Note that the **Color** object must always come first in
+the operation, meaning ``Color + str`` is valid but ``str + Color`` is not.
 
 Example::
 
