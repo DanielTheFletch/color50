@@ -62,4 +62,5 @@ Installation
 ------------
 
 To install the **color50** package, use the following ``pip`` command:
-``pip install color50``
+
+    ``pip install color50``
