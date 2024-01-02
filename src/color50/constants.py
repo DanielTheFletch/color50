@@ -128,7 +128,7 @@ The source code for the **constants** module is included below for completeness.
 Reference it as you wish::
     
     # Daniel Fletcher
-    # Harvard CS50P 2023
+    # Harvard CS50P 2024
     # Final Project
 
     # constants.py
@@ -181,7 +181,7 @@ Reference it as you wish::
 """
 
 # Daniel Fletcher
-# Harvard CS50P 2023
+# Harvard CS50P 2024
 # Final Project
 
 # constants.py

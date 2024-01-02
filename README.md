@@ -21,6 +21,8 @@ Modules included:
 
 <br>
 
-To install the color50 package, run the following command:
+To install **color50**, execute the following command using the `pip` installer:
 
-```pip install color50```
+```
+pip install color50
+```

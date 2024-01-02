@@ -8,7 +8,7 @@ output.
 """
 
 # Daniel Fletcher
-# Harvard CS50P 2023
+# Harvard CS50P 2024
 # Final Project
 
 # core_functions.py
