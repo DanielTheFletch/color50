@@ -1,3 +1,12 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   intro.rst
+   A brief introduction to color50 and to the documentation
+
 Introduction
 ============
 
@@ -15,21 +24,19 @@ Motivation
 ----------
 
 Many programming courses focus on building fundamentals by creating projects at
-the command line. As such, I have spent a lot of time working in terminal
-environments, engaging in all sorts of academic projects and learning pursuits.
-Every time I used a new language at the terminal, though, I always wondered why
-printing text in color is almost never covered in the learning process.
+the command line. Every time I would learn a new language, though, I always wondered
+why printing text in color was almost never covered in the learning process.
 
-It seems simple in theory, right? Many modern shells display all sorts of key
-features *with colorful text already*, so I knew it was possible---I just didn't
+It seems simple in theory, right? Most modern shells display all sorts of key
+features *with colorful text already*, so it's clearly possible---I just didn't
 quite know how to do it in an approachable fashion. This train of thought sparked
-the idea of what eventually became **color50**: a Python library designed to make
+the idea for what eventually became **color50**: a Python library designed to make
 colorful terminal output more approachable.
 
 Ultimately, **color50** is a package designed to address the confusion and cryptic
-syntax that occurs when working with ANSI escape sequences and color codes. The main
-motivation was to make printing in color more readable, more intuitive to a broader
-range of developers, and generally more convenient to use.
+syntax that comes with ANSI color code sequencing. My driving motivation for working
+on the project was to make the code for printing colorful output more readable, more
+intuitive, and generally just easier to use.
 
 ----------
 
@@ -55,12 +62,3 @@ with key features highlighted accordingly:
         - **ColorStr** class
 
     - :ref:`constants module<constants-module-label>`: Contains a series of string literal constants for use with ANSI color code semantics.
-
-----------
-
-Installation
-------------
-
-To install the **color50** package, use the following ``pip`` command:
-
-    ``pip install color50``

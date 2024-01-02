@@ -5,19 +5,19 @@
 # conf.py
 # Configuration file for Sphinx documentation builder
 
-# Configure path
+# Configure path to include package parent directory
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 
-# General configuration
-project = 'color50'
-copyright = '2023, Daniel Fletcher'
+# General documentation settings
 author = 'Daniel Fletcher'
-version = '1.0'
-release = '1.0'
+copyright = '2024, Daniel Fletcher'
+project = 'color50'
+release = '1.0.0'
+version = '1.0.0'
 
-# Extension settings
+# Configure extensions
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
@@ -25,16 +25,20 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode'
 ]
+
+# Configure intersphinx extension
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
 }
 intersphinx_disabled_domains = ['std']
 
-# Path settings
+# Additional paths
 templates_path = ['_templates']
 
-# Output settings
+# HTML output
 html_theme = 'sphinx_rtd_theme'
 html_title = 'color50 docs'
+
+# PDF / EPUB output
 epub_show_urls = 'footnote'

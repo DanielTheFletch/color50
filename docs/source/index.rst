@@ -1,8 +1,21 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   index.rst
+   color50 documentation homepage
+
 This is color50.
 ================
 
 Welcome to the home page of the documentation for **color50**, a lightweight
-Python package for more colorful printing at the command line.
+Python package for colorful output at the command line.
+
+To install **color50**, execute the following ``pip`` command::
+
+   pip install color50
 
 ----------
 

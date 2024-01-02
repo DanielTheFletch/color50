@@ -115,11 +115,9 @@ For bright standard colors (background):
     Example::
 
         # Print a message with a bright, magenta-colored background
-        print(f\"{constants.BRIGHT_MAGENTA_BG}Hello, World!{constants.RESET}\")
+        print(f\"{constants.BRIGHT_MAGENTA_BG}Hello, World!{constants.RESET}\")     
 
-----------      
-
-The source code for the **constants** module is included below for completeness.
+The source code for the module is included below for completeness.
 Reference it as you wish::
 
     # constants.py

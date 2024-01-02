@@ -1,7 +1,28 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   demo.rst
+   Source code for four interactive demonstration programs
+
 Demo Files
 ==========
 
-``demo1.py``::
+These demo files are included to offer a better look at how the **color50** package
+might be used in the context of a larger program. Feel free to copy these demo programs
+into your own environment to run them, alter them, test them, and/or learn from them!
+
+Demo 1
+------
+
+Demo #1 is a simple program that prompts user input of a color's RGB values.
+The user is asked to enter three different integer values. If valid, the message
+``"Hello, World!"`` will be printed to the screen in the color specified by the
+user's input.
+
+``demo1.py`` source::
 
     from color50 import Color, constants
     import sys
@@ -33,7 +54,16 @@ Demo Files
 
 ----------
 
-``demo2.py``::
+Demo 2
+------
+
+Demo #2 serves as a utility for echoing a user's input back to them for quickly
+checking colorized output. The user is asked to enter a HEX color code and a CSS
+color name, both of which can be the same or different. If *both* colors are valid,
+the user's input will be echoed back to them exactly as entered, but displayed in
+the color specified as opposed to in plain text.
+
+``demo2.py`` source::
 
     from color50 import constants, css, hexcode
     import sys
@@ -58,7 +88,15 @@ Demo Files
 
 ----------
 
-``demo3.py``::
+Demo 3
+------
+
+Demo #3 showcases how **color50** might be used in conjunction with random number
+generation. The program generates random RGB values for a foreground color and for
+a background color, which are each then used to create a **ColorStr** object for
+printing to the screen.
+
+``demo3.py`` source::
 
     from color50 import ColorStr, rgb
     import random
@@ -81,7 +119,21 @@ Demo Files
 
 ----------
 
-``demo4.py``::
+Demo 1
+------
+
+Demo #4 is a more involved program, showcasing a context where **color50** is not necessarily
+the main focus, but rather just one piece of the puzzle. The program simulates a made-up game
+called DICE ROLLER, wherein the user gets to roll two dice and must roll a higher sum total
+than the two "computer" characters.
+
+Many **color50** features are demonstrated in this program, including:
+
+    - Calling the ``css`` function to create **Color** objects
+    - Displaying text in color using Python f-string syntax
+    - Using the ``colorize`` decorator to add color to an entire function's output
+
+``demo4.py`` source::
 
     from color50 import constants, css, colorize
     import random

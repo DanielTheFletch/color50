@@ -1,7 +1,17 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   color50.rst
+   Primary documentation page (i.e., where Python docstrings are displayed)
+
 Reference
 =========
 
-Official documentation reference for the **color50** package.
+Documentation for the **color50** package and its features, each listed
+by module.
 
 .. _color-module-label:
 
