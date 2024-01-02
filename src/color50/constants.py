@@ -1,10 +1,5 @@
-"""A series of string literal constants for more granular color control.
-
-Use these constants as shorthand for a variety of situations:
-
-    - Passing named color constants to ``colorize``
-    - Using ``RESET`` when working with **Color** objects
-    - Interfacing directly with ANSI color codes
+"""A series of string literal constants for both simpler and more granular
+color control.
 
 Note:
     Because these constants are not encapsulated in any class or error-checking
@@ -126,10 +121,6 @@ For bright standard colors (background):
 
 The source code for the **constants** module is included below for completeness.
 Reference it as you wish::
-    
-    # Daniel Fletcher
-    # Harvard CS50P 2024
-    # Final Project
 
     # constants.py
     # Constants for use across files

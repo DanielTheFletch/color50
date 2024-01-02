@@ -1,9 +1,8 @@
-"""Standalone functions designed to streamline color selection and usage.
+"""Four standalone functions designed to streamline color selection and usage.
 
 Use the ``rgb``, ``hexcode``, and ``css`` functions to initialize **Color**
-objects with whichever format is most familiar to you. You can also use
-the ``colorize`` decorator for changing the color of a whole function's
-output.
+objects with familiar names and formats. Use the ``colorize`` decorator function
+to change the color of a whole function's output.
 
 """
 
@@ -48,10 +47,13 @@ def rgb(red: int, green: int, blue: int) -> Color:
         A valid **Color** object.
 
     Note:
-        Because this function sets the **Color** class properties to the values of
-        the specified parameters, it has potential to raise exceptions in the same
-        fashion as the property setters. Ensure that each parameter value is of
-        type ``int`` such that 0 <= value <= 255.
+        This function creates a **Color** object and attempts to assign the
+        parameter values to said object's properties. This means that any
+        possible exceptions raised by setting the properties explicitly can
+        also be raised by calling this function.
+
+        To avoid exceptional cases, ensure that each parameter is a valid
+        integer with a value from 0-255.
 
     Examples::
 
@@ -70,7 +72,8 @@ def hexcode(code: str) -> Color:
     """Return a **Color** object based on a specified HEX color code.
     
     One of three recommended methods for creating **Color** objects. Designed to
-    enable flexibility for those more familiar with this color format.
+    offer flexibility insofar as the format of specifying color, especially since
+    RGB values and HEX color codes are often used alongside one another.
 
     Args:
         code:
@@ -112,11 +115,12 @@ def css(colorname: str) -> Color:
     """Return a **Color** object based on a specified CSS color name.
     
     One of three recommended methods for creating **Color** objects. Designed to
-    enable compatibility with colors specified by name in CSS stylesheets.
+    offer a simpler alternative to explicit RGB values/HEX color codes, and to
+    enable cross-compatibility of color choice between projects.
 
     Args:
         colorname:
-            A string literal of a valid CSS color name.
+            A valid CSS color name.
 
     Returns:
         A valid **Color** object.
@@ -133,7 +137,7 @@ def css(colorname: str) -> Color:
         color2 = css(\"white\")     # white
         color3 = css(\"seagreen\")  # seagreen
 
-    For a comprehensive list of possible color names, visit `the official listing
+    For a comprehensive list of valid CSS color names, visit `the official listing
     from the MDN Web Docs <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`_.
 
     """
@@ -157,8 +161,9 @@ def css(colorname: str) -> Color:
 def colorize(color: Color | str):
     """Alter the color of a given function's standard output.
     
-    This function is designed to be used as a decorator as a short and readable
-    means of altering the color of an entire function's output.
+    This function is designed to be used as a decorator as a more readable
+    and re-usable means of editing any given *function's* output as opposed
+    to simply altering the output of a specific ``print`` call.
 
     Args:
         color:

@@ -1,9 +1,10 @@
-"""A lightweight Python package for more colorful printing at the terminal.
+"""A lightweight Python package for colorful output at the command line.
 
 Created as a final project submission for Harvard University's CS50P course,
-**color50** is a package designed to add a little extra flavor to standard
-output print statements. Who knows, maybe future CS50 students may find this
-package useful---or fun!
+**color50** is a package I designed to add a little extra flavor to standard
+output print statements. This is my first ever attempt at making a Python
+package from scratch, and I'm excited to share it with fellow Python developers
+and CS50 students.
 
 Modules included:
     - color
@@ -19,17 +20,17 @@ Modules included:
 """
 
 # Daniel Fletcher
-# Harvard CS50P 23023
+# Harvard CS50P 2024
 # Final Project
 
 # __init__.py
 # Initialization file for color50 package
 
-# Import classes
+# Import classes by name
 from .color import Color
 from .colorstr import ColorStr
 
-# Import core functions
+# Import core functions by name
 from .core_functions import rgb
 from .core_functions import hexcode
 from .core_functions import css

@@ -8,10 +8,12 @@
 # Modeled after packaging tutorial found at:
 # https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
+# Use setuptools for building
 [build-system]
 requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
+# Basic project attributes
 [project]
 name = "color50"
 version = "1.0.15"
@@ -19,6 +21,10 @@ authors = [
     { name="Daniel Fletcher", email="dfletcher-mail@proton.me" }
 ]
 description = "Placeholder description"
+readme = "README.md"
+requires-python = ">=3.10"
+
+# Project keywords (e.g., tags)
 keywords = [
     "color50",
     "color",
@@ -28,8 +34,8 @@ keywords = [
     "CS50",
     "CS50P"
 ]
-readme = "README.md"
-requires-python = ">=3.10"
+
+# Project classifiers (e.g., categories)
 classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Education",

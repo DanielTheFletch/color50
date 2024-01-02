@@ -32,7 +32,7 @@ class Color:
 
     Note:
         Make sure to use the ``RESET`` constant when combining strings with **Color**
-        objects; the color settings of your terminal environment will not revert to 
+        objects; the color settings of your terminal environment may not revert to 
         defaults unless explicitly specified!
 
     """
@@ -43,11 +43,11 @@ class Color:
         Note that there are no parameterized ``__init___`` functions for the
         ``Color`` class; instead, it is recommended to use one of the associated
         :ref:`core functions <core-functions-module-label>` that come with the package
-        instead of using the class initializer explicitly.
+        as opposed to calling the initializer explicitly.
 
-        That said, the default initializer can still be called, and each of the
-        object properties (red, green, blue) can be tweaked individually from their
-        default ``0`` values.
+        That said, the default initializer can still be called. Upon initialization,
+        each of the object properties (red, green, blue) can be tweaked individually from
+        their default values of ``0``.
 
         Example::
         
@@ -69,8 +69,8 @@ class Color:
         self.blue = 0
 
     def __str__(self):
-        """Return a string representation of the color; same as calling
-        the ``fg`` method.
+        """Return a string representation of the color. Functionally
+        identical to calling the ``fg`` method.
         
         Example::
 
@@ -89,6 +89,12 @@ class Color:
             my_color = rgb(0, 255, 0)
             my_message = \"Hello, Green World!\"
             print(my_color + my_message + constants.RESET)
+
+        Note:
+            Concatenation of **Color** and **str** objects only supports operations
+            where the first operand is a **Color**. This means that any operation
+            of the type ``Color + str`` is valid, whereas any operation of the type
+            ``str + Color`` is *not*.
 
         """
 
@@ -131,7 +137,7 @@ class Color:
 
     @property
     def red(self):
-        """int: Numeric value for amount of *red* in the color, ranging from 0-255.
+        """int: A numeric value (0-255) representing the color's red levels.
         Supports both get and set operations.
 
         Raises:
@@ -155,7 +161,7 @@ class Color:
 
     @property
     def green(self):
-        """int: Numeric value for amount of *green* in the color, ranging from 0-255.
+        """int: A numeric value (0-255) representing the color's green levels.
         Supports both get and set operations.
 
         Raises:
@@ -179,7 +185,7 @@ class Color:
 
     @property
     def blue(self):
-        """int: Numeric value for amount of *blue* in the color, ranging from 0-255.
+        """int: A numeric value (0-255) representing the color's blue levels.
         Supports both get and set operations.
 
         Raises:
@@ -202,7 +208,8 @@ class Color:
             raise TypeError(f"Expected rgb value as integer, got object of type {type(blue)}")
 
     def fg(self) -> str:
-        """Return a string representation of the stored color for foreground use.
+        """Return the stored color as a string representing its corresponding foreground
+        ANSI color code sequence.
 
         The return value of this function is the default behavior of converting
         a **Color** object to a string. The option to call ``fg`` explicitly
@@ -210,7 +217,7 @@ class Color:
         
         Returns:
             The ANSI color code sequence representation of the object, specifically
-            to use as a foreground color.
+            for use as a foreground color.
 
         Example::
 
@@ -223,7 +230,8 @@ class Color:
         return f"{ANSI_PREFIX}[38;2;{rgb}m"
     
     def bg(self) -> str:
-        """Return a string representation of the stored color for background use.
+        """Return the stored color as a string representing its corresponding background
+        ANSI color code sequence.
         
         Returns:
             The ANSI color code sequence representation of the object, specifically

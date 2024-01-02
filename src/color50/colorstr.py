@@ -13,9 +13,12 @@ from .constants import RESET
 class ColorStr:
     """A class for representing specialized strings with custom color properties.
     
-    Stores string content alongside a foreground color and background color.
-    Note that the use of the ``RESET`` constant is not required when working
-    with **ColorStr** objects.
+    Stores text content alongside a foreground color and background color for use
+    when printing said text to the console.
+    
+    Note: 
+        The use of the ``RESET`` constant is *NOT* required when working with
+        **ColorStr** objects. The class is designed to handle that logic internally.
 
     Example::
 
@@ -29,12 +32,12 @@ class ColorStr:
     """
 
     def __init__(self, content: str, fg: Color | None = None, bg: Color | None = None):
-        """Initialize a **ColorStr** object with content and optional fg/bg colors.
+        """Initialize a **ColorStr** object with content and optional foreground/
+        background colors.
         
-        Note that **None** is an accepted value for both the ``fg`` and ``bg``
-        parameters. When either is set to **None**, any future usage of the
-        object for printing will disregard the property and use the default
-        configuration. 
+        Note that **None** is acceptable for both the ``fg`` and ``bg``
+        parameters. When set to **None**, that property will be ignored
+        when the **ColorStr** is displayed.
 
         Args:
             content:
@@ -70,10 +73,16 @@ class ColorStr:
             my_color_str = ColorStr(\"Hello, World!\", None, css(\"crimson\"))
             print(str(my_color_str) + \" ...and goodbye, color.\")
 
+            # my_color_str can still be edited, like so:
+            my_color_str.fg = hexcode(\"a0a0ff\")
+            print(str(my_color_str) + \" ..and goodbye, color.\")
+
         Example 2::
 
             my_color_str = str(ColorStr(\"Hello, World!\", None, css("crimson")))
             print(my_color_str + \" ...and goodbye, color.\")
+
+            # my_color_str is now a normal string, so fg/bg can no longer be edited
 
         """
 
@@ -84,6 +93,14 @@ class ColorStr:
     def __add__(self, addend) -> str:
         """Support concatenation of **ColorStr** objects with **str** objects
         and of **ColorStr** objects with other **ColorStr** objects.
+
+        Note:
+            Unlike with **Color** objects, the order of operations here does not
+            matter. Any order of valid operands is acceptable, including:
+
+                - ``ColorStr + str``
+                - ``str + ColorStr``
+                - ``ColorStr + ColorStr``
         
         Example 1::
 
@@ -122,7 +139,7 @@ class ColorStr:
         Two objects of type **ColoStrr** are defined to be equal if
         and only if:
 
-            - ``str1.content == str2.content`` is **True** (e.g., string content is identical),
+            - ``str1.content == str2.content`` is **True** (e.g., text content is identical),
             - ``str1.fg == str2.fg`` is **True**,
             - and ``str1.bg == str2.bg`` is **True**.
 
@@ -174,9 +191,9 @@ class ColorStr:
 
     @property
     def fg(self):
-        """Color: A **Color** object denoting the desired foreground color. Supports
-        both get and set operations. If set to ``None``, the property will be
-        disregarded when the object is displayed.
+        """Color: A **Color** object denoting the desired foreground color. If set to
+        ``None``, the property will be disregarded when the object is displayed. Supports
+        both get and set operations.
 
         Raises:
             TypeError:
@@ -195,9 +212,9 @@ class ColorStr:
 
     @property
     def bg(self):
-        """Color: A **Color** object denoting the desired background color. Supports
-        both get and set operations. If set to ``None``, the property will be
-        disregarded when the object is displayed.
+        """Color: A **Color** object denoting the desired background color. If set to
+        ``None``, the property will be disregarded when the object is displayed. Supports
+        both get and set operations.
 
         Raises:
             TypeError:
