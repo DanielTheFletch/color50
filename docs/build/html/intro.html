@@ -7,6 +7,7 @@
   <title>Introduction &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -15,9 +16,11 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +40,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,13 +50,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#brief-summary">Brief Summary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brief-summary">Brief summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a></li>
@@ -98,23 +99,20 @@ and CS50 students.</p>
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
 <p>Many programming courses focus on building fundamentals by creating projects at
-the command line. As such, I have spent a lot of time working in terminal
-environments, engaging in all sorts of academic projects and learning pursuits.
-Every time I used a new language at the terminal, though, I always wondered why
-printing text in color is almost never covered in the learning process.</p>
-<p>It seems simple in theory, right? Many modern shells display all sorts of key
-features <em>with colorful text already</em>, so I knew it was possible—I just didn’t
-quite know how to do it in an approachable fashion. This train of thought sparked
-the idea of what eventually became <strong>color50</strong>: a Python library designed to make
-colorful terminal output more approachable.</p>
+the command line. Every time I learn a new language, though, I always wonder
+why printing text in color is almost never covered in the learning process.</p>
+<p>It seems simple in theory, right? Most modern shells display all sorts of key
+features <em>with colorful text already</em>, so it’s clearly possible. This train of thought
+sparked the idea for what eventually became <strong>color50</strong>: a Python library designed to
+make colorful terminal output more approachable.</p>
 <p>Ultimately, <strong>color50</strong> is a package designed to address the confusion and cryptic
-syntax that occurs when working with ANSI escape sequences and color codes. The main
-motivation was to make printing in color more readable, more intuitive to a broader
-range of developers, and generally more convenient to use.</p>
+syntax that comes with ANSI color code sequencing. My driving motivation for working
+on the project was to make the code for printing colorful output more readable, more
+intuitive, and generally just easier to use.</p>
 </section>
 <hr class="docutils" />
 <section id="brief-summary">
-<h2>Brief Summary<a class="headerlink" href="#brief-summary" title="Link to this heading"></a></h2>
+<h2>Brief summary<a class="headerlink" href="#brief-summary" title="Link to this heading"></a></h2>
 <p>Below is a brief summary of the four modules contained in the <strong>color50</strong> package,
 with key features highlighted accordingly:</p>
 <blockquote>
@@ -147,12 +145,6 @@ with key features highlighted accordingly:</p>
 </ul>
 </div></blockquote>
 </section>
-<hr class="docutils" />
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>To install the <strong>color50</strong> package, use the following <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:
-<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">color50</span></code></p>
-</section>
 </section>
 
 
@@ -166,7 +158,7 @@ with key features highlighted accordingly:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

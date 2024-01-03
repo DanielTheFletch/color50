@@ -6,6 +6,7 @@
   <title>color50.color &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -14,9 +15,11 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -34,7 +37,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -44,8 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul>
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage Guide</a></li>
@@ -115,7 +117,7 @@
 
 <span class="sd">    Note:</span>
 <span class="sd">        Make sure to use the ``RESET`` constant when combining strings with **Color**</span>
-<span class="sd">        objects; the color settings of your terminal environment will not revert to </span>
+<span class="sd">        objects; the color settings of your terminal environment may not revert to </span>
 <span class="sd">        defaults unless explicitly specified!</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -128,11 +130,11 @@
 <span class="sd">        Note that there are no parameterized ``__init___`` functions for the</span>
 <span class="sd">        ``Color`` class; instead, it is recommended to use one of the associated</span>
 <span class="sd">        :ref:`core functions &lt;core-functions-module-label&gt;` that come with the package</span>
-<span class="sd">        instead of using the class initializer explicitly.</span>
+<span class="sd">        as opposed to calling the initializer explicitly.</span>
 
-<span class="sd">        That said, the default initializer can still be called, and each of the</span>
-<span class="sd">        object properties (red, green, blue) can be tweaked individually from their</span>
-<span class="sd">        default ``0`` values.</span>
+<span class="sd">        That said, the default initializer can still be called. Upon initialization,</span>
+<span class="sd">        each of the object properties (red, green, blue) can be tweaked individually from</span>
+<span class="sd">        their default values of ``0``.</span>
 
 <span class="sd">        Example::</span>
 <span class="sd">        </span>
@@ -157,8 +159,8 @@
 <div class="viewcode-block" id="Color.__str__">
 <a class="viewcode-back" href="../../color50.html#color50.color.Color.__str__">[docs]</a>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the color; same as calling</span>
-<span class="sd">        the ``fg`` method.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the color. Functionally</span>
+<span class="sd">        identical to calling the ``fg`` method.</span>
 <span class="sd">        </span>
 <span class="sd">        Example::</span>
 
@@ -180,6 +182,12 @@
 <span class="sd">            my_color = rgb(0, 255, 0)</span>
 <span class="sd">            my_message = \&quot;Hello, Green World!\&quot;</span>
 <span class="sd">            print(my_color + my_message + constants.RESET)</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Concatenation of **Color** and **str** objects only supports operations</span>
+<span class="sd">            where the first operand is a **Color**. This means that any operation</span>
+<span class="sd">            of the type ``Color + str`` is valid, whereas any operation of the type</span>
+<span class="sd">            ``str + Color`` is *not*.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -226,7 +234,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *red* in the color, ranging from 0-255.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: A numeric value (0-255) representing the color&#39;s red levels.</span>
 <span class="sd">        Supports both get and set operations.</span>
 
 <span class="sd">        Raises:</span>
@@ -250,7 +258,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">green</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *green* in the color, ranging from 0-255.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: A numeric value (0-255) representing the color&#39;s green levels.</span>
 <span class="sd">        Supports both get and set operations.</span>
 
 <span class="sd">        Raises:</span>
@@ -274,7 +282,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">blue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: Numeric value for amount of *blue* in the color, ranging from 0-255.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;int: A numeric value (0-255) representing the color&#39;s blue levels.</span>
 <span class="sd">        Supports both get and set operations.</span>
 
 <span class="sd">        Raises:</span>
@@ -299,7 +307,8 @@
 <div class="viewcode-block" id="Color.fg">
 <a class="viewcode-back" href="../../color50.html#color50.color.Color.fg">[docs]</a>
     <span class="k">def</span> <span class="nf">fg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the stored color for foreground use.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the stored color as a string representing its corresponding foreground</span>
+<span class="sd">        ANSI color code sequence.</span>
 
 <span class="sd">        The return value of this function is the default behavior of converting</span>
 <span class="sd">        a **Color** object to a string. The option to call ``fg`` explicitly</span>
@@ -307,7 +316,7 @@
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">            The ANSI color code sequence representation of the object, specifically</span>
-<span class="sd">            to use as a foreground color.</span>
+<span class="sd">            for use as a foreground color.</span>
 
 <span class="sd">        Example::</span>
 
@@ -323,7 +332,8 @@
 <div class="viewcode-block" id="Color.bg">
 <a class="viewcode-back" href="../../color50.html#color50.color.Color.bg">[docs]</a>
     <span class="k">def</span> <span class="nf">bg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the stored color for background use.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the stored color as a string representing its corresponding background</span>
+<span class="sd">        ANSI color code sequence.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">            The ANSI color code sequence representation of the object, specifically</span>
@@ -349,7 +359,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

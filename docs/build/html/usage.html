@@ -7,6 +7,7 @@
   <title>Usage Guide &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -15,9 +16,11 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +40,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,8 +50,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage Guide</a><ul>
@@ -100,21 +102,26 @@
              
   <section id="usage-guide">
 <h1>Usage Guide<a class="headerlink" href="#usage-guide" title="Link to this heading"></a></h1>
-<p>Read this guide to learn about the key features of <strong>color50</strong> and how to best
-make use of them. For additional code examples, refer to the <a class="reference internal" href="demo.html"><span class="doc">demo files</span></a>
-included with the documentation.</p>
+<p>Read this guide to learn about the key features of <strong>color50</strong> and how to use them.
+For additional code examples, refer to the <a class="reference internal" href="demo.html"><span class="doc">demo files</span></a> included with
+the documentation.</p>
+<p>Before moving forward, make sure you have <strong>color50</strong> installed on your machine by
+executing this <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">color50</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <section id="using-the-color-class">
 <h2>Using the <strong>Color</strong> class<a class="headerlink" href="#using-the-color-class" title="Link to this heading"></a></h2>
-<p>Representing colors in Python code is at the heart of <strong>color50</strong>, and the <strong>Color</strong>
-class is one way to achieve this goal.</p>
+<p>Color usage in Python code is at the heart of <strong>color50</strong>, and the <strong>Color</strong>
+class lays the foundation for much of the package’s primary functionality.</p>
 <section id="foundations">
 <h3>Foundations<a class="headerlink" href="#foundations" title="Link to this heading"></a></h3>
 <p>The <strong>Color</strong> class represents a color by storing its RGB values. The RGB color model
 is a way of representing colors using three values: red, green, and blue. Each of these
-values are an integer with a value of 0-255 representing the “amount” of red/green/blue
-in the color. (Read <a class="reference external" href="https://en.wikipedia.org/wiki/RGB_color_model">this article</a> for more information on RGB color.)</p>
-<p>For example, suppose you want to store the color <em>red</em> in an object of type <strong>Color</strong>.
+values is an integer with a value of 0-255 representing the “amount” of red/green/blue
+in the color. (Read <a class="reference external" href="https://en.wikipedia.org/wiki/RGB_color_model">this Wikipedia article</a> for more information on RGB color.)</p>
+<p>For example, suppose you want to store the color red in an object of type <strong>Color</strong>.
 Consider this example program:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Color class</span>
 <span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span>
@@ -127,11 +134,11 @@ Consider this example program:</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">my_color</span></code> object now stores RGB values such that <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">255</span></code>, <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">=</span> <span class="pre">0</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">0</span></code>, thus representing the color <em>red</em>.</p>
-<p>Notice that the <em>green</em> and <em>blue</em> properties were not specified. According to the
+<code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">0</span></code>, thus representing the color red.</p>
+<p>Notice that no green or blue value was explicitly specified. As discussed in the
 <a class="reference internal" href="color50.html#color-module-label"><span class="std std-ref">Color class documentation</span></a>, each of the three properties
-initializes to a value of <code class="docutils literal notranslate"><span class="pre">0</span></code>. In other words, the default color created by calling
-<code class="docutils literal notranslate"><span class="pre">Color()</span></code> is black (e.g., <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">=</span> <span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p>
+initializes to a default value of <code class="docutils literal notranslate"><span class="pre">0</span></code>. In other words, the default color created
+by calling <code class="docutils literal notranslate"><span class="pre">Color()</span></code> is black (e.g., <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">=</span> <span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p>
 <p>Consider another example program:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span>
 
@@ -150,17 +157,16 @@ initializes to a value of <code class="docutils literal notranslate"><span class
 <span class="n">color3</span><span class="o">.</span><span class="n">blue</span> <span class="o">=</span> <span class="mi">128</span>
 </pre></div>
 </div>
-<p>Notice again how all properties default to <code class="docutils literal notranslate"><span class="pre">0</span></code>, resulting in some properties not needing
-to be changed manually.</p>
+<p>Notice again how all properties default to <code class="docutils literal notranslate"><span class="pre">0</span></code>, meaning some properties need not
+be set manually.</p>
 </section>
 <section id="working-with-strings">
 <h3>Working with strings<a class="headerlink" href="#working-with-strings" title="Link to this heading"></a></h3>
-<p>With a solid knowledge of the semantics of the <strong>Color</strong> class, we can now put that knowledge
-to practical use.</p>
 <p>As described in the <a class="reference internal" href="color50.html#color-module-label"><span class="std std-ref">Color class documentation</span></a>, <strong>Color</strong> objects
-support concatenation with strings to effectively add color to them. This can be done with string
-literals or strings stored as variables. Note that the <strong>Color</strong> object must always come first in
-the operation, meaning <code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">+</span> <span class="pre">str</span></code> is valid but <code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">+</span> <span class="pre">Color</span></code> is not.</p>
+support concatenation with strings to effectively imbue them with color upon display. This can
+be done with string literals or strings stored as variables. Note that the <strong>Color</strong> object must
+always come first in the operation, meaning <code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">+</span> <span class="pre">str</span></code> is a valid operation type but
+<code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">+</span> <span class="pre">Color</span></code> is not.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -180,11 +186,11 @@ the operation, meaning <code class="docutils literal notranslate"><span class="p
 <span class="nb">print</span><span class="p">(</span><span class="n">success_color</span> <span class="o">+</span> <span class="s2">&quot;SUCCESS&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice the inclusion of the <code class="docutils literal notranslate"><span class="pre">constants.RESET</span></code> variable at the end of each print statement. When
+<p>Notice the inclusion of the <code class="docutils literal notranslate"><span class="pre">constants.RESET</span></code> variable at the end of each call to <code class="docutils literal notranslate"><span class="pre">print</span></code>. When
 using <strong>Color</strong> objects with strings in this fashion, including the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant after the
 colorful string is needed to revert the terminal colors to their defaults. While it does not
-necessarily need to follow <em>every</em> colorful string, unexpected behaviors may occur if <code class="docutils literal notranslate"><span class="pre">RESET</span></code>
-is never used.</p>
+necessarily need to follow <em>every</em> string whose display color has been altered, unexpected
+behaviors may occur if <code class="docutils literal notranslate"><span class="pre">RESET</span></code> is never used.</p>
 <p>Here’s another example using some different formats:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -198,14 +204,16 @@ is never used.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color</span><span class="p">,</span> <span class="s2">&quot;I&#39;ve got the blues.&quot;</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The last three print statements each produce the exact same output. This allows for greater
-flexibility when working with <strong>Color</strong> objects in your code.</p>
+<p>The three print statements in this program each produce the exact same output. This versatility
+allows for greater code flexibility when developing with <strong>color50</strong>.</p>
 </section>
 <section id="using-the-fg-and-bg-methods">
 <h3>Using the <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code> methods<a class="headerlink" href="#using-the-fg-and-bg-methods" title="Link to this heading"></a></h3>
 <p>In addition to changing the color of the terminal text, the <strong>Color</strong> class also allows for
-changing the background color that appears behind the text. Use <code class="docutils literal notranslate"><span class="pre">fg</span></code> to denote foreground
-usage and <code class="docutils literal notranslate"><span class="pre">bg</span></code> to denote background usage.</p>
+changing the background color that appears behind the text.</p>
+<p>Built into the <strong>Color</strong> class are two methods: <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code>. The <code class="docutils literal notranslate"><span class="pre">fg</span></code> method returns
+the color’s foreground string representation, whereas the <code class="docutils literal notranslate"><span class="pre">bg</span></code> method returns the color’s
+background string representation.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -221,12 +229,12 @@ usage and <code class="docutils literal notranslate"><span class="pre">bg</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">my_color</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span><span class="si">}</span><span class="s2">Yellow, is anyone there?</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code> methods are used in the same way that <strong>Color</strong> objects have
-in the previous examples.</p>
+<p>Notice how the <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code> methods are used just like <strong>Color</strong> objects have been used
+in previous examples.</p>
 <p>Under the hood, concatenating <strong>Color</strong> objects with strings actually just converts
-the <strong>Color</strong> to a string representation of its ANSI color code before performing
-standard string concatenation. Effectively, this means that <code class="docutils literal notranslate"><span class="pre">str(my_color)</span></code> and
-<code class="docutils literal notranslate"><span class="pre">my_color.fg()</span></code> return the same output.</p>
+the <strong>Color</strong> to a string representation of its foreground ANSI color code before
+performing standard string concatenation. This effectively means means that
+<code class="docutils literal notranslate"><span class="pre">str(my_color)</span></code> and <code class="docutils literal notranslate"><span class="pre">my_color.fg()</span></code> are functionally identical calls.</p>
 <p>Another example using foreground/background colors simultaneously:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 
@@ -245,9 +253,9 @@ standard string concatenation. Effectively, this means that <code class="docutil
 </pre></div>
 </div>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">earth_green</span></code> foreground color did not need to explicitly call
-the <code class="docutils literal notranslate"><span class="pre">fg</span></code> method to produce the intended results. (The <code class="docutils literal notranslate"><span class="pre">fg</span></code> method is mostly
-included for those who want explicit clarity when also working with the <code class="docutils literal notranslate"><span class="pre">bg</span></code>
-method.)</p>
+the <code class="docutils literal notranslate"><span class="pre">fg</span></code> method to produce the intended results. The <code class="docutils literal notranslate"><span class="pre">fg</span></code> method is mostly
+included for the option of explicit clarity when also working with the <code class="docutils literal notranslate"><span class="pre">bg</span></code>
+method.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -255,14 +263,14 @@ method.)</p>
 <h2>Using <code class="docutils literal notranslate"><span class="pre">rgb</span></code>, <code class="docutils literal notranslate"><span class="pre">hexcode</span></code>, and <code class="docutils literal notranslate"><span class="pre">css</span></code><a class="headerlink" href="#using-rgb-hexcode-and-css" title="Link to this heading"></a></h2>
 <p>Now that we’ve covered the <strong>Color</strong> class and its usage with strings, we can jump
 into three of the four functions in the core_functions module. These functions are
-designed to streamline the creation of a given <strong>Color</strong> object, removing the need
-to manually enter each RGB value after initialization.</p>
+designed to streamline the creation of <strong>Color</strong> objects by simplifying their
+initialization to one readable line of code.</p>
 <section id="the-rgb-function">
 <h3>The <code class="docutils literal notranslate"><span class="pre">rgb</span></code> function<a class="headerlink" href="#the-rgb-function" title="Link to this heading"></a></h3>
-<p>This function allows for setting the <strong>Color</strong> object’s properties in the same way as before,
-but now in only one line of code.</p>
-<p><code class="docutils literal notranslate"><span class="pre">rgb</span></code> takes in three parameters (red, green, and blue values, as used before) and returns a
-valid <strong>Color</strong> object whose properties have been initialized to the parameter values.</p>
+<p>This function allows for setting the <strong>Color</strong> object’s RGB values without having to
+change each of them individually.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rgb</span></code> takes in three parameters (red, green, and blue values) and returns a
+valid <strong>Color</strong> object whose properties have been set to said parameter values.</p>
 <p>Example program:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">rgb</span>
 
@@ -276,13 +284,13 @@ valid <strong>Color</strong> object whose properties have been initialized to th
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">color2</span><span class="si">}{</span><span class="n">color3</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span><span class="si">}</span><span class="s2">This text is magenta with a cyan background.</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For more information regarding the function’s parameters and usage details, refer to
-<a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
+<p>For more information regarding the function’s parameters, exceptions raised, and other usage details,
+refer to <a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
 </section>
 <section id="the-hexcode-function">
 <h3>The <code class="docutils literal notranslate"><span class="pre">hexcode</span></code> function<a class="headerlink" href="#the-hexcode-function" title="Link to this heading"></a></h3>
-<p>This function enables using a different color formatting (six-digit hexadecimal codes) to
-initialize a <strong>Color</strong> object.</p>
+<p>This function enables using another industry-standard color representation (six-digit hexadecimal codes)
+to initialize a <strong>Color</strong> object.</p>
 <p><code class="docutils literal notranslate"><span class="pre">hexcode</span></code> takes in one parameter (a HEX color code, as a string) and returns a
 valid <strong>Color</strong> object whose properties have been initialized to match the color represented
 by the specified HEX color code.</p>
@@ -310,14 +318,14 @@ is optional. Let’s rewrite a snippet of the previous example to demonstrate:</
 <p>This version of the code is functionally identical to the previous iteration. While each of these
 options are valid, it is recommended to use only one throughout a given file or project for stylistic
 consistency.</p>
-<p>For more information regarding the function’s parameters and usage details, refer to
-<a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
+<p>For more information regarding the function’s parameters, exceptions raised, and other usage details,
+refer to <a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
 </section>
 <section id="the-css-function">
 <h3>The <code class="docutils literal notranslate"><span class="pre">css</span></code> function<a class="headerlink" href="#the-css-function" title="Link to this heading"></a></h3>
-<p>This function accepts a CSS color name and uses it to initialize a <strong>Color</strong> object. This allows
-for the usage of more specific colors without needing to know their RGB value or HEX color code
-representations.</p>
+<p>This function accepts a CSS color name and uses it to initialize a <strong>Color</strong> object. This enables the
+usage of colors by name rather than by numeric value, and it also allows for cross-compatibility with
+projects using CSS.</p>
 <p><code class="docutils literal notranslate"><span class="pre">css</span></code> takes in one parameter (a valid CSS color name, as a string) and returns a
 valid <strong>Color</strong> object whose properties have been initialized to match the color represented
 by the specified color name.</p>
@@ -334,8 +342,8 @@ by the specified color name.</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">color2</span><span class="si">}{</span><span class="n">color3</span><span class="o">.</span><span class="n">bg</span><span class="p">()</span><span class="si">}</span><span class="s2">This text is magenta with a cyan background.</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For more information regarding the function’s parameters and usage details, refer to
-<a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
+<p>For more information regarding the function’s parameters, exceptions raised, and other usage details,
+refer to <a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
 <p>For more information regarding the list of valid color names, refer to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/named-color">the official listing
 from the MDN Web Docs</a>.</p>
 </section>
@@ -343,18 +351,18 @@ from the MDN Web Docs</a>.</p>
 <hr class="docutils" />
 <section id="using-the-colorstr-class">
 <h2>Using the <strong>ColorStr</strong> class<a class="headerlink" href="#using-the-colorstr-class" title="Link to this heading"></a></h2>
-<p>The <strong>ColorStr</strong> class takes all the building blocks described previously and encapsulates them
-into a single, streamlined class.</p>
+<p>The <strong>ColorStr</strong> class takes these foundational building blocks we’ve been discussing and
+encapsulates them into one lightweight, readable class.</p>
 <p><strong>ColorStr</strong> objects have three properties:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>A string containing the soon-to-be-colorful text</p></li>
+<li><p>A string containing soon-to-be-colorful text</p></li>
 <li><p>A foreground color (optional)</p></li>
 <li><p>A background color (optional)</p></li>
 </ul>
 </div></blockquote>
-<p>With this design, <strong>ColorStr</strong> objects can be used for similar cases as in previous examples but
-with more straightforward syntax.</p>
+<p>With this design, <strong>ColorStr</strong> objects can be used in similar contexts as in previous examples,
+but with much more straightforward syntax.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">ColorStr</span><span class="p">,</span> <span class="n">css</span>
 
@@ -369,12 +377,11 @@ with more straightforward syntax.</p>
 </pre></div>
 </div>
 <p>The print statement in the above example prints the contents <code class="docutils literal notranslate"><span class="pre">&quot;Hello!</span> <span class="pre">It's</span> <span class="pre">me,</span> <span class="pre">World!&quot;</span></code> as green
-text on a blue background. Notice how many of the smaller details from previous examples are no
-longer necessary, like needing to distinguish between <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code> use cases or needing to
-include the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant. All of this logic is handled by the <strong>ColorStr</strong> class!</p>
-<p><strong>ColorStr</strong> also supports concatenation with strings as well as with other <strong>ColorStr</strong> objects.
-This concatenation behaves much like the concatenation of two standard strings, with the exception
-that color is retained from any included <strong>ColorStr</strong> objects.</p>
+text on a blue background. Notice how the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant is <em>not</em> needed here. Also notice how
+no calls to <code class="docutils literal notranslate"><span class="pre">fg</span></code> or <code class="docutils literal notranslate"><span class="pre">bg</span></code> are necessary. The <strong>ColorStr</strong> class handles all this logic internally!</p>
+<p><strong>ColorStr</strong> supports concatenation with strings as well as with other <strong>ColorStr</strong> objects.
+This concatenation behaves much like the concatenation of two standard strings, insofar as one
+string’s content is appended to another’s.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">ColorStr</span><span class="p">,</span> <span class="n">hexcode</span>
 
@@ -387,7 +394,7 @@ that color is retained from any included <strong>ColorStr</strong> objects.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="n">str3</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the above example, only the contents of <code class="docutils literal notranslate"><span class="pre">str2</span></code> and <code class="docutils literal notranslate"><span class="pre">str3</span></code> will display their custom colors;
+<p>In the above example, only the contents of <code class="docutils literal notranslate"><span class="pre">str2</span></code> and <code class="docutils literal notranslate"><span class="pre">str3</span></code> will display with custom color settings;
 all other content will be printed using default settings.</p>
 <p>For more information regarding the properties, methods, and other implementation details of
 <strong>ColorStr</strong>, refer to the <a class="reference internal" href="color50.html#colorstr-module-label"><span class="std std-ref">ColorStr class documentation</span></a>.</p>
@@ -398,7 +405,8 @@ all other content will be printed using default settings.</p>
 <p>The fourth and final module included with <strong>color50</strong> is the <strong>constants</strong> module. It contains
 a variety of named constants for working with ANSI color codes on a more granular level.</p>
 <p>These constants, however, can also be used like <strong>Color</strong> objects with respect to string
-concatenation. They can offer simple, easy-access colors when not much else is needed.</p>
+concatenation. They offer simple, easy-access colors when not much additional complexity
+or customization is needed.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span>
 
@@ -412,20 +420,20 @@ concatenation. They can offer simple, easy-access colors when not much else is n
 <span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="s2">&quot;This is a blue message.&quot;</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant is needed when using these color constants.</p>
-<p>The majority of the included constants are variations of the same eight
+<p>Note that <code class="docutils literal notranslate"><span class="pre">RESET</span></code> <em>is needed</em> when using these color constants.</p>
+<p>The majority of the included constants are variations of the eight
 standard ANSI colors, but two of them are for more specific use cases:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">ANSI_PREFIX</span></code> constant contains the ANSI escape sequence that all other constants in the module make use of.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant contains the ANSI code needed to restore default color settings.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ANSI_PREFIX</span></code> constant contains the ANSI escape sequence that precede all ANSI color encodings.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant contains the ANSI encoding needed to restore default color settings to the terminal.</p></li>
 </ul>
 </div></blockquote>
-<p>Outside of those two outliers, the included constants represent the ANSI sequences needed to change
+<p>Aside from those two outliers, the included constants represent the ANSI color encodings needed to change
 the color of any text that follows it.</p>
-<p>These constants are much more limited in their usage insofar
-as <strong>color50</strong> compatibility (i.e., <strong>ColorStr</strong> objects will not accept these constants as fg or
-bg colors), but they can be used to work with and better understand the lower-level implementation
+<p>These constants are more limited in their combined usage with other <strong>color50</strong> features
+(i.e., <strong>ColorStr</strong> objects <em>will not</em> accept these constants as fg or bg colors), but
+they can be used to work with and better understand the lower-level implementation
 details of ANSI color code sequencing.</p>
 <p>For more information regarding the full list of constants included with the module,
 refer to the <a class="reference internal" href="color50.html#constants-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
@@ -433,9 +441,9 @@ refer to the <a class="reference internal" href="color50.html#constants-module-l
 <hr class="docutils" />
 <section id="using-colorize">
 <h2>Using <code class="docutils literal notranslate"><span class="pre">colorize</span></code><a class="headerlink" href="#using-colorize" title="Link to this heading"></a></h2>
-<p>The core_functions module mentioned previously contains one more function that has not yet been
-discussed. That is the <code class="docutils literal notranslate"><span class="pre">colorize</span></code> function, a function designed to be used as a simple decorator
-for coloring function output.</p>
+<p>The core_functions module mentioned previously contains one more feature of <strong>color50</strong> that has not yet been
+discussed. That would be the <code class="docutils literal notranslate"><span class="pre">colorize</span></code> decorator function, designed for adjusting the color of an entire
+function’s output.</p>
 <p>Consider the following example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">colorize</span><span class="p">,</span> <span class="n">rgb</span>
 
@@ -445,9 +453,9 @@ for coloring function output.</p>
 </pre></div>
 </div>
 <p>With this setup, any calls to <code class="docutils literal notranslate"><span class="pre">print_warning</span></code> will produce output with red text. This offers a
-very short and simple way to ensure that any and all output from a given function will be the
-same color.</p>
-<p>Note that the color constants from the constants module can also be used here:</p>
+very short and simple way to ensure that any and all output from a given function will maintain the
+same color configuration.</p>
+<p>Note that the named color constants from the constants module can also be used here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">colorize</span><span class="p">,</span> <span class="n">constants</span>
 
 <span class="nd">@colorize</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
@@ -455,8 +463,8 @@ same color.</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For more information regarding the function’s parameters and usage details, refer to
-<a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
+<p>For more information regarding the function’s parameters, exceptions raised, and other usage details,
+refer to <a class="reference internal" href="color50.html#core-functions-module-label"><span class="std std-ref">its section of the documentation</span></a>.</p>
 </section>
 </section>
 
@@ -471,7 +479,7 @@ same color.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

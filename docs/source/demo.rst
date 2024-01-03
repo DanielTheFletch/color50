@@ -12,10 +12,11 @@ Demo Files
 
 These demo files are included to offer a better look at how the **color50** package
 might be used in the context of a larger program. Feel free to copy these demo programs
-into your own environment to run them, alter them, test them, and/or learn from them!
+into your own environment to run them, alter them, or otherwise use them to help you
+learn the package features!
 
-Demo 1
-------
+Demo #1: RGB Color Selector
+---------------------------
 
 Demo #1 is a simple program that prompts user input of a color's RGB values.
 The user is asked to enter three different integer values. If valid, the message
@@ -54,14 +55,14 @@ user's input.
 
 ----------
 
-Demo 2
-------
+Demo #2: HEX/CSS Preview Utility
+--------------------------------
 
 Demo #2 serves as a utility for echoing a user's input back to them for quickly
-checking colorized output. The user is asked to enter a HEX color code and a CSS
-color name, both of which can be the same or different. If *both* colors are valid,
-the user's input will be echoed back to them exactly as entered, but displayed in
-the color specified as opposed to in plain text.
+previewing colorized output. The user is asked to enter a HEX color code and a CSS
+color name. If *both* specified colors are valid, the user's input will be echoed
+back to them exactly as entered, but it will be displayed in that color as opposed
+to being displayed with the default color settings.
 
 ``demo2.py`` source::
 
@@ -88,8 +89,8 @@ the color specified as opposed to in plain text.
 
 ----------
 
-Demo 3
-------
+Demo #3: Color Randomizer
+-------------------------
 
 Demo #3 showcases how **color50** might be used in conjunction with random number
 generation. The program generates random RGB values for a foreground color and for
@@ -119,19 +120,18 @@ printing to the screen.
 
 ----------
 
-Demo 1
-------
+Demo #4: DICE ROLLER Game
+-------------------------
 
-Demo #4 is a more involved program, showcasing a context where **color50** is not necessarily
-the main focus, but rather just one piece of the puzzle. The program simulates a made-up game
-called DICE ROLLER, wherein the user gets to roll two dice and must roll a higher sum total
-than the two "computer" characters.
+Demo #4 is a somewhat more involved program, simulating a made-up game called DICE ROLLER.
+The player (e.g., the user) gets to roll two dice and must roll a higher sum total
+than two "computer" characters.
 
 Many **color50** features are demonstrated in this program, including:
 
     - Calling the ``css`` function to create **Color** objects
     - Displaying text in color using Python f-string syntax
-    - Using the ``colorize`` decorator to add color to an entire function's output
+    - Using the ``colorize`` decorator to add color to a function's output
 
 ``demo4.py`` source::
 

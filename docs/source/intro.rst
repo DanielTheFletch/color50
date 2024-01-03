@@ -24,14 +24,13 @@ Motivation
 ----------
 
 Many programming courses focus on building fundamentals by creating projects at
-the command line. Every time I would learn a new language, though, I always wondered
-why printing text in color was almost never covered in the learning process.
+the command line. Every time I learn a new language, though, I always wonder
+why printing text in color is almost never covered in the learning process.
 
 It seems simple in theory, right? Most modern shells display all sorts of key
-features *with colorful text already*, so it's clearly possible---I just didn't
-quite know how to do it in an approachable fashion. This train of thought sparked
-the idea for what eventually became **color50**: a Python library designed to make
-colorful terminal output more approachable.
+features *with colorful text already*, so it's clearly possible. This train of thought
+sparked the idea for what eventually became **color50**: a Python library designed to 
+make colorful terminal output more approachable.
 
 Ultimately, **color50** is a package designed to address the confusion and cryptic
 syntax that comes with ANSI color code sequencing. My driving motivation for working
@@ -40,7 +39,7 @@ intuitive, and generally just easier to use.
 
 ----------
 
-Brief Summary
+Brief summary
 -------------
 
 Below is a brief summary of the four modules contained in the **color50** package,

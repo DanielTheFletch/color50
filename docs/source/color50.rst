@@ -10,8 +10,10 @@
 Reference
 =========
 
-Documentation for the **color50** package and its features, each listed
-by module.
+Documentation for the **color50** package and its constituent features, each
+listed by module.
+
+----------
 
 .. _color-module-label:
 
@@ -21,6 +23,8 @@ by module.
 .. autoclass:: color50.color.Color
    :members:
    :special-members: __init__, __str__, __add__, __eq__
+
+----------
 
 .. _core-functions-module-label:
 
@@ -32,6 +36,8 @@ Core functions
 .. autofunction:: color50.core_functions.css
 .. autofunction:: color50.core_functions.colorize
 
+----------
+
 .. _colorstr-module-label:
 
 **ColorStr** class
@@ -40,6 +46,8 @@ Core functions
 .. autoclass:: color50.colorstr.ColorStr
    :members:
    :special-members: __init__, __str__, __add__, __eq__
+
+----------
 
 .. _constants-module-label:
 

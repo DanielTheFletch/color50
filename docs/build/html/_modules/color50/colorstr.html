@@ -6,6 +6,7 @@
   <title>color50.colorstr &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -14,9 +15,11 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -34,7 +37,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -44,8 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul>
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage Guide</a></li>
@@ -96,9 +98,12 @@
 <span class="k">class</span> <span class="nc">ColorStr</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing specialized strings with custom color properties.</span>
 <span class="sd">    </span>
-<span class="sd">    Stores string content alongside a foreground color and background color.</span>
-<span class="sd">    Note that the use of the ``RESET`` constant is not required when working</span>
-<span class="sd">    with **ColorStr** objects.</span>
+<span class="sd">    Stores text content alongside a foreground color and background color for use</span>
+<span class="sd">    when printing said text to the console.</span>
+<span class="sd">    </span>
+<span class="sd">    Note: </span>
+<span class="sd">        The use of the ``RESET`` constant is *NOT* required when working with</span>
+<span class="sd">        **ColorStr** objects. The class is designed to handle that logic internally.</span>
 
 <span class="sd">    Example::</span>
 
@@ -114,12 +119,12 @@
 <div class="viewcode-block" id="ColorStr.__init__">
 <a class="viewcode-back" href="../../color50.html#color50.colorstr.ColorStr.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bg</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a **ColorStr** object with content and optional fg/bg colors.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a **ColorStr** object with content and optional foreground/</span>
+<span class="sd">        background colors.</span>
 <span class="sd">        </span>
-<span class="sd">        Note that **None** is an accepted value for both the ``fg`` and ``bg``</span>
-<span class="sd">        parameters. When either is set to **None**, any future usage of the</span>
-<span class="sd">        object for printing will disregard the property and use the default</span>
-<span class="sd">        configuration. </span>
+<span class="sd">        Note that **None** is acceptable for both the ``fg`` and ``bg``</span>
+<span class="sd">        parameters. When set to **None**, that property will be ignored</span>
+<span class="sd">        when the **ColorStr** is displayed.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            content:</span>
@@ -158,10 +163,16 @@
 <span class="sd">            my_color_str = ColorStr(\&quot;Hello, World!\&quot;, None, css(\&quot;crimson\&quot;))</span>
 <span class="sd">            print(str(my_color_str) + \&quot; ...and goodbye, color.\&quot;)</span>
 
+<span class="sd">            # my_color_str can still be edited, like so:</span>
+<span class="sd">            my_color_str.fg = hexcode(\&quot;a0a0ff\&quot;)</span>
+<span class="sd">            print(str(my_color_str) + \&quot; ..and goodbye, color.\&quot;)</span>
+
 <span class="sd">        Example 2::</span>
 
 <span class="sd">            my_color_str = str(ColorStr(\&quot;Hello, World!\&quot;, None, css(&quot;crimson&quot;)))</span>
 <span class="sd">            print(my_color_str + \&quot; ...and goodbye, color.\&quot;)</span>
+
+<span class="sd">            # my_color_str is now a normal string, so fg/bg can no longer be edited</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -175,6 +186,14 @@
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addend</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Support concatenation of **ColorStr** objects with **str** objects</span>
 <span class="sd">        and of **ColorStr** objects with other **ColorStr** objects.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Unlike with **Color** objects, the order of operations here does not</span>
+<span class="sd">            matter. Any order of valid operands is acceptable, including:</span>
+
+<span class="sd">                - ``ColorStr + str``</span>
+<span class="sd">                - ``str + ColorStr``</span>
+<span class="sd">                - ``ColorStr + ColorStr``</span>
 <span class="sd">        </span>
 <span class="sd">        Example 1::</span>
 
@@ -216,7 +235,7 @@
 <span class="sd">        Two objects of type **ColoStrr** are defined to be equal if</span>
 <span class="sd">        and only if:</span>
 
-<span class="sd">            - ``str1.content == str2.content`` is **True** (e.g., string content is identical),</span>
+<span class="sd">            - ``str1.content == str2.content`` is **True** (e.g., text content is identical),</span>
 <span class="sd">            - ``str1.fg == str2.fg`` is **True**,</span>
 <span class="sd">            - and ``str1.bg == str2.bg`` is **True**.</span>
 
@@ -269,9 +288,9 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired foreground color. Supports</span>
-<span class="sd">        both get and set operations. If set to ``None``, the property will be</span>
-<span class="sd">        disregarded when the object is displayed.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired foreground color. If set to</span>
+<span class="sd">        ``None``, the property will be disregarded when the object is displayed. Supports</span>
+<span class="sd">        both get and set operations.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            TypeError:</span>
@@ -290,9 +309,9 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired background color. Supports</span>
-<span class="sd">        both get and set operations. If set to ``None``, the property will be</span>
-<span class="sd">        disregarded when the object is displayed.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Color: A **Color** object denoting the desired background color. If set to</span>
+<span class="sd">        ``None``, the property will be disregarded when the object is displayed. Supports</span>
+<span class="sd">        both get and set operations.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            TypeError:</span>
@@ -318,7 +337,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

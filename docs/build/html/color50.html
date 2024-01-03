@@ -7,6 +7,7 @@
   <title>Reference &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -15,9 +16,11 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +40,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,8 +50,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a></li>
@@ -121,7 +123,9 @@
              
   <section id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
-<p>Official documentation reference for the <strong>color50</strong> package.</p>
+<p>Documentation for the <strong>color50</strong> package and its constituent features, each
+listed by module.</p>
+<hr class="docutils" />
 <section id="color-class">
 <span id="color-module-label"></span><h2><strong>Color</strong> class<a class="headerlink" href="#color-class" title="Link to this heading"></a></h2>
 <dl class="py class">
@@ -147,12 +151,12 @@ package, like the <strong>ColorStr</strong> class or the <code class="docutils l
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Make sure to use the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant when combining strings with <strong>Color</strong>
-objects; the color settings of your terminal environment will not revert to
+objects; the color settings of your terminal environment may not revert to
 defaults unless explicitly specified!</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.color.Color.__add__">
-<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/color50/color.html#Color.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.__add__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color50/color.html#Color.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.__add__" title="Link to this definition"></a></dt>
 <dd><p>Support concatenation of <strong>Color</strong> and <strong>str</strong> objects.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_color</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -160,11 +164,18 @@ defaults unless explicitly specified!</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color</span> <span class="o">+</span> <span class="n">my_message</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Concatenation of <strong>Color</strong> and <strong>str</strong> objects only supports operations
+where the first operand is a <strong>Color</strong>. This means that any operation
+of the type <code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">+</span> <span class="pre">str</span></code> is valid, whereas any operation of the type
+<code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">+</span> <span class="pre">Color</span></code> is <em>not</em>.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.color.Color.__eq__">
-<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="_modules/color50/color.html#Color.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.__eq__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/color50/color.html#Color.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.__eq__" title="Link to this definition"></a></dt>
 <dd><p>Support equality comparisons of two <strong>Color</strong> objects.</p>
 <p>Two objects of type <strong>Color</strong> are defined to be equal if
 and only if:</p>
@@ -195,10 +206,10 @@ and only if:</p>
 <p>Note that there are no parameterized <code class="docutils literal notranslate"><span class="pre">__init___</span></code> functions for the
 <code class="docutils literal notranslate"><span class="pre">Color</span></code> class; instead, it is recommended to use one of the associated
 <a class="reference internal" href="#core-functions-module-label"><span class="std std-ref">core functions</span></a> that come with the package
-instead of using the class initializer explicitly.</p>
-<p>That said, the default initializer can still be called, and each of the
-object properties (red, green, blue) can be tweaked individually from their
-default <code class="docutils literal notranslate"><span class="pre">0</span></code> values.</p>
+as opposed to calling the initializer explicitly.</p>
+<p>That said, the default initializer can still be called. Upon initialization,
+each of the object properties (red, green, blue) can be tweaked individually from
+their default values of <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal print statement (behaves as expected)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not in Color.&quot;</span><span class="p">)</span>
@@ -217,8 +228,8 @@ default <code class="docutils literal notranslate"><span class="pre">0</span></c
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.color.Color.__str__">
 <span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/color.html#Color.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.__str__" title="Link to this definition"></a></dt>
-<dd><p>Return a string representation of the color; same as calling
-the <code class="docutils literal notranslate"><span class="pre">fg</span></code> method.</p>
+<dd><p>Return a string representation of the color. Functionally
+identical to calling the <code class="docutils literal notranslate"><span class="pre">fg</span></code> method.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_color</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">my_color</span><span class="si">}</span><span class="s2">f-strings make me feel blue.</span><span class="si">{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -228,8 +239,9 @@ the <code class="docutils literal notranslate"><span class="pre">fg</span></code
 
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.color.Color.bg">
-<span class="sig-name descname"><span class="pre">bg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/color50/color.html#Color.bg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.bg" title="Link to this definition"></a></dt>
-<dd><p>Return a string representation of the stored color for background use.</p>
+<span class="sig-name descname"><span class="pre">bg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color50/color.html#Color.bg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.bg" title="Link to this definition"></a></dt>
+<dd><p>Return the stored color as a string representing its corresponding background
+ANSI color code sequence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The ANSI color code sequence representation of the object, specifically
@@ -246,32 +258,33 @@ to use as a background color.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="color50.color.Color.blue">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">blue</span></span><a class="headerlink" href="#color50.color.Color.blue" title="Link to this definition"></a></dt>
-<dd><p>Numeric value for amount of <em>blue</em> in the color, ranging from 0-255.
+<dd><p>A numeric value (0-255) representing the color’s blue levels.
 Supports both get and set operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is set to a non-integer value.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
+<li><p><strong>TypeError</strong> – If the property is set to a non-integer value.</p></li>
+<li><p><strong>ValueError</strong> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a></p>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.color.Color.fg">
-<span class="sig-name descname"><span class="pre">fg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/color50/color.html#Color.fg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.fg" title="Link to this definition"></a></dt>
-<dd><p>Return a string representation of the stored color for foreground use.</p>
+<span class="sig-name descname"><span class="pre">fg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color50/color.html#Color.fg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.color.Color.fg" title="Link to this definition"></a></dt>
+<dd><p>Return the stored color as a string representing its corresponding foreground
+ANSI color code sequence.</p>
 <p>The return value of this function is the default behavior of converting
 a <strong>Color</strong> object to a string. The option to call <code class="docutils literal notranslate"><span class="pre">fg</span></code> explicitly
 has been included for completeness, readability, and consistency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The ANSI color code sequence representation of the object, specifically
-to use as a foreground color.</p>
+for use as a foreground color.</p>
 </dd>
 </dl>
 <p>Example:</p>
@@ -284,17 +297,17 @@ to use as a foreground color.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="color50.color.Color.green">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">green</span></span><a class="headerlink" href="#color50.color.Color.green" title="Link to this definition"></a></dt>
-<dd><p>Numeric value for amount of <em>green</em> in the color, ranging from 0-255.
+<dd><p>A numeric value (0-255) representing the color’s green levels.
 Supports both get and set operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is set to a non-integer value.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
+<li><p><strong>TypeError</strong> – If the property is set to a non-integer value.</p></li>
+<li><p><strong>ValueError</strong> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a></p>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -302,29 +315,30 @@ Supports both get and set operations.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="color50.color.Color.red">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">red</span></span><a class="headerlink" href="#color50.color.Color.red" title="Link to this definition"></a></dt>
-<dd><p>Numeric value for amount of <em>red</em> in the color, ranging from 0-255.
+<dd><p>A numeric value (0-255) representing the color’s red levels.
 Supports both get and set operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is set to a non-integer value.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
+<li><p><strong>TypeError</strong> – If the property is set to a non-integer value.</p></li>
+<li><p><strong>ValueError</strong> – If the property is set to an out-of-range integer (e.g., not in range 0-255).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a></p>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
+<hr class="docutils" />
 </section>
 <section id="core-functions">
 <span id="core-functions-module-label"></span><h2>Core functions<a class="headerlink" href="#core-functions" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="color50.core_functions.rgb">
-<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.rgb" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.rgb" title="Link to this definition"></a></dt>
 <dd><p>Return a <strong>Color</strong> object based on specified RGB values.</p>
 <p>One of three recommended methods for creating <strong>Color</strong> objects. Because the
 <strong>Color</strong> class stores RGB values internally, this function essentially mirrors
@@ -343,10 +357,12 @@ the behavior of a would-be parameterized <code class="docutils literal notransla
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Because this function sets the <strong>Color</strong> class properties to the values of
-the specified parameters, it has potential to raise exceptions in the same
-fashion as the property setters. Ensure that each parameter value is of
-type <code class="docutils literal notranslate"><span class="pre">int</span></code> such that 0 &lt;= value &lt;= 255.</p>
+<p>This function creates a <strong>Color</strong> object and attempts to assign the
+parameter values to said object’s properties. This means that any
+possible exceptions raised by setting the properties explicitly can
+also be raised by calling this function.</p>
+<p>To avoid exceptional cases, ensure that each parameter is a valid
+integer with a value from 0-255.</p>
 </div>
 <p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color1</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>        <span class="c1"># black</span>
@@ -358,10 +374,11 @@ type <code class="docutils literal notranslate"><span class="pre">int</span></co
 
 <dl class="py function">
 <dt class="sig sig-object py" id="color50.core_functions.hexcode">
-<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">hexcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#hexcode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.hexcode" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">hexcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#hexcode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.hexcode" title="Link to this definition"></a></dt>
 <dd><p>Return a <strong>Color</strong> object based on a specified HEX color code.</p>
 <p>One of three recommended methods for creating <strong>Color</strong> objects. Designed to
-enable flexibility for those more familiar with this color format.</p>
+offer flexibility insofar as the format of specifying color, especially since
+RGB values and HEX color codes are often used alongside one another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>code</strong> – A string representation of a HEX color code. Can contain optional
@@ -373,8 +390,8 @@ lowercase letters.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a string.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a valid HEX color code or is formatted incorrectly.</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a string.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">code</span></code> is not a valid HEX color code or is formatted incorrectly.</p></li>
 </ul>
 </dd>
 </dl>
@@ -388,21 +405,22 @@ lowercase letters.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="color50.core_functions.css">
-<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">css</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colorname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#css"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.css" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">css</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colorname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a></span></span><a class="reference internal" href="_modules/color50/core_functions.html#css"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.css" title="Link to this definition"></a></dt>
 <dd><p>Return a <strong>Color</strong> object based on a specified CSS color name.</p>
 <p>One of three recommended methods for creating <strong>Color</strong> objects. Designed to
-enable compatibility with colors specified by name in CSS stylesheets.</p>
+offer a simpler alternative to explicit RGB values/HEX color codes, and to
+enable cross-compatibility of color choice between projects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>colorname</strong> – A string literal of a valid CSS color name.</p>
+<dd class="field-odd"><p><strong>colorname</strong> – A valid CSS color name.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A valid <strong>Color</strong> object.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not a string.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not among the list of recognized CSS color names.</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not a string.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">colorname</span></code> is not among the list of recognized CSS color names.</p></li>
 </ul>
 </dd>
 </dl>
@@ -412,24 +430,25 @@ enable compatibility with colors specified by name in CSS stylesheets.</p>
 <span class="n">color3</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;seagreen&quot;</span><span class="p">)</span>  <span class="c1"># seagreen</span>
 </pre></div>
 </div>
-<p>For a comprehensive list of possible color names, visit <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/named-color">the official listing
+<p>For a comprehensive list of valid CSS color names, visit <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/named-color">the official listing
 from the MDN Web Docs</a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="color50.core_functions.colorize">
-<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/core_functions.html#colorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.colorize" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">color50.core_functions.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/core_functions.html#colorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.core_functions.colorize" title="Link to this definition"></a></dt>
 <dd><p>Alter the color of a given function’s standard output.</p>
-<p>This function is designed to be used as a decorator as a short and readable
-means of altering the color of an entire function’s output.</p>
+<p>This function is designed to be used as a decorator as a more readable
+and re-usable means of editing any given <em>function’s</em> output as opposed
+to simply altering the output of a specific <code class="docutils literal notranslate"><span class="pre">print</span></code> call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>color</strong> – A valid <strong>Color</strong> object or its equivalent string representation.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is not a <strong>Color</strong> or string, or if the decorated object is not callable.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is a string representing an invalid ANSI color code character sequence</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is not a <strong>Color</strong> or string, or if the decorated object is not callable.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">color</span></code> is a string representing an invalid ANSI color code character sequence</p></li>
 </ul>
 </dd>
 </dl>
@@ -454,16 +473,21 @@ as plain text with a green-colored background. As with before, <code class="docu
 appropriately resets the terminal output color upon function termination.</p>
 </dd></dl>
 
+<hr class="docutils" />
 </section>
 <section id="colorstr-class">
 <span id="colorstr-module-label"></span><h2><strong>ColorStr</strong> class<a class="headerlink" href="#colorstr-class" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">color50.colorstr.</span></span><span class="sig-name descname"><span class="pre">ColorStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">color50.colorstr.</span></span><span class="sig-name descname"><span class="pre">ColorStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr" title="Link to this definition"></a></dt>
 <dd><p>A class for representing specialized strings with custom color properties.</p>
-<p>Stores string content alongside a foreground color and background color.
-Note that the use of the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant is not required when working
-with <strong>ColorStr</strong> objects.</p>
+<p>Stores text content alongside a foreground color and background color for use
+when printing said text to the console.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The use of the <code class="docutils literal notranslate"><span class="pre">RESET</span></code> constant is <em>NOT</em> required when working with
+<strong>ColorStr</strong> objects. The class is designed to handle that logic internally.</p>
+</div>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Warning: An error has occurred.&quot;</span>
 <span class="n">fg</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
@@ -475,9 +499,21 @@ with <strong>ColorStr</strong> objects.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr.__add__">
-<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addend</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__add__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addend</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__add__" title="Link to this definition"></a></dt>
 <dd><p>Support concatenation of <strong>ColorStr</strong> objects with <strong>str</strong> objects
 and of <strong>ColorStr</strong> objects with other <strong>ColorStr</strong> objects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike with <strong>Color</strong> objects, the order of operations here does not
+matter. Any order of valid operands is acceptable, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ColorStr</span> <span class="pre">+</span> <span class="pre">str</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">+</span> <span class="pre">ColorStr</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ColorStr</span> <span class="pre">+</span> <span class="pre">ColorStr</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
 <p>Example 1:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;This text is colorful, and... &quot;</span><span class="p">,</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">))</span>
 <span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;this text is plain.&quot;</span>
@@ -500,13 +536,13 @@ and of <strong>ColorStr</strong> objects with other <strong>ColorStr</strong> ob
 
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr.__eq__">
-<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__eq__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__eq__" title="Link to this definition"></a></dt>
 <dd><p>Support equality comparisons of two <strong>ColorStr</strong> objects.</p>
 <p>Two objects of type <strong>ColoStrr</strong> are defined to be equal if
 and only if:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">str1.content</span> <span class="pre">==</span> <span class="pre">str2.content</span></code> is <strong>True</strong> (e.g., string content is identical),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str1.content</span> <span class="pre">==</span> <span class="pre">str2.content</span></code> is <strong>True</strong> (e.g., text content is identical),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">str1.fg</span> <span class="pre">==</span> <span class="pre">str2.fg</span></code> is <strong>True</strong>,</p></li>
 <li><p>and <code class="docutils literal notranslate"><span class="pre">str1.bg</span> <span class="pre">==</span> <span class="pre">str2.bg</span></code> is <strong>True</strong>.</p></li>
 </ul>
@@ -530,12 +566,12 @@ and only if:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__init__" title="Link to this definition"></a></dt>
-<dd><p>Initialize a <strong>ColorStr</strong> object with content and optional fg/bg colors.</p>
-<p>Note that <strong>None</strong> is an accepted value for both the <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code>
-parameters. When either is set to <strong>None</strong>, any future usage of the
-object for printing will disregard the property and use the default
-configuration.</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#color50.color.Color" title="color50.color.Color"><span class="pre">Color</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/color50/colorstr.html#ColorStr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#color50.colorstr.ColorStr.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a <strong>ColorStr</strong> object with content and optional foreground/
+background colors.</p>
+<p>Note that <strong>None</strong> is acceptable for both the <code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code>
+parameters. When set to <strong>None</strong>, that property will be ignored
+when the <strong>ColorStr</strong> is displayed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -565,11 +601,17 @@ longer be directly editable.</p>
 <p>Example 1:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_color_str</span> <span class="o">=</span> <span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;crimson&quot;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">my_color_str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ...and goodbye, color.&quot;</span><span class="p">)</span>
+
+<span class="c1"># my_color_str can still be edited, like so:</span>
+<span class="n">my_color_str</span><span class="o">.</span><span class="n">fg</span> <span class="o">=</span> <span class="n">hexcode</span><span class="p">(</span><span class="s2">&quot;a0a0ff&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">my_color_str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ..and goodbye, color.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Example 2:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_color_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ColorStr</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">css</span><span class="p">(</span><span class="s2">&quot;crimson&quot;</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color_str</span> <span class="o">+</span> <span class="s2">&quot; ...and goodbye, color.&quot;</span><span class="p">)</span>
+
+<span class="c1"># my_color_str is now a normal string, so fg/bg can no longer be edited</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -577,12 +619,12 @@ longer be directly editable.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr.bg">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bg</span></span><a class="headerlink" href="#color50.colorstr.ColorStr.bg" title="Link to this definition"></a></dt>
-<dd><p>A <strong>Color</strong> object denoting the desired background color. Supports
-both get and set operations. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the property will be
-disregarded when the object is displayed.</p>
+<dd><p>A <strong>Color</strong> object denoting the desired background color. If set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the property will be disregarded when the object is displayed. Supports
+both get and set operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is not set to a valid <strong>Color</strong> object.</p>
+<dd class="field-odd"><p><strong>TypeError</strong> – If the property is not set to a valid <strong>Color</strong> object.</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#color50.color.Color" title="color50.color.Color">Color</a></p>
@@ -597,10 +639,10 @@ disregarded when the object is displayed.</p>
 operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is not set to a <strong>str</strong> value.</p>
+<dd class="field-odd"><p><strong>TypeError</strong> – If the property is not set to a <strong>str</strong> value.</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -608,12 +650,12 @@ operations.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="color50.colorstr.ColorStr.fg">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fg</span></span><a class="headerlink" href="#color50.colorstr.ColorStr.fg" title="Link to this definition"></a></dt>
-<dd><p>A <strong>Color</strong> object denoting the desired foreground color. Supports
-both get and set operations. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the property will be
-disregarded when the object is displayed.</p>
+<dd><p>A <strong>Color</strong> object denoting the desired foreground color. If set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the property will be disregarded when the object is displayed. Supports
+both get and set operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – If the property is not set to a valid <strong>Color</strong> object.</p>
+<dd class="field-odd"><p><strong>TypeError</strong> – If the property is not set to a valid <strong>Color</strong> object.</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#color50.color.Color" title="color50.color.Color">Color</a></p>
@@ -623,18 +665,12 @@ disregarded when the object is displayed.</p>
 
 </dd></dl>
 
+<hr class="docutils" />
 </section>
 <section id="constants">
 <span id="constants-module-label"></span><h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
-<p>A series of string literal constants for more granular color control.</p>
-<p>Use these constants as shorthand for a variety of situations:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Passing named color constants to <code class="docutils literal notranslate"><span class="pre">colorize</span></code></p></li>
-<li><p>Using <code class="docutils literal notranslate"><span class="pre">RESET</span></code> when working with <strong>Color</strong> objects</p></li>
-<li><p>Interfacing directly with ANSI color codes</p></li>
-</ul>
-</div></blockquote>
+<p>A series of string literal constants for both simpler and more granular
+color control.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Because these constants are not encapsulated in any class or error-checking
@@ -825,14 +861,9 @@ after using the desired color to avoid unexpected behavior.</p>
 </div>
 </dd>
 </dl>
-<hr class="docutils" />
-<p>The source code for the <strong>constants</strong> module is included below for completeness.
+<p>The source code for the module is included below for completeness.
 Reference it as you wish:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daniel Fletcher</span>
-<span class="c1"># Harvard CS50P 2024</span>
-<span class="c1"># Final Project</span>
-
-<span class="c1"># constants.py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># constants.py</span>
 <span class="c1"># Constants for use across files</span>
 
 <span class="c1"># ANSI escape sequence manipulation</span>
@@ -894,7 +925,7 @@ Reference it as you wish:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

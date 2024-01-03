@@ -1,29 +1,44 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   usage.rst
+   A comprehensive guide to using color50, written to help introduce the package
+   features in a digestible manner.
+
 Usage Guide
 ===========
 
-Read this guide to learn about the key features of **color50** and how to best
-make use of them. For additional code examples, refer to the :doc:`demo files</demo>`
-included with the documentation.
+Read this guide to learn about the key features of **color50** and how to use them.
+For additional code examples, refer to the :doc:`demo files</demo>` included with
+the documentation.
+
+Before moving forward, make sure you have **color50** installed on your machine by
+executing this ``pip`` command::
+
+    pip install color50
 
 ----------
 
 Using the **Color** class
 -------------------------
 
-Representing colors in Python code is at the heart of **color50**, and the **Color**
-class is one way to achieve this goal.
+Color usage in Python code is at the heart of **color50**, and the **Color**
+class lays the foundation for much of the package's primary functionality.
 
 Foundations
 ***********
 
 The **Color** class represents a color by storing its RGB values. The RGB color model
 is a way of representing colors using three values: red, green, and blue. Each of these
-values are an integer with a value of 0-255 representing the "amount" of red/green/blue
-in the color. (Read `this article`_ for more information on RGB color.)
+values is an integer with a value of 0-255 representing the "amount" of red/green/blue
+in the color. (Read `this Wikipedia article`_ for more information on RGB color.)
 
-.. _this article: https://en.wikipedia.org/wiki/RGB_color_model
+.. _this Wikipedia article: https://en.wikipedia.org/wiki/RGB_color_model
 
-For example, suppose you want to store the color *red* in an object of type **Color**.
+For example, suppose you want to store the color red in an object of type **Color**.
 Consider this example program::
 
     # Import Color class
@@ -36,12 +51,12 @@ Consider this example program::
     my_color.red = 255
 
 The ``my_color`` object now stores RGB values such that ``R = 255``, ``G = 0``, and
-``B = 0``, thus representing the color *red*.
+``B = 0``, thus representing the color red.
 
-Notice that the *green* and *blue* properties were not specified. According to the
+Notice that no green or blue value was explicitly specified. As discussed in the
 :ref:`Color class documentation<color-module-label>`, each of the three properties
-initializes to a value of ``0``. In other words, the default color created by calling
-``Color()`` is black (e.g., ``R = 0``, ``G = 0``, and ``B = 0``).
+initializes to a default value of ``0``. In other words, the default color created
+by calling ``Color()`` is black (e.g., ``R = 0``, ``G = 0``, and ``B = 0``).
 
 Consider another example program::
 
@@ -61,19 +76,17 @@ Consider another example program::
     color3.red = 128
     color3.blue = 128
 
-Notice again how all properties default to ``0``, resulting in some properties not needing
-to be changed manually.
+Notice again how all properties default to ``0``, meaning some properties need not
+be set manually.
 
 Working with strings
 ********************
 
-With a solid knowledge of the semantics of the **Color** class, we can now put that knowledge
-to practical use.
-
 As described in the :ref:`Color class documentation<color-module-label>`, **Color** objects
-support concatenation with strings to effectively add color to them. This can be done with string
-literals or strings stored as variables. Note that the **Color** object must always come first in
-the operation, meaning ``Color + str`` is valid but ``str + Color`` is not.
+support concatenation with strings to effectively imbue them with color upon display. This can
+be done with string literals or strings stored as variables. Note that the **Color** object must
+always come first in the operation, meaning ``Color + str`` is a valid operation type but 
+``str + Color`` is not.
 
 Example::
 
@@ -94,11 +107,11 @@ Example::
     # Print success message (in green)
     print(success_color + "SUCCESS" + constants.RESET)
 
-Notice the inclusion of the ``constants.RESET`` variable at the end of each print statement. When
+Notice the inclusion of the ``constants.RESET`` variable at the end of each call to ``print``. When
 using **Color** objects with strings in this fashion, including the ``RESET`` constant after the
 colorful string is needed to revert the terminal colors to their defaults. While it does not
-necessarily need to follow *every* colorful string, unexpected behaviors may occur if ``RESET``
-is never used.
+necessarily need to follow *every* string whose display color has been altered, unexpected
+behaviors may occur if ``RESET`` is never used.
 
 Here's another example using some different formats::
 
@@ -113,15 +126,18 @@ Here's another example using some different formats::
     print(f"{my_color}I've got the blues.{constants.RESET}")
     print(my_color, "I've got the blues.", constants.RESET, sep="")
 
-The last three print statements each produce the exact same output. This allows for greater
-flexibility when working with **Color** objects in your code.
+The three print statements in this program each produce the exact same output. This versatility
+allows for greater code flexibility when developing with **color50**.
 
 Using the ``fg`` and ``bg`` methods
 ***********************************
 
 In addition to changing the color of the terminal text, the **Color** class also allows for
-changing the background color that appears behind the text. Use ``fg`` to denote foreground
-usage and ``bg`` to denote background usage.
+changing the background color that appears behind the text.
+
+Built into the **Color** class are two methods: ``fg`` and ``bg``. The ``fg`` method returns
+the color's foreground string representation, whereas the ``bg`` method returns the color's
+background string representation.
 
 Example::
 
@@ -138,13 +154,13 @@ Example::
     # Print plain text on yellow background
     print(f"{my_color.bg()}Yellow, is anyone there?{constants.RESET}")
 
-The ``fg`` and ``bg`` methods are used in the same way that **Color** objects have
-in the previous examples.
+Notice how the ``fg`` and ``bg`` methods are used just like **Color** objects have been used
+in previous examples.
 
 Under the hood, concatenating **Color** objects with strings actually just converts
-the **Color** to a string representation of its ANSI color code before performing
-standard string concatenation. Effectively, this means that ``str(my_color)`` and
-``my_color.fg()`` return the same output.
+the **Color** to a string representation of its foreground ANSI color code before
+performing standard string concatenation. This effectively means means that
+``str(my_color)`` and ``my_color.fg()`` are functionally identical calls.
 
 Another example using foreground/background colors simultaneously::
 
@@ -164,9 +180,9 @@ Another example using foreground/background colors simultaneously::
     )
 
 Notice that the ``earth_green`` foreground color did not need to explicitly call
-the ``fg`` method to produce the intended results. (The ``fg`` method is mostly
-included for those who want explicit clarity when also working with the ``bg``
-method.)
+the ``fg`` method to produce the intended results. The ``fg`` method is mostly
+included for the option of explicit clarity when also working with the ``bg``
+method.
 
 ----------
 
@@ -175,17 +191,17 @@ Using ``rgb``, ``hexcode``, and ``css``
 
 Now that we've covered the **Color** class and its usage with strings, we can jump
 into three of the four functions in the core_functions module. These functions are
-designed to streamline the creation of a given **Color** object, removing the need
-to manually enter each RGB value after initialization.
+designed to streamline the creation of **Color** objects by simplifying their
+initialization to one readable line of code.
 
 The ``rgb`` function
 ********************
 
-This function allows for setting the **Color** object's properties in the same way as before,
-but now in only one line of code.
+This function allows for setting the **Color** object's RGB values without having to
+change each of them individually.
 
-``rgb`` takes in three parameters (red, green, and blue values, as used before) and returns a
-valid **Color** object whose properties have been initialized to the parameter values.
+``rgb`` takes in three parameters (red, green, and blue values) and returns a
+valid **Color** object whose properties have been set to said parameter values.
 
 Example program::
 
@@ -200,14 +216,14 @@ Example program::
     print(f"{color1}This text is yellow.{constants.RESET}")
     print(f"{color2}{color3.bg()}This text is magenta with a cyan background.{constants.RESET}")
 
-For more information regarding the function's parameters and usage details, refer to
-:ref:`its section of the documentation<core-functions-module-label>`.
+For more information regarding the function's parameters, exceptions raised, and other usage details,
+refer to :ref:`its section of the documentation<core-functions-module-label>`.
 
 The ``hexcode`` function
 ************************
 
-This function enables using a different color formatting (six-digit hexadecimal codes) to
-initialize a **Color** object.
+This function enables using another industry-standard color representation (six-digit hexadecimal codes)
+to initialize a **Color** object.
 
 ``hexcode`` takes in one parameter (a HEX color code, as a string) and returns a
 valid **Color** object whose properties have been initialized to match the color represented
@@ -238,15 +254,15 @@ This version of the code is functionally identical to the previous iteration. Wh
 options are valid, it is recommended to use only one throughout a given file or project for stylistic
 consistency.
 
-For more information regarding the function's parameters and usage details, refer to
-:ref:`its section of the documentation<core-functions-module-label>`.
+For more information regarding the function's parameters, exceptions raised, and other usage details,
+refer to :ref:`its section of the documentation<core-functions-module-label>`.
 
 The ``css`` function
 ********************
 
-This function accepts a CSS color name and uses it to initialize a **Color** object. This allows
-for the usage of more specific colors without needing to know their RGB value or HEX color code
-representations.
+This function accepts a CSS color name and uses it to initialize a **Color** object. This enables the
+usage of colors by name rather than by numeric value, and it also allows for cross-compatibility with
+projects using CSS.
 
 ``css`` takes in one parameter (a valid CSS color name, as a string) and returns a
 valid **Color** object whose properties have been initialized to match the color represented
@@ -265,8 +281,8 @@ Example program::
     print(f"{color1}This text is yellow.{constants.RESET}")
     print(f"{color2}{color3.bg()}This text is magenta with a cyan background.{constants.RESET}")
 
-For more information regarding the function's parameters and usage details, refer to
-:ref:`its section of the documentation<core-functions-module-label>`.
+For more information regarding the function's parameters, exceptions raised, and other usage details,
+refer to :ref:`its section of the documentation<core-functions-module-label>`.
 
 For more information regarding the list of valid color names, refer to `the official listing
 from the MDN Web Docs`_.
@@ -278,17 +294,17 @@ from the MDN Web Docs`_.
 Using the **ColorStr** class
 ----------------------------
 
-The **ColorStr** class takes all the building blocks described previously and encapsulates them
-into a single, streamlined class.
+The **ColorStr** class takes these foundational building blocks we've been discussing and
+encapsulates them into one lightweight, readable class.
 
 **ColorStr** objects have three properties:
 
-    - A string containing the soon-to-be-colorful text
+    - A string containing soon-to-be-colorful text
     - A foreground color (optional)
     - A background color (optional)
 
-With this design, **ColorStr** objects can be used for similar cases as in previous examples but
-with more straightforward syntax.
+With this design, **ColorStr** objects can be used in similar contexts as in previous examples,
+but with much more straightforward syntax.
 
 Example::
 
@@ -304,13 +320,12 @@ Example::
     print(my_color_str)
 
 The print statement in the above example prints the contents ``"Hello! It's me, World!"`` as green
-text on a blue background. Notice how many of the smaller details from previous examples are no
-longer necessary, like needing to distinguish between ``fg`` and ``bg`` use cases or needing to
-include the ``RESET`` constant. All of this logic is handled by the **ColorStr** class!
+text on a blue background. Notice how the ``RESET`` constant is *not* needed here. Also notice how
+no calls to ``fg`` or ``bg`` are necessary. The **ColorStr** class handles all this logic internally!
 
-**ColorStr** also supports concatenation with strings as well as with other **ColorStr** objects.
-This concatenation behaves much like the concatenation of two standard strings, with the exception
-that color is retained from any included **ColorStr** objects.
+**ColorStr** supports concatenation with strings as well as with other **ColorStr** objects.
+This concatenation behaves much like the concatenation of two standard strings, insofar as one
+string's content is appended to another's.
 
 Example::
 
@@ -324,7 +339,7 @@ Example::
     # Print to screen
     print(str1 + str2 + " and " + str3 + "!")
 
-In the above example, only the contents of ``str2`` and ``str3`` will display their custom colors;
+In the above example, only the contents of ``str2`` and ``str3`` will display with custom color settings;
 all other content will be printed using default settings.
 
 For more information regarding the properties, methods, and other implementation details of
@@ -339,7 +354,8 @@ The fourth and final module included with **color50** is the **constants** modul
 a variety of named constants for working with ANSI color codes on a more granular level.
 
 These constants, however, can also be used like **Color** objects with respect to string
-concatenation. They can offer simple, easy-access colors when not much else is needed.
+concatenation. They offer simple, easy-access colors when not much additional complexity
+or customization is needed.
 
 Example::
 
@@ -354,20 +370,20 @@ Example::
     # Print a blue message to the screen
     print(constants.BLUE, "This is a blue message.", constants.RESET, sep="")
 
-Note that the ``RESET`` constant is needed when using these color constants.
+Note that ``RESET`` *is needed* when using these color constants.
 
-The majority of the included constants are variations of the same eight
+The majority of the included constants are variations of the eight
 standard ANSI colors, but two of them are for more specific use cases:
 
-    - The ``ANSI_PREFIX`` constant contains the ANSI escape sequence that all other constants in the module make use of.
-    - The ``RESET`` constant contains the ANSI code needed to restore default color settings.
+    - The ``ANSI_PREFIX`` constant contains the ANSI escape sequence that precede all ANSI color encodings.
+    - The ``RESET`` constant contains the ANSI encoding needed to restore default color settings to the terminal.
 
-Outside of those two outliers, the included constants represent the ANSI sequences needed to change
+Aside from those two outliers, the included constants represent the ANSI color encodings needed to change
 the color of any text that follows it.
 
-These constants are much more limited in their usage insofar
-as **color50** compatibility (i.e., **ColorStr** objects will not accept these constants as fg or
-bg colors), but they can be used to work with and better understand the lower-level implementation
+These constants are more limited in their combined usage with other **color50** features
+(i.e., **ColorStr** objects *will not* accept these constants as fg or bg colors), but
+they can be used to work with and better understand the lower-level implementation
 details of ANSI color code sequencing.
 
 For more information regarding the full list of constants included with the module,
@@ -377,9 +393,9 @@ refer to the :ref:`its section of the documentation<constants-module-label>`.
 
 Using ``colorize``
 ------------------
-The core_functions module mentioned previously contains one more function that has not yet been
-discussed. That is the ``colorize`` function, a function designed to be used as a simple decorator
-for coloring function output.
+The core_functions module mentioned previously contains one more feature of **color50** that has not yet been
+discussed. That would be the ``colorize`` decorator function, designed for adjusting the color of an entire
+function's output.
 
 Consider the following example::
 
@@ -390,10 +406,10 @@ Consider the following example::
         print(message)
 
 With this setup, any calls to ``print_warning`` will produce output with red text. This offers a
-very short and simple way to ensure that any and all output from a given function will be the
-same color.
+very short and simple way to ensure that any and all output from a given function will maintain the
+same color configuration.
 
-Note that the color constants from the constants module can also be used here::
+Note that the named color constants from the constants module can also be used here::
 
     from color50 import colorize, constants
 
@@ -401,5 +417,5 @@ Note that the color constants from the constants module can also be used here::
     def print_warning(message: str):
         print(message)
 
-For more information regarding the function's parameters and usage details, refer to
-:ref:`its section of the documentation<core-functions-module-label>`.
+For more information regarding the function's parameters, exceptions raised, and other usage details,
+refer to :ref:`its section of the documentation<core-functions-module-label>`.

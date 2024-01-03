@@ -6,6 +6,7 @@
   <title>color50.core_functions &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -14,9 +15,11 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -34,7 +37,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -44,8 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul>
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage Guide</a></li>
@@ -79,12 +81,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for color50.core_functions</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Standalone functions designed to streamline color selection and usage.</span>
+<span></span><span class="sd">&quot;&quot;&quot;Four standalone functions designed to streamline color selection and usage.</span>
 
 <span class="sd">Use the ``rgb``, ``hexcode``, and ``css`` functions to initialize **Color**</span>
-<span class="sd">objects with whichever format is most familiar to you. You can also use</span>
-<span class="sd">the ``colorize`` decorator for changing the color of a whole function&#39;s</span>
-<span class="sd">output.</span>
+<span class="sd">objects with familiar names and formats. Use the ``colorize`` decorator function</span>
+<span class="sd">to change the color of a whole function&#39;s output.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -131,10 +132,13 @@
 <span class="sd">        A valid **Color** object.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        Because this function sets the **Color** class properties to the values of</span>
-<span class="sd">        the specified parameters, it has potential to raise exceptions in the same</span>
-<span class="sd">        fashion as the property setters. Ensure that each parameter value is of</span>
-<span class="sd">        type ``int`` such that 0 &lt;= value &lt;= 255.</span>
+<span class="sd">        This function creates a **Color** object and attempts to assign the</span>
+<span class="sd">        parameter values to said object&#39;s properties. This means that any</span>
+<span class="sd">        possible exceptions raised by setting the properties explicitly can</span>
+<span class="sd">        also be raised by calling this function.</span>
+
+<span class="sd">        To avoid exceptional cases, ensure that each parameter is a valid</span>
+<span class="sd">        integer with a value from 0-255.</span>
 
 <span class="sd">    Examples::</span>
 
@@ -156,7 +160,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a **Color** object based on a specified HEX color code.</span>
 <span class="sd">    </span>
 <span class="sd">    One of three recommended methods for creating **Color** objects. Designed to</span>
-<span class="sd">    enable flexibility for those more familiar with this color format.</span>
+<span class="sd">    offer flexibility insofar as the format of specifying color, especially since</span>
+<span class="sd">    RGB values and HEX color codes are often used alongside one another.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        code:</span>
@@ -201,11 +206,12 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a **Color** object based on a specified CSS color name.</span>
 <span class="sd">    </span>
 <span class="sd">    One of three recommended methods for creating **Color** objects. Designed to</span>
-<span class="sd">    enable compatibility with colors specified by name in CSS stylesheets.</span>
+<span class="sd">    offer a simpler alternative to explicit RGB values/HEX color codes, and to</span>
+<span class="sd">    enable cross-compatibility of color choice between projects.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        colorname:</span>
-<span class="sd">            A string literal of a valid CSS color name.</span>
+<span class="sd">            A valid CSS color name.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A valid **Color** object.</span>
@@ -222,7 +228,7 @@
 <span class="sd">        color2 = css(\&quot;white\&quot;)     # white</span>
 <span class="sd">        color3 = css(\&quot;seagreen\&quot;)  # seagreen</span>
 
-<span class="sd">    For a comprehensive list of possible color names, visit `the official listing</span>
+<span class="sd">    For a comprehensive list of valid CSS color names, visit `the official listing</span>
 <span class="sd">    from the MDN Web Docs &lt;https://developer.mozilla.org/en-US/docs/Web/CSS/named-color&gt;`_.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -249,8 +255,9 @@
 <span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Alter the color of a given function&#39;s standard output.</span>
 <span class="sd">    </span>
-<span class="sd">    This function is designed to be used as a decorator as a short and readable</span>
-<span class="sd">    means of altering the color of an entire function&#39;s output.</span>
+<span class="sd">    This function is designed to be used as a decorator as a more readable</span>
+<span class="sd">    and re-usable means of editing any given *function&#39;s* output as opposed</span>
+<span class="sd">    to simply altering the output of a specific ``print`` call.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        color:</span>
@@ -316,7 +323,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

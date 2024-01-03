@@ -1,8 +1,17 @@
+..
+   Daniel Fletcher
+   Harvard CS50P 2024
+   Final Project
+
+..
+   api.rst
+   Auto-generate API index for package
+
 API
 ===
 
-Submodules
-----------
+Included modules
+----------------
 
 .. autosummary::
    :toctree: generated

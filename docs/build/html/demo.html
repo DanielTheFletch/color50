@@ -7,6 +7,7 @@
   <title>Demo Files &mdash; color50 docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -15,9 +16,11 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +40,7 @@
             color50
           </a>
               <div class="version">
-                1.0
+                1.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,12 +50,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation Contents</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Demo Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Demo Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#demo-1-rgb-color-selector">Demo #1: RGB Color Selector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-2-hex-css-preview-utility">Demo #2: HEX/CSS Preview Utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-3-color-randomizer">Demo #3: Color Randomizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-4-dice-roller-game">Demo #4: DICE ROLLER Game</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="color50.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
@@ -83,7 +91,17 @@
              
   <section id="demo-files">
 <h1>Demo Files<a class="headerlink" href="#demo-files" title="Link to this heading"></a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">demo1.py</span></code>:</p>
+<p>These demo files are included to offer a better look at how the <strong>color50</strong> package
+might be used in the context of a larger program. Feel free to copy these demo programs
+into your own environment to run them, alter them, or otherwise use them to help you
+learn the package features!</p>
+<section id="demo-1-rgb-color-selector">
+<h2>Demo #1: RGB Color Selector<a class="headerlink" href="#demo-1-rgb-color-selector" title="Link to this heading"></a></h2>
+<p>Demo #1 is a simple program that prompts user input of a color’s RGB values.
+The user is asked to enter three different integer values. If valid, the message
+<code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">World!&quot;</span></code> will be printed to the screen in the color specified by the
+user’s input.</p>
+<p><code class="docutils literal notranslate"><span class="pre">demo1.py</span></code> source:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">constants</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -113,8 +131,16 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">my_color</span> <span class="o">+</span> <span class="s2">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">demo2.py</span></code>:</p>
+<section id="demo-2-hex-css-preview-utility">
+<h2>Demo #2: HEX/CSS Preview Utility<a class="headerlink" href="#demo-2-hex-css-preview-utility" title="Link to this heading"></a></h2>
+<p>Demo #2 serves as a utility for echoing a user’s input back to them for quickly
+previewing colorized output. The user is asked to enter a HEX color code and a CSS
+color name. If <em>both</em> specified colors are valid, the user’s input will be echoed
+back to them exactly as entered, but it will be displayed in that color as opposed
+to being displayed with the default color settings.</p>
+<p><code class="docutils literal notranslate"><span class="pre">demo2.py</span></code> source:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">css</span><span class="p">,</span> <span class="n">hexcode</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -137,8 +163,15 @@
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSS color name: </span><span class="si">{</span><span class="n">color2</span><span class="si">}{</span><span class="n">input_css</span><span class="si">}{</span><span class="n">constants</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">demo3.py</span></code>:</p>
+<section id="demo-3-color-randomizer">
+<h2>Demo #3: Color Randomizer<a class="headerlink" href="#demo-3-color-randomizer" title="Link to this heading"></a></h2>
+<p>Demo #3 showcases how <strong>color50</strong> might be used in conjunction with random number
+generation. The program generates random RGB values for a foreground color and for
+a background color, which are each then used to create a <strong>ColorStr</strong> object for
+printing to the screen.</p>
+<p><code class="docutils literal notranslate"><span class="pre">demo3.py</span></code> source:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">ColorStr</span><span class="p">,</span> <span class="n">rgb</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
@@ -159,8 +192,22 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===&gt;&quot;</span><span class="p">,</span> <span class="n">my_color_str</span><span class="p">,</span> <span class="s2">&quot;&lt;===&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">demo4.py</span></code>:</p>
+<section id="demo-4-dice-roller-game">
+<h2>Demo #4: DICE ROLLER Game<a class="headerlink" href="#demo-4-dice-roller-game" title="Link to this heading"></a></h2>
+<p>Demo #4 is a somewhat more involved program, simulating a made-up game called DICE ROLLER.
+The player (e.g., the user) gets to roll two dice and must roll a higher sum total
+than two “computer” characters.</p>
+<p>Many <strong>color50</strong> features are demonstrated in this program, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Calling the <code class="docutils literal notranslate"><span class="pre">css</span></code> function to create <strong>Color</strong> objects</p></li>
+<li><p>Displaying text in color using Python f-string syntax</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">colorize</span></code> decorator to add color to a function’s output</p></li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">demo4.py</span></code> source:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">color50</span> <span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">css</span><span class="p">,</span> <span class="n">colorize</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
@@ -247,6 +294,7 @@
 </pre></div>
 </div>
 </section>
+</section>
 
 
            </div>
@@ -259,7 +307,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Daniel Fletcher.</p>
+    <p>&#169; Copyright 2024, Daniel Fletcher.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

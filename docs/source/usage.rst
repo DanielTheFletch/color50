@@ -15,13 +15,18 @@ Read this guide to learn about the key features of **color50** and how to use th
 For additional code examples, refer to the :doc:`demo files</demo>` included with
 the documentation.
 
+Before moving forward, make sure you have **color50** installed on your machine by
+executing this ``pip`` command::
+
+    pip install color50
+
 ----------
 
 Using the **Color** class
 -------------------------
 
 Color usage in Python code is at the heart of **color50**, and the **Color**
-class lays the foundation for much of the package's functionality.
+class lays the foundation for much of the package's primary functionality.
 
 Foundations
 ***********
@@ -31,7 +36,7 @@ is a way of representing colors using three values: red, green, and blue. Each o
 values is an integer with a value of 0-255 representing the "amount" of red/green/blue
 in the color. (Read `this Wikipedia article`_ for more information on RGB color.)
 
-.. _this article: https://en.wikipedia.org/wiki/RGB_color_model
+.. _this Wikipedia article: https://en.wikipedia.org/wiki/RGB_color_model
 
 For example, suppose you want to store the color red in an object of type **Color**.
 Consider this example program::
@@ -122,14 +127,16 @@ Here's another example using some different formats::
     print(my_color, "I've got the blues.", constants.RESET, sep="")
 
 The three print statements in this program each produce the exact same output. This versatility
-allows for greater flexibility when developing with **color50**.
+allows for greater code flexibility when developing with **color50**.
 
 Using the ``fg`` and ``bg`` methods
 ***********************************
 
 In addition to changing the color of the terminal text, the **Color** class also allows for
-changing the background color that appears behind the text. The ``fg`` method returns the
-color's foreground string representation, whereas the ``bg`` method returns the color's
+changing the background color that appears behind the text.
+
+Built into the **Color** class are two methods: ``fg`` and ``bg``. The ``fg`` method returns
+the color's foreground string representation, whereas the ``bg`` method returns the color's
 background string representation.
 
 Example::
@@ -184,7 +191,7 @@ Using ``rgb``, ``hexcode``, and ``css``
 
 Now that we've covered the **Color** class and its usage with strings, we can jump
 into three of the four functions in the core_functions module. These functions are
-designed to streamline the creation of **Color** objects by simplifying the
+designed to streamline the creation of **Color** objects by simplifying their
 initialization to one readable line of code.
 
 The ``rgb`` function
@@ -314,7 +321,7 @@ Example::
 
 The print statement in the above example prints the contents ``"Hello! It's me, World!"`` as green
 text on a blue background. Notice how the ``RESET`` constant is *not* needed here. Also notice how
-no calls to ``fg`` or ``bg`` were necessary. The **ColorStr** class handles all this logic internally!
+no calls to ``fg`` or ``bg`` are necessary. The **ColorStr** class handles all this logic internally!
 
 **ColorStr** supports concatenation with strings as well as with other **ColorStr** objects.
 This concatenation behaves much like the concatenation of two standard strings, insofar as one
@@ -374,9 +381,9 @@ standard ANSI colors, but two of them are for more specific use cases:
 Aside from those two outliers, the included constants represent the ANSI color encodings needed to change
 the color of any text that follows it.
 
-These constants are much more limited in their usage insofar
-as **color50** compatibility (i.e., **ColorStr** objects will not accept these constants as fg or
-bg colors), but they can be used to work with and better understand the lower-level implementation
+These constants are more limited in their combined usage with other **color50** features
+(i.e., **ColorStr** objects *will not* accept these constants as fg or bg colors), but
+they can be used to work with and better understand the lower-level implementation
 details of ANSI color code sequencing.
 
 For more information regarding the full list of constants included with the module,
@@ -387,7 +394,7 @@ refer to the :ref:`its section of the documentation<constants-module-label>`.
 Using ``colorize``
 ------------------
 The core_functions module mentioned previously contains one more feature of **color50** that has not yet been
-discussed. That woudld be the ``colorize`` decorator function, designed for adjusting the color of an entire
+discussed. That would be the ``colorize`` decorator function, designed for adjusting the color of an entire
 function's output.
 
 Consider the following example::
@@ -399,8 +406,8 @@ Consider the following example::
         print(message)
 
 With this setup, any calls to ``print_warning`` will produce output with red text. This offers a
-very short and simple way to ensure that any and all output from a given function will be the
-same color.
+very short and simple way to ensure that any and all output from a given function will maintain the
+same color configuration.
 
 Note that the named color constants from the constants module can also be used here::
 

@@ -13,15 +13,22 @@ This is color50.
 Welcome to the home page of the documentation for **color50**, a lightweight
 Python package for colorful output at the command line.
 
+----------
+
+Installation
+------------
+
 To install **color50**, execute the following ``pip`` command::
 
    pip install color50
 
 ----------
 
+Documentation Contents
+----------------------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Documentation Contents
 
    Home <self>
    intro
