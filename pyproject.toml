@@ -20,7 +20,7 @@ version = "1.0.0"
 authors = [
     { name="Daniel Fletcher", email="dfletcher-mail@proton.me" }
 ]
-description = "Placeholder description"
+description = "A lightweight Python package for colorful output at the command line."
 readme = "README.md"
 requires-python = ">=3.10"
 
